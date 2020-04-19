@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/TylerAuer/reddit-clone-2#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.0.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.6"
   }
 }
