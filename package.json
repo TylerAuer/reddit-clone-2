@@ -1,0 +1,26 @@
+{
+  "name": "reddit-clone-2",
+  "version": "1.0.0",
+  "description": "a clone of reddit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TylerAuer/reddit-clone-2.git"
+  },
+  "keywords": [
+    "clone",
+    "awesome"
+  ],
+  "author": "tyler and josh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TylerAuer/reddit-clone-2/issues"
+  },
+  "homepage": "https://github.com/TylerAuer/reddit-clone-2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
