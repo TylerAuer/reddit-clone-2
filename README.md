@@ -1,6 +1,11 @@
 # Reddit Clone Requirements
 
+## Notes / Next Steps
+
+- Figure out why brew install of postgresql failed
+
 ## Flow ideas
+
 - Create user and log in
 - CRUD posts/comments
 -----
