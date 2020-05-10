@@ -2,7 +2,8 @@
 
 ## Notes / Next Steps
 
-- Figure out why brew install of postgresql failed
+- Just installed NVM
+- Need to install node with NVM
 
 ## Flow ideas
 
