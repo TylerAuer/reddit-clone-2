@@ -2,9 +2,6 @@
 
 ## Notes / Next Steps
 
-- Just installed NVM
-- Need to install node with NVM
-
 ## Flow ideas
 
 - Create user and log in
@@ -16,7 +13,6 @@
 - Algorithms for composing a feed of posts
 - Direct messaging
 - Muting
-
 
 ### CRUD backend
 - Posts (CRUD)
