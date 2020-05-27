@@ -2,6 +2,13 @@
 
 ## Notes / Next Steps
 
+- Start to write some request handlers that interact with an API for our database
+- Start with a way to create content
+- Tyler thinks about what the order of operations would be to create content on the server:
+  1. Make a user (API: CRUD users)
+  2. Create content types (API: CRUD data types)
+  3. 
+
 ## Flow ideas
 
 - Create user and log in
@@ -15,11 +22,13 @@
 - Muting
 
 ### CRUD backend
+
 - Posts (CRUD)
 - Comments on posts (CRUD)
 - Heirarchy/threaded comments
 
 ### CRUD frontend
+
 - Post/comment CRUD flow
 - Display posts/comments
 
@@ -42,6 +51,8 @@
     - Date Last Updated
     - List of Subcomments:
       - ...further nesting
+
+npx sequelize-cli model:generate --name content --attributes content_type:integer,creator:integer,metadata:json
 
 ```JSON
 {
