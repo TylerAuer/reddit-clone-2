@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "tylerauer",
+    "password": null,
+    "database": "reddit",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
