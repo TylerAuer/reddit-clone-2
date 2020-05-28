@@ -6,6 +6,7 @@ const port = 3000;
 
 // app.get is a "route"
 app.get("/", routeHandlers.baseRouteHandler);
+app.get("/tyler", routeHandlers.tylerRouteHandler);
 
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)

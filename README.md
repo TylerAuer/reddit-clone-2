@@ -7,7 +7,6 @@
 - Tyler thinks about what the order of operations would be to create content on the server:
   1. Make a user (API: CRUD users)
   2. Create content types (API: CRUD data types)
-  3. 
 
 ## Flow ideas
 
