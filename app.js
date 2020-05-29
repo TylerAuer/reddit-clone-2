@@ -1,6 +1,8 @@
 const express = require('express');
 const routeHandlers = require('./routeHandlers');
 
+// QUESTION: Should we implement react with create-react-app?
+
 // App config
 const app = express();
 const port = 3000;
