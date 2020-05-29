@@ -21,6 +21,7 @@ const addUser = (username, first_name, last_name, email_address) => {
 };
 
 // READ user in DB - return object of user's info
+// QUESTION: I have async functions in every step here. That can't be ideal
 const readUser = async (username) => {
   const userData = await user(sequelize, DataTypes).findAll({
     attributes: [
@@ -31,14 +32,14 @@ const readUser = async (username) => {
       'email_address',
     ],
     where: {
-      username: username,
+      username: {
+        // QUESTION: How this is making the value lowercase is a mystery to me
+        [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
+      },
     },
   });
 
   return userData[0].dataValues;
-  // QUESTION:
-  // This logs the data, but how do I just return it so a frontend
-  // could prosses it? Or, is my mental map of this just totally off?
 };
 
 // READ list of all users in DB
