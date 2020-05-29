@@ -1,27 +1,13 @@
 const express = require('express');
 const routeHandlers = require('./routeHandlers');
-const usersAPI = require('./api/users');
 
-// App set up
+// App config
 const app = express();
 const port = 3000;
 
-// app.get is a "route"
+// List of endpoints
 app.get('/', routeHandlers.baseRouteHandler);
-app.get('/tyler', routeHandlers.tylerRouteHandler);
+app.get('/API/user/:username', routeHandlers.userRouteHandler);
 
-app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}`)
-);
-
-(async () => {
-  // await usersAPI.addUser(
-  //   "JessyFresh",
-  //   "Jessica",
-  //   "Auer",
-  //   "fakeJBird@gmail.com"
-  // );
-
-  console.log(await usersAPI.readUser('JessyFresh'));
-  await usersAPI.readUser('Prestoneous');
-})();
+// Where to set up the app to listen
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
