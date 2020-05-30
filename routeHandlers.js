@@ -14,4 +14,10 @@ const userRouteHandler = async (req, res) => {
   res.json(userInfo);
 };
 
-module.exports = { baseRouteHandler, userRouteHandler };
+const userQueryRouteHandler = async (req, res) => {
+  const userInfo = await usersAPI.readUser(req.query.username);
+  // sends users info as JSON
+  res.json(userInfo);
+};
+
+module.exports = { baseRouteHandler, userRouteHandler, userQueryRouteHandler };

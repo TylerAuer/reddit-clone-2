@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Reddit 2</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+</head>
+
+<body>
+  <div id="main">
+    <h1>Reddit 2</h1>
+    <p>
+      Welcome to Reddit 2. It's reddit but without all that annoying stuff you like!
+    </p>
+    <h2>
+      Why not look up one of our highly valued users?
+    </h2>
+    <p>We'll do all the work, just type in their username. Don't worry about capitalizations. Do worry about everything
+      else.
+    </p>
+    <form id="formId">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">
+      <button type="submit">Look up user!</button>
+    </form>
+  </div>
+
+  <div id="user-data">
+  </div>
+
+  <script>
+    const formRef = document.getElementById('formId');
+
+    const submit = (event) => {
+      event.preventDefault();
+      const inputUsername = event.target.elements["username"].value;
+      fetch('/API/user/' + inputUsername)
+        .then(response => response.json())
+        .then(data => {
+          const userDataDisplay = document.getElementById("user-data");
+          // data is now the object I designed.
+          // it can be processed like any object into whatever html I want
+          // process it here
+        })
+    }
+
+    formRef.onsubmit = submit;
+
+  </script>
+</body>
+
+</html>
