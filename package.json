@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TylerAuer/reddit-clone-2#readme",
   "dependencies": {
+    "@emotion/core": "^10.0.28",
     "express": "^4.17.1",
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
