@@ -1,18 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import UserProfileBox from './components/user-profile-box';
 
 function App() {
+  const [userJSON, setUserJSON] = useState(null);
   const submit = (event) => {
     event.preventDefault();
     const inputUsername = event.target.elements['username'].value;
+    console.log('/API/user/' + inputUsername);
     fetch('/API/user/' + inputUsername)
       .then((response) => response.json())
       .then((data) => {
-        const userDataDisplay = document.getElementById('user-data');
-        // data is now the object I designed.
-        // it can be processed like any object into whatever html I want
-        // process it here
+        setUserJSON(data);
       });
   };
 
@@ -33,6 +32,7 @@ function App() {
         <input type="text" id="username" name="username" />
         <button type="submit">Look up user!</button>
       </form>
+      <UserProfileBox userJSON={userJSON} />
     </div>
   );
 }
