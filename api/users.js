@@ -21,27 +21,48 @@ const addUser = (username, first_name, last_name, email_address) => {
 };
 
 // READ user in DB - return object of user's info
-// QUESTION: I have async functions in every step here. That can't be ideal
-const readUser = async (username) => {
-  const userData = await user(sequelize, DataTypes).findAll({
-    attributes: [
-      'username',
-      'first_name',
-      'last_name',
-      'date_joined',
-      'email_address',
-    ],
-    where: {
-      username: {
-        // QUESTION: How this is making the value lowercase is a mystery to me
-        // A (very) quick look at the sequelize docs did not answer my question
-        [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
+const readUser = (username, res) => {
+  return user(sequelize, DataTypes)
+    .findOne({
+      attributes: [
+        'username',
+        'first_name',
+        'last_name',
+        'date_joined',
+        'email_address',
+      ],
+      where: {
+        username: {
+          // QUESTION: How this is making the value lowercase is a mystery to me
+          // A (very) quick look at the sequelize docs did not answer my question
+          [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
+        },
       },
-    },
-  });
-
-  return userData[0].dataValues;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
+
+// const readUser = async (username) => {
+//   const userData = await user(sequelize, DataTypes).findAll({
+//     attributes: [
+//       'username',
+//       'first_name',
+//       'last_name',
+//       'date_joined',
+//       'email_address',
+//     ],
+//     where: {
+//       username: {
+//         // QUESTION: How this is making the value lowercase is a mystery to me
+//         // A (very) quick look at the sequelize docs did not answer my question
+//         [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
+//       },
+//     },
+//   });
+//   return userData[0].dataValues;
+// };
 
 // READ list of all users in DB
 // readAllUsers()
