@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core';
+import theme from '../theme';
 
 // animation when user info box is loaded
 const slideLeft = keyframes`
@@ -8,7 +9,7 @@ const slideLeft = keyframes`
     transform: translateX(3rem) scale(0, 0)
   }
 
-  80% {
+  75% {
     transform: translateX(-.2rem) scale(1.1, 1.1)
   }
 
@@ -18,13 +19,13 @@ const slideLeft = keyframes`
 `;
 
 // userInfoBox styles
-const userInfoBoxStyle = css`
-  border: solid #a8a8a8 0.1rem;
+const userInfoBoxStyles = css`
+  border: solid ${theme.colors.light} 0.1rem;
   border-radius: 1.5rem;
   padding: 1.5rem;
   margin: 1rem auto;
-  line-height: 1.5;
-  font-size: 1rem;
+  line-height: 1.7;
+  font-size: 1.6rem;
   animation: ${slideLeft} 0.5s ease-in-out;
   transform-origin: top left;
 
@@ -32,12 +33,14 @@ const userInfoBoxStyle = css`
     font-size: 2.4rem;
     margin-right: 2rem;
     font-weight: bold;
+    color: ${theme.colors.light};
   }
 
   #name {
   }
 
   #email {
+    text-decoration: none;
   }
 
   #dateJoined {
@@ -65,22 +68,19 @@ const UserProfileBox = (props) => {
       dateJoinedObj.getFullYear(); // ex: 2020
 
     return (
-      <div css={userInfoBoxStyle}>
+      <div css={userInfoBoxStyles}>
         <div id={'username'}>{username}</div>
-
         <div id={'name'}>{name}</div>
         <div>
           <a id={'email'} href={'mailto:' + email}>
             {email}
           </a>
-          <div id={'dateJoined'}>
-            2Reddit 2Furious since: {dateJoinedString}
-          </div>
+          <div id={'dateJoined'}>2Reddit2Furious Since: {dateJoinedString}</div>
         </div>
       </div>
     );
   } else {
-    return null;
+    return <div></div>;
   }
 };
 
