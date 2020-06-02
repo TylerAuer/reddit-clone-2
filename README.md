@@ -4,23 +4,24 @@
 
   1. CSS Styles
      1. Establish quick overall theme for site
-        1. Fonts
-        2. Colors
+        1. ~~Fonts~~
+        2. ~~Colors~~
         3. Structure
-  2. Users
+  2. Navbar and footer using React Router
+  3. Users
      1. ~~READ user~~
-        1. Extract user lookup search box to it's own component
+        1. ~~Extract user lookup search box to it's own component~~
      2. CREATE user
      3. UPDATE user (can use same form as create but have the info prefilled)
      4. DELETE user
-  3. Populate Content Types Data Table, can do manually with postgres
-  4. Post
+  4. Populate Content Types Data Table, can do manually with postgres
+  5. Post
      1. CREATE Post
      2. READ Post
      3. Display list of posts on homepage (reverse chronological order)
      4. UPDATE Post (use same editor as create)
      5. DELETE Post
-  5. Comments
+  6. Comments
      1. CREATE
      2. READ
      3. Display list at bottom of post
@@ -28,9 +29,8 @@
      4. Display comment counter
      5. UPDATE Comment
      6. DELETE Comment
-  6. User Authentication
-  7. Like Button (+2 instead of +1, LOL)
-  8. Navbar and footer
+  7. User Authentication
+  8. Like Button (+2 instead of +1, LOL)
   9. Post Sorting Algorithm
   10. Search
   
