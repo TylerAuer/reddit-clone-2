@@ -53,20 +53,18 @@ h3,
 h4,
 h5,
 h6 {
-  color: #05386b;
+  color: #edf5e1;
 }
 
 h1 {
   font-size: 8rem;
   text-align: center;
-  color: #edf5e1;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
 }
 
 h2 {
   font-size: 3.2rem;
-  color: #edf5e1;
 }
 
 h3 {
