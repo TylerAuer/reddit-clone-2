@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core';
-import theme from '../theme';
+import { COLORS } from '../constants';
 
 // animation when user info box is loaded
 const slideLeft = keyframes`
@@ -20,7 +20,7 @@ const slideLeft = keyframes`
 
 // userInfoBox styles
 const userInfoBoxStyles = css`
-  border: solid ${theme.colors.light} 0.1rem;
+  border: solid ${COLORS.blue} 0.1rem;
   border-radius: 1.5rem;
   padding: 1.5rem;
   margin: 1rem auto;
@@ -28,13 +28,6 @@ const userInfoBoxStyles = css`
   font-size: 1.6rem;
   animation: ${slideLeft} 0.5s ease-in-out;
   transform-origin: top left;
-
-  #username {
-    font-size: 2.4rem;
-    margin-right: 2rem;
-    font-weight: bold;
-    color: ${theme.colors.light};
-  }
 
   #name {
   }
@@ -46,7 +39,7 @@ const userInfoBoxStyles = css`
   #dateJoined {
     font-weight: bold;
     font-style: italic;
-    color: rebeccapurple;
+    color: ${COLORS.tan};
   }
 `;
 
@@ -70,8 +63,8 @@ const UserProfileBox = (props) => {
 
     return (
       <div css={userInfoBoxStyles}>
-        <div id={'username'}>{username}</div>
-        <div id={'name'}>{name}</div>
+        <h2 id={'username'}>{username}</h2>
+        <h3 id={'name'}>{name}</h3>
         <div>
           <a id={'email'} href={'mailto:' + email}>
             {email}
