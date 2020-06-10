@@ -9,15 +9,16 @@ const sequelize = new Sequelize('reddit', 'tylerauer', null, {
 });
 
 // CREATE new user in DB
-const addUser = (username, first_name, last_name, email_address) => {
-  const newUser = user(sequelize, DataTypes).create({
-    username: username,
-    first_name: first_name,
-    last_name: last_name,
-    date_joined: Math.round(Date.now() / 1000), // rounded to the second
-    email_address: email_address,
-  });
-  console.log('Added ', username, ' to the database!');
+const createUser = (username, first_name, last_name, email_address) => {
+  return user(sequelize, DataTypes)
+    .create({
+      username: username,
+      first_name: first_name,
+      last_name: last_name,
+      date_joined: Math.round(Date.now() / 1000), // rounded to the second
+      email_address: email_address,
+    })
+    .catch((error) => console.log('Error on Create User', error));
 };
 
 // READ user in DB - return object of user's info
@@ -40,7 +41,7 @@ const readUser = (username, res) => {
       },
     })
     .catch((error) => {
-      console.log(error);
+      console.log('Error: ', error);
     });
 };
 
@@ -53,4 +54,4 @@ const readUser = (username, res) => {
 // DELETE user in DB
 // deleteUser()
 
-module.exports = { addUser, readUser };
+module.exports = { createUser, readUser };

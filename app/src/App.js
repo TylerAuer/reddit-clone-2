@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import UserRead from './components/user-read';
+import UserCreate from './components/user-create';
 import { FEATURES } from './constants';
 import Nav from './components/nav';
 import Feed from './components/feed';
 
 function App() {
   //TODO: Use react router to implement the navigation
-  const [activeFeature, setActiveFeature] = useState(FEATURES.FEED);
+  const [activeFeature, setActiveFeature] = useState(FEATURES.USER_CREATE);
 
   const navOnClick = (feature) => {
     activeFeature === feature
@@ -21,7 +22,7 @@ function App() {
       <Nav onClick={navOnClick} />
 
       {activeFeature === FEATURES.FEED && <Feed />}
-      {activeFeature === FEATURES.USER_CREATE && <UserRead />}
+      {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
       {activeFeature === FEATURES.USER_READ && <UserRead />}
     </div>
   );
