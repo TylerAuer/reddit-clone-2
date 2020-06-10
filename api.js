@@ -7,10 +7,15 @@ const routeHandlers = require('./routeHandlers');
 const app = express();
 const port = 4000;
 
-// Endpoints
-app.get('/', routeHandlers.baseRouteHandler);
-app.get('/API/user/:username', routeHandlers.userRouteHandler);
-app.get('/API/user/', routeHandlers.userQueryRouteHandler);
+///////////////
+// ENDPOINTS //
+///////////////
+// Index
+app.get('/', routeHandlers.base);
+
+// USERS
+app.get('/API/user/', routeHandlers.userGet);
+app.post('/API/user/', routeHandlers.userPost);
 
 // Where to set up the app to listen
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

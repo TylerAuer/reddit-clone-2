@@ -44,26 +44,6 @@ const readUser = (username, res) => {
     });
 };
 
-// const readUser = async (username) => {
-//   const userData = await user(sequelize, DataTypes).findAll({
-//     attributes: [
-//       'username',
-//       'first_name',
-//       'last_name',
-//       'date_joined',
-//       'email_address',
-//     ],
-//     where: {
-//       username: {
-//         // QUESTION: How this is making the value lowercase is a mystery to me
-//         // A (very) quick look at the sequelize docs did not answer my question
-//         [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
-//       },
-//     },
-//   });
-//   return userData[0].dataValues;
-// };
-
 // READ list of all users in DB
 // readAllUsers()
 
