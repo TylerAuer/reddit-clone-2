@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UserProfileBox from './user-profile-box';
 
-const UserLookupForm = (props) => {
+const UserRead = (props) => {
   const [userJSON, setUserJSON] = useState(null);
   const submit = (event) => {
     event.preventDefault();
@@ -33,4 +33,4 @@ const UserLookupForm = (props) => {
   );
 };
 
-export default UserLookupForm;
+export default UserRead;
