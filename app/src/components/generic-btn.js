@@ -1,18 +1,19 @@
 /** @jsx jsx */
-import React from 'react';
 import { css, jsx, keyframes } from '@emotion/core';
 import theme from '../theme';
 
 const hover = keyframes`
   0% {
-    transform: translateX(3rem) scale(0, 0)
+    transform: translateX(3rem);
+    opacity: 0;
   }
 
   75% {
-    transform: translateX(-.2rem) scale(1.1, 1.1)
+    transform: translateX(-.2rem);
   }
 
   100% {
+    opacity: 1;
   }
 `;
 
@@ -27,6 +28,8 @@ const aStyle = css`
   color: white;
   font-weight: bold;
   display: inline-block;
+  cursor: pointer;
+  animation: ${hover} 0.3s;
   transition: all 0.2s;
 
   &:hover {
@@ -42,7 +45,7 @@ const aStyle = css`
 
 const GenericButton = (props) => {
   return (
-    <a css={aStyle} onClick={props.onClick}>
+    <a css={aStyle} onClick={() => props.onClick(props.featName)}>
       {props.text}
     </a>
   );

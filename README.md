@@ -1,27 +1,39 @@
 # Reddit Clone Requirements
 
-## Notes / Next Steps
+## TODO
 
-  1. CSS Styles
+1. ~~Look over Tyler's roadmap~~
+2. **React Hooks**:
+   1. ~~Any tricks, details I need to know?~~
+   2. ~~Passing down onClick actions. Unnecessary because no `this` for arrow functions?~~
+   3. Answer Q about animations when component unmounts
+3. ~~Answer Q about React Router~~
+4. ~~**User Authentication** - I'll need help with this, or at least a starting~~ point.
+5. Look at hosting
+
+## Roadmap
+
+  1. !CSS Styles
      1. Establish quick overall theme for site
         1. ~~Fonts~~
-        2. ~~Colors~~
+        2. Colors
+           1. Major color scheme
+           2. Alternate colors
         3. Structure
-  2. Navbar and footer using React Router
-  3. Users
+  2. Users
      1. ~~READ user~~
         1. ~~Extract user lookup search box to it's own component~~
      2. CREATE user
      3. UPDATE user (can use same form as create but have the info prefilled)
      4. DELETE user
-  4. Populate Content Types Data Table, can do manually with postgres
-  5. Post
+  3. Populate Content Types Data Table, can do manually with postgres
+  4. Post
      1. CREATE Post
      2. READ Post
      3. Display list of posts on homepage (reverse chronological order)
-     4. UPDATE Post (use same editor as create)
+     4. UPDATE Post (use same form as create)
      5. DELETE Post
-  6. Comments
+  5. Comments
      1. CREATE
      2. READ
      3. Display list at bottom of post
@@ -29,6 +41,7 @@
      4. Display comment counter
      5. UPDATE Comment
      6. DELETE Comment
+  6. Navbar and footer using React Router?
   7. User Authentication
   8. Like Button (+2 instead of +1, LOL)
   9. Post Sorting Algorithm

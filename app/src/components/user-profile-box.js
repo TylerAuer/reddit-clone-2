@@ -52,6 +52,7 @@ const userInfoBoxStyles = css`
 
 const UserProfileBox = (props) => {
   if (props.userJSON) {
+    // QUESTION: How do I use react hooks to animate on unmounting
     const username = props.userJSON.username;
     const name = props.userJSON.first_name + ' ' + props.userJSON.last_name;
     const email = props.userJSON.email_address;
