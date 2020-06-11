@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import React from 'react';
-import { css, jsx, keyframes } from '@emotion/core';
+//import React from 'react';
+import { css, jsx } from '@emotion/core';
 import { COLORS } from '../constants';
 
 const postDivStyle = css`

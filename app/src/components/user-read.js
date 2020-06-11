@@ -6,7 +6,7 @@ const UserRead = (props) => {
   const submit = (event) => {
     event.preventDefault();
     const inputUsername = event.target.elements['username'].value;
-    fetch('/API/user/' + '?username=' + inputUsername)
+    fetch('/API/user/?username=' + inputUsername)
       .then((response) => response.json())
       .then((data) => {
         setUserJSON(data);
