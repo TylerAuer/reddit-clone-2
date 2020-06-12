@@ -36,7 +36,7 @@ body {
   background-color: #5cdb95;
 }
 
-#root {
+.section-main {
   padding: 3rem;
   max-width: 1200px;
   margin: 0 auto;

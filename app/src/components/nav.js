@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FEATURES } from '../constants';
 import GenericButton from './GenericBtn';
 import { LoginContext } from '../contexts/LoginContext';
 
 function Nav(props) {
-  const [loginState, setLoginState] = useContext(LoginContext);
+  const [loginState, setLoginState] = React.useContext(LoginContext);
 
   const loginStatusDisplay = <div>Logged in as {loginState}</div>;
 
