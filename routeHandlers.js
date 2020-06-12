@@ -6,7 +6,10 @@ const base = (req, res) =>
 
 const userGet = async (req, res) => {
   const userInfo = await usersAPI.readUser(req.query.username);
-  res.json(userInfo);
+  console.log(userInfo);
+  userInfo
+    ? res.status(200).send(userInfo)
+    : res.status(204).send(req.query.username + 'does not exist');
 };
 
 const userPost = async (req, res) => {

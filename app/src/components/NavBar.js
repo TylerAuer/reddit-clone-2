@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { COLORS } from '../constants';
+import { COLORS, FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import Modal from './Modal';
+import ModalLogin from './ModalLogin';
 
 const headerStyle = css`
   display: flex;
@@ -57,10 +59,17 @@ const headerStyle = css`
   }
 `;
 
-const NavBar = () => {
-  //TODO: Extract account button to separate component
+const NavBar = (props) => {
+  ///////
+  ////////
+  /////
+  //////
+  ///
+  const [showModal, setShowModal] = React.useState(true);
   const [loginState, setLoginState] = React.useContext(LoginContext);
+
   const accountBtn = () => {
+    // If logged in
     if (loginState) {
       return (
         <React.Fragment>
@@ -68,9 +77,7 @@ const NavBar = () => {
             <span className={'greeting'}>Hi {loginState}!</span>
             <button
               className={'logout-btn'}
-              onClick={() => {
-                setLoginState(false);
-              }}
+              onClick={() => setLoginState(false)}
             >
               Logout
             </button>
@@ -78,28 +85,40 @@ const NavBar = () => {
         </React.Fragment>
       );
     } else {
+      // If logged out
       return (
         <li className={'login-state'}>
-          <button className={'login-btn'}>Login</button>
+          <button onClick={() => setShowModal(true)} className={'login-btn'}>
+            Login
+          </button>
         </li>
       );
     }
   };
 
+  const Login = (
+    <Modal closeModal={() => setShowModal(false)}>
+      <ModalLogin closeModal={() => setShowModal(false)} />
+    </Modal>
+  );
+
   return (
-    <header css={headerStyle}>
-      <div className="logo">{'{ 2R2F }'}</div>
-      <nav>
-        <ul>
-          {accountBtn()}
-          <li>
-            <a href="#">
-              <button className="menu">Menu</button>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <React.Fragment>
+      <header css={headerStyle}>
+        <div className="logo">{'{ 2R2F }'}</div>
+        <nav>
+          <ul>
+            {accountBtn()}
+            <li>
+              <a href="#">
+                <button className="menu">Menu</button>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      {showModal && Login}
+    </React.Fragment>
   );
 };
 

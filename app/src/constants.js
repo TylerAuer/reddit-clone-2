@@ -5,6 +5,7 @@ const FEATURES = {
   USER_READ: 2,
   USER_UPDATE: 3,
   USER_DELETE: 4,
+  USER_LOGIN_MODAL: 5,
   // Post CRUD
   POST_CREATE: 11,
   POST_READ: 12,
@@ -30,6 +31,7 @@ const COLORS = {
   tan: '#EDF5E1',
   white: '#fff',
   black: '#000',
+  orange: '#fc9803',
 };
 
 export { FEATURES, COLORS };
