@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { COLORS, FEATURES } from '../constants';
+import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import ProfileMenu from './ProfileMenu';
 import Modal from './Modal';
 import ModalLogin from './ModalLogin';
 
@@ -21,10 +22,11 @@ const headerStyle = css`
   button,
   button:active,
   button:focus {
+    font-family: ${STYLES.font};
     background: none;
     color: ${COLORS.blue};
     font-size: 1.6rem;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     border: 2px solid ${COLORS.blue};
     padding: 0.75rem 1.5rem;
@@ -52,16 +54,11 @@ const headerStyle = css`
     font-size: 4rem;
     font-weight: 600;
   }
-
-  .greeting {
-    color: ${COLORS['green-dark']};
-    font-style: italic;
-    margin-right: 2rem;
-  }
 `;
 
 const NavBar = (props) => {
   const [showModal, setShowModal] = React.useState(false);
+  const [showMenu, setShowMenu] = React.useState(true);
   const [loginState, setLoginState] = React.useContext(LoginContext);
 
   const accountBtn = () => {
@@ -70,12 +67,8 @@ const NavBar = (props) => {
       return (
         <React.Fragment>
           <li className={'login-state'}>
-            <span className={'greeting'}>Hi {loginState}!</span>
-            <button
-              className={'logout-btn'}
-              onClick={() => setLoginState(false)}
-            >
-              Logout
+            <button className={'logout-btn'} onClick={() => setShowMenu(true)}>
+              {loginState + ' \u2630'}
             </button>
           </li>
         </React.Fragment>
@@ -104,16 +97,17 @@ const NavBar = (props) => {
         <div className="logo">{'{ 2R2F }'}</div>
         <nav>
           <ul>
-            {accountBtn()}
-            <li>
+            {/* <li>
               <a href="#">
                 <button className="menu">Menu</button>
               </a>
-            </li>
+            </li> */}
+            {accountBtn()}
           </ul>
         </nav>
       </header>
       {showModal && Login}
+      <ProfileMenu show={showMenu} displayToggle={setShowMenu} />
     </React.Fragment>
   );
 };

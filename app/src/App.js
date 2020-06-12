@@ -6,7 +6,6 @@ import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
 import { GlobalContextProvider } from './contexts/GlobalContext';
-import LoginModal from './components/Modal';
 
 function App() {
   const [activeFeature, setActiveFeature] = useState();

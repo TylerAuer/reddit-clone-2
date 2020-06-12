@@ -34,4 +34,8 @@ const COLORS = {
   orange: '#fc9803',
 };
 
-export { FEATURES, COLORS };
+const STYLES = {
+  font: "'Open Sans', sans-serif",
+};
+
+export { FEATURES, COLORS, STYLES };
