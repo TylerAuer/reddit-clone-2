@@ -13,17 +13,17 @@
 
 ## Roadmap
 
-  1. !CSS Styles
-     1. Establish quick overall theme for site
+  1. ~~!CSS Styles~~
+     1. ~~Establish quick overall theme for site~~
         1. ~~Fonts~~
-        2. Colors
-           1. Major color scheme
-           2. Alternate colors
-        3. Structure
+        2. ~~Colors~~
+           1. ~~Major color scheme~~
+           2. ~~Alternate colors~~
+        3. ~~Structure~~
   2. Users
      1. ~~READ user~~
         1. ~~Extract user lookup search box to it's own component~~
-     2. CREATE user
+     2. ~~CREATE user~~
      3. UPDATE user (can use same form as create but have the info prefilled)
      4. DELETE user
   3. Populate Content Types Data Table, can do manually with postgres

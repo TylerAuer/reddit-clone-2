@@ -47,7 +47,8 @@ const headerStyle = css`
   }
 
   .logo {
-    color: ${COLORS['green-dark']};
+    color: ${COLORS.orange};
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     font-size: 4rem;
     font-weight: 600;
   }
@@ -60,12 +61,7 @@ const headerStyle = css`
 `;
 
 const NavBar = (props) => {
-  ///////
-  ////////
-  /////
-  //////
-  ///
-  const [showModal, setShowModal] = React.useState(true);
+  const [showModal, setShowModal] = React.useState(false);
   const [loginState, setLoginState] = React.useContext(LoginContext);
 
   const accountBtn = () => {
