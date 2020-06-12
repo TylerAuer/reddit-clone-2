@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FEATURES } from '../constants';
 import GenericButton from '../components/generic-btn';
+import { LoginContext } from '../contexts/LoginContext';
 
-const Nav = (props) => {
+function Nav(props) {
+  const [loginState, setLoginState] = useContext(LoginContext);
+
+  const loginStatusDisplay = <div>Logged in as {loginState}</div>;
+
   return (
     <>
       <GenericButton
@@ -20,8 +25,21 @@ const Nav = (props) => {
         featName={FEATURES.USER_CREATE}
         onClick={props.onClick}
       />
+      <GenericButton
+        text={'Toggle Login'}
+        onClick={() => {
+          loginState ? setLoginState(false) : setLoginState('Prestoneous');
+        }}
+      />
+      <GenericButton
+        text={'Toggle Login'}
+        onClick={() => {
+          loginState ? setLoginState(false) : setLoginState('Prestoneous');
+        }}
+      />
+      {loginState && loginStatusDisplay}
     </>
   );
-};
+}
 
 export default Nav;
