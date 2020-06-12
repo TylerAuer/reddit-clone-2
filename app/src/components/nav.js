@@ -5,9 +5,6 @@ import { LoginContext } from '../contexts/LoginContext';
 
 function Nav(props) {
   const [loginState, setLoginState] = React.useContext(LoginContext);
-
-  const loginStatusDisplay = <div>Logged in as {loginState}</div>;
-
   return (
     <>
       <GenericButton
@@ -37,7 +34,6 @@ function Nav(props) {
           loginState ? setLoginState(false) : setLoginState('Prestoneous');
         }}
       />
-      {loginState && loginStatusDisplay}
     </>
   );
 }

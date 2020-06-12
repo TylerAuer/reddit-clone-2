@@ -4,48 +4,56 @@ import { css, jsx } from '@emotion/core';
 import { COLORS } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 
-const navStyle = css`
-  background-color: ${COLORS.tan};
-  width: 100%;
-  height: auto;
-  padding: 1.2rem 0.5rem 1.2rem 0.5rem;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
+const headerStyle = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2%;
   color: ${COLORS.blue};
-  clear: both;
 
-  div {
+  ul li {
     display: inline-block;
+    margin: 0.5rem;
   }
 
-  button {
+  button,
+  button:active,
+  button:focus {
     background: none;
-    background-color: ${COLORS.blue};
-    color: white;
+    color: ${COLORS.blue};
+    font-size: 1.6rem;
+    font-weight: bold;
     border: none;
+    border: 2px solid ${COLORS.blue};
     padding: 0.75rem 1.5rem;
     border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
   }
 
-  .login-greeting {
-    padding-right: 2rem;
+  button:hover {
+    background-color: ${COLORS.blue};
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0px 2px 4px ${COLORS['green-dark']};
+  }
+
+  button:active {
+    transform: translateY(1px);
+    box-shadow: 0px 1px 2px ${COLORS['green-dark']};
+  }
+
+  .logo {
+    color: ${COLORS['green-dark']};
+    font-size: 4rem;
+    font-weight: 600;
+  }
+
+  .greeting {
     color: ${COLORS['green-dark']};
     font-style: italic;
-  }
-
-  .nav-bar__left li,
-  .nav-bar__right li {
-    display: inline;
-    padding: 1rem;
-  }
-
-  .nav-bar__right {
-    float: right;
-  }
-
-  .nav-bar__icon {
-    color: red;
-    font-size: 3rem;
+    margin-right: 2rem;
   }
 `;
 
@@ -56,40 +64,42 @@ const NavBar = () => {
     if (loginState) {
       return (
         <React.Fragment>
-          <div className="login-greeting">Hi {loginState}!</div>
-          <button
-            className={'logout-btn'}
-            onClick={() => {
-              setLoginState(false);
-            }}
-          >
-            Logout
-          </button>
+          <li className={'login-state'}>
+            <span className={'greeting'}>Hi {loginState}!</span>
+            <button
+              className={'logout-btn'}
+              onClick={() => {
+                setLoginState(false);
+              }}
+            >
+              Logout
+            </button>
+          </li>
         </React.Fragment>
       );
     } else {
-      return <button className={'login-btn'}>Login</button>;
+      return (
+        <li className={'login-state'}>
+          <button className={'login-btn'}>Login</button>
+        </li>
+      );
     }
   };
 
   return (
-    <nav css={navStyle}>
-      <div className="nav-bar__left">
+    <header css={headerStyle}>
+      <div className="logo">{'{ 2R2F }'}</div>
+      <nav>
         <ul>
-          <li className="nav-bar__icon">{'{ 2R2F }'}</li>
-          <li className="nav-bar__tite">2 Reddit</li>
-        </ul>
-      </div>
-
-      <div className="nav-bar__right">
-        <ul>
-          <li className="nav-bar__login-state">{accountBtn()}</li>
+          {accountBtn()}
           <li>
-            <button className="nav-bar__menu">Menu</button>
+            <a href="#">
+              <button className="menu">Menu</button>
+            </a>
           </li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
