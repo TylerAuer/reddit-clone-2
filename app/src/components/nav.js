@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FEATURES } from '../constants';
-import GenericButton from '../components/generic-btn';
+import GenericButton from './GenericBtn';
 import { LoginContext } from '../contexts/LoginContext';
 
 function Nav(props) {

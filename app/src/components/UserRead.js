@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UserProfileBox from './user-profile-box';
+import UserProfileBox from './UserProfileBox';
 
 const UserRead = (props) => {
   const [userJSON, setUserJSON] = useState(null);

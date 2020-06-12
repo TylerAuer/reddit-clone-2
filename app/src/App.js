@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FEATURES } from './constants';
-import UserRead from './components/user-read';
-import UserCreate from './components/user-create';
-import Nav from './components/nav';
-import Feed from './components/feed';
+import UserRead from './components/UserRead';
+import UserCreate from './components/UserCreate';
+import Nav from './components/Nav';
+import Feed from './components/Feed';
 import { LoginContextProvider } from './contexts/LoginContext';
 
 function App() {
