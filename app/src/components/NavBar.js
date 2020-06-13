@@ -58,7 +58,7 @@ const headerStyle = css`
 
 const NavBar = (props) => {
   const [showModal, setShowModal] = React.useState(false);
-  const [showMenu, setShowMenu] = React.useState(true);
+  const [showMenu, setShowMenu] = React.useState(false);
   const [loginState, setLoginState] = React.useContext(LoginContext);
 
   const accountBtn = () => {
