@@ -4,7 +4,6 @@ import { css, jsx } from '@emotion/core';
 import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import ProfileMenu from './ProfileMenu';
-import Modal from './Modal';
 import ModalLogin from './ModalLogin';
 
 const headerStyle = css`
@@ -85,12 +84,6 @@ const NavBar = (props) => {
     }
   };
 
-  const Login = (
-    <Modal closeModal={() => setShowModal(false)}>
-      <ModalLogin closeModal={() => setShowModal(false)} />
-    </Modal>
-  );
-
   return (
     <React.Fragment>
       <header css={headerStyle}>
@@ -106,7 +99,7 @@ const NavBar = (props) => {
           </ul>
         </nav>
       </header>
-      {showModal && Login}
+      {showModal && <ModalLogin closeModal={() => setShowModal(false)} />}
       <ProfileMenu show={showMenu} displayToggle={setShowMenu} />
     </React.Fragment>
   );

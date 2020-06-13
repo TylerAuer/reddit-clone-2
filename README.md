@@ -13,7 +13,6 @@
 
 ## Tyler's TODO Next
 
-- Make Modal self-contained except for passed show prop
 - Ensure all hide/shows are managed in state by a parent component
 - Remove transitions, will be handled with Springs animation library
 - Create user profile update form (maybe extract sign up form to be reused and take a request type (post patch etc.) prop)

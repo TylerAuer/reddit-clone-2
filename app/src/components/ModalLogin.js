@@ -3,6 +3,7 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import Modal from './Modal';
 
 // Pop up
 // Ask for username
@@ -76,32 +77,34 @@ const LoginModal = (props) => {
   };
 
   return (
-    <div css={loginStyles}>
-      <h2>Login</h2>
-      <form onSubmit={submit} id="formId">
-        <label htmlFor="username">
-          <b>Username </b>
-        </label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder={'Username'}
-        />{' '}
-        <br />
-        <label htmlFor="password">
-          <b>Password </b>
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder={'Password'}
-        />{' '}
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <Modal>
+      <div css={loginStyles}>
+        <h2>Login</h2>
+        <form onSubmit={submit} id="formId">
+          <label htmlFor="username">
+            <b>Username </b>
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder={'Username'}
+          />{' '}
+          <br />
+          <label htmlFor="password">
+            <b>Password </b>
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder={'Password'}
+          />{' '}
+          <br />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </Modal>
   );
 };
 

@@ -5,6 +5,8 @@ import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 
 const ProfileMenu = (props) => {
+  const [loginState, setLoginState] = React.useContext(LoginContext);
+
   const hide = css`
     opacity: 0;
     transform: scale(0);
@@ -70,7 +72,14 @@ const ProfileMenu = (props) => {
       </div>
       <div className="menu-container">
         <ul>
-          <li>Logout</li>
+          <li
+            onClick={() => {
+              setLoginState(false);
+              props.displayToggle(false);
+            }}
+          >
+            Logout
+          </li>
           <li>Change user info</li>
           <li>See all posts</li>
           <li>Delete account</li>
