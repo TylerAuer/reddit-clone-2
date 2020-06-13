@@ -56,30 +56,35 @@ const headerStyle = css`
 `;
 
 const NavBar = (props) => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [showMenu, setShowMenu] = React.useState(false);
+  const [showLoginModal, setShowLoginModal] = React.useState(false);
+  const [showAccountMenu, setShowAccountMenu] = React.useState(false);
   const [loginState, setLoginState] = React.useContext(LoginContext);
+
+  const toggleAccountMenu = () => {
+    showAccountMenu ? setShowAccountMenu(false) : setShowAccountMenu(true);
+  };
+
+  const toggleLoginModal = () => {
+    showLoginModal ? setShowLoginModal(false) : setShowLoginModal(true);
+  };
 
   const accountBtn = () => {
     // If logged in
     if (loginState) {
       return (
-        <React.Fragment>
-          <li className={'login-state'}>
-            <button className={'logout-btn'} onClick={() => setShowMenu(true)}>
-              {loginState + ' \u2630'}
-            </button>
-          </li>
-        </React.Fragment>
+        <button
+          className={'logout-btn'}
+          onClick={() => setShowAccountMenu(true)}
+        >
+          {loginState + ' \u2630'}
+        </button>
       );
     } else {
       // If logged out
       return (
-        <li className={'login-state'}>
-          <button onClick={() => setShowModal(true)} className={'login-btn'}>
-            Login
-          </button>
-        </li>
+        <button onClick={() => toggleLoginModal()} className={'login-btn'}>
+          Login
+        </button>
       );
     }
   };
@@ -90,17 +95,12 @@ const NavBar = (props) => {
         <div className="logo">{'{ 2R2F }'}</div>
         <nav>
           <ul>
-            {/* <li>
-              <a href="#">
-                <button className="menu">Menu</button>
-              </a>
-            </li> */}
-            {accountBtn()}
+            <li className={'login-state'}>{accountBtn()}</li>
           </ul>
         </nav>
       </header>
-      {showModal && <ModalLogin closeModal={() => setShowModal(false)} />}
-      <ProfileMenu show={showMenu} displayToggle={setShowMenu} />
+      {showLoginModal && <ModalLogin toggleModal={toggleLoginModal} />}
+      <ProfileMenu show={showAccountMenu} displayToggle={setShowAccountMenu} />
     </React.Fragment>
   );
 };

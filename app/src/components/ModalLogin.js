@@ -66,7 +66,7 @@ const LoginModal = (props) => {
       if (response.status === 200) {
         // Found user
         response.json().then((data) => setLoginState(data.username));
-        props.closeModal();
+        props.toggleModal();
       } else {
         alert(
           username +
@@ -77,7 +77,7 @@ const LoginModal = (props) => {
   };
 
   return (
-    <Modal>
+    <Modal toggleModal={props.toggleModal}>
       <div css={loginStyles}>
         <h2>Login</h2>
         <form onSubmit={submit} id="formId">

@@ -50,10 +50,10 @@ const Modal = (props) => {
     <div css={modal}>
       <div
         className={'modal__background'}
-        onClick={() => props.closeModal()}
+        onClick={() => props.toggleModal()}
       ></div>
       <div className={'modal__container'}>
-        <div className="modal__close-btn" onClick={() => props.closeModal()}>
+        <div className="modal__close-btn" onClick={() => props.toggleModal()}>
           {'\u2715'}
         </div>
 

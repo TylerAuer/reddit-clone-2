@@ -8,7 +8,7 @@ import Feed from './components/Feed';
 import { GlobalContextProvider } from './contexts/GlobalContext';
 
 function App() {
-  const [activeFeature, setActiveFeature] = useState();
+  const [activeFeature, setActiveFeature] = useState(FEATURES.FEED);
 
   // onClick to load site features
   const mountUnmountFeature = (feature) => {
@@ -18,7 +18,7 @@ function App() {
   //TODO: Use react router to implement the navigation
   return (
     <GlobalContextProvider>
-      <NavBar login={mountUnmountFeature} />
+      <NavBar />
       <section className="section-main">
         <h1>2 Reddit 2 Furious</h1>
 

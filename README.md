@@ -2,18 +2,6 @@
 
 ## TODO
 
-1. ~~Look over Tyler's roadmap~~
-2. **React Hooks**:
-   1. ~~Any tricks, details I need to know?~~
-   2. ~~Passing down onClick actions. Unnecessary because no `this` for arrow functions?~~
-   3. Answer Q about animations when component unmounts
-3. ~~Answer Q about React Router~~
-4. ~~**User Authentication** - I'll need help with this, or at least a starting~~ point.
-5. Look at hosting
-
-## Tyler's TODO Next
-
-- Ensure all hide/shows are managed in state by a parent component
 - Remove transitions, will be handled with Springs animation library
 - Create user profile update form (maybe extract sign up form to be reused and take a request type (post patch etc.) prop)
 - Make user lookup handle No Data respons 204 I think
