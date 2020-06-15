@@ -22,7 +22,7 @@ const createUser = (username, first_name, last_name, email_address) => {
 };
 
 // READ user in DB - return object of user's info
-const readUser = (username, res) => {
+const readUser = (username) => {
   return user(sequelize, DataTypes)
     .findOne({
       attributes: [
@@ -45,13 +45,30 @@ const readUser = (username, res) => {
     });
 };
 
-// READ list of all users in DB
-// readAllUsers()
-
 // UPDATE user in DB
-// updateUser()
+const updateUser = (
+  orig_username,
+  username,
+  first_name,
+  last_name,
+  email_address
+) => {
+  return user(sequelize, DataTypes).update(
+    {
+      username: username,
+      first_name: first_name,
+      last_name: last_name,
+      email_address: email_address,
+    },
+    {
+      where: {
+        username: orig_username,
+      },
+    }
+  );
+};
 
 // DELETE user in DB
 // deleteUser()
 
-module.exports = { createUser, readUser };
+module.exports = { createUser, readUser, updateUser };

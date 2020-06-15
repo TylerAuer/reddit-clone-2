@@ -10,12 +10,14 @@ const port = 4000;
 ///////////////
 // ENDPOINTS //
 ///////////////
+
 // Index
 app.get('/', routeHandlers.base);
 
 // USERS
 app.get('/API/user/', routeHandlers.userGet);
 app.post('/API/user/', routeHandlers.userPost);
+app.patch('/API/user/', routeHandlers.updateUser);
 
 // Where to set up the app to listen
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
