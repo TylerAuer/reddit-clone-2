@@ -15,7 +15,6 @@ function App() {
     activeFeature === feature ? setActiveFeature() : setActiveFeature(feature);
   };
 
-  //TODO: Use react router to implement the navigation
   return (
     <GlobalContextProvider>
       <NavBar />

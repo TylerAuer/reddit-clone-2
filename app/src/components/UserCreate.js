@@ -16,6 +16,7 @@ const UserCreate = (props) => {
     const email = '&email=' + elems['email'].value;
     const queryString = username + first + last + email;
 
+    //TODO: Add a .catch()
     fetch('/API/user/' + queryString, {
       method: 'POST',
     })

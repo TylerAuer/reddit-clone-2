@@ -5,11 +5,6 @@ import { COLORS } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import Modal from './Modal';
 
-// Pop up
-// Ask for username
-// Check if username exists
-// If so, setLoginState
-
 const loginStyles = css`
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   h2 {
@@ -53,7 +48,7 @@ const loginStyles = css`
   }
 `;
 
-const LoginModal = (props) => {
+const ModalLogin = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
 
   const submit = (event) => {
@@ -108,4 +103,4 @@ const LoginModal = (props) => {
   );
 };
 
-export default LoginModal;
+export default ModalLogin;

@@ -17,6 +17,9 @@ function Nav(props) {
       <GenericButton onClick={() => props.onClick(FEATURES.USER_READ)}>
         Find User
       </GenericButton>
+      <GenericButton onClick={() => props.onClick(FEATURES.USER_CREATE)}>
+        Create User
+      </GenericButton>
     </div>
   );
 }

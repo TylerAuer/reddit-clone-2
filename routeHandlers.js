@@ -4,14 +4,17 @@ const usersAPI = require('./api/users');
 const base = (req, res) =>
   res.sendFile(path.join(__dirname + '/app/public/index.html'));
 
+// 200 is the default status code
+// TODO: use a 404 instead of 204 status
 const userGet = async (req, res) => {
   const userInfo = await usersAPI.readUser(req.query.username);
   console.log(userInfo);
   userInfo
-    ? res.status(200).send(userInfo)
-    : res.status(204).send(req.query.username + 'does not exist');
+    ? res.send(userInfo)
+    : res.status(404).send(req.query.username + 'does not exist');
 };
 
+// TODO: Be more explicit about what the function does
 const userPost = async (req, res) => {
   const username = req.query.username;
   // If username is taken

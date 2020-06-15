@@ -3,15 +3,22 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import ModalUserChange from './ModalUserChange';
 
 const ProfileMenu = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
+  const [showUserChangeModal, setShowUserChangeModal] = React.useState(false);
+
+  const toggleUserChangeModal = () => {
+    showUserChangeModal
+      ? setShowUserChangeModal(false)
+      : setShowUserChangeModal(true);
+  };
 
   const hide = css`
     opacity: 0;
     transform: scale(0);
   `;
-
   const menu = css`
     position: absolute;
     opacity: 1;
@@ -62,7 +69,6 @@ const ProfileMenu = (props) => {
       }
     }
   `;
-
   let style = props.show ? menu : [menu, hide];
 
   return (
@@ -80,11 +86,14 @@ const ProfileMenu = (props) => {
           >
             Logout
           </li>
-          <li>Change user info</li>
+          <li onClick={() => toggleUserChangeModal()}>Change user info</li>
           <li>See all posts</li>
           <li>Delete account</li>
         </ul>
       </div>
+      {showUserChangeModal && (
+        <ModalUserChange toggleModal={toggleUserChangeModal} />
+      )}
     </div>
   );
 };

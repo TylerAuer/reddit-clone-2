@@ -5,6 +5,7 @@ import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import ProfileMenu from './ProfileMenu';
 import ModalLogin from './ModalLogin';
+import ModalSignUp from './ModalSignUp';
 
 const headerStyle = css`
   display: flex;
@@ -56,8 +57,9 @@ const headerStyle = css`
 `;
 
 const NavBar = (props) => {
-  const [showLoginModal, setShowLoginModal] = React.useState(false);
   const [showAccountMenu, setShowAccountMenu] = React.useState(false);
+  const [showLoginModal, setShowLoginModal] = React.useState(false);
+  const [showSignUpModal, setShowSignUpModal] = React.useState(false);
   const [loginState, setLoginState] = React.useContext(LoginContext);
 
   const toggleAccountMenu = () => {
@@ -68,23 +70,35 @@ const NavBar = (props) => {
     showLoginModal ? setShowLoginModal(false) : setShowLoginModal(true);
   };
 
-  const accountBtn = () => {
+  const toggleSignUpModal = () => {
+    showSignUpModal ? setShowSignUpModal(false) : setShowSignUpModal(true);
+  };
+
+  const accountBtns = () => {
     // If logged in
     if (loginState) {
       return (
-        <button
-          className={'logout-btn'}
-          onClick={() => setShowAccountMenu(true)}
-        >
-          {loginState + ' \u2630'}
-        </button>
+        <li className={'login-state'}>
+          <button className={'logout-btn'} onClick={() => toggleAccountMenu()}>
+            {loginState + ' \u2630'}
+          </button>
+        </li>
       );
     } else {
       // If logged out
       return (
-        <button onClick={() => toggleLoginModal()} className={'login-btn'}>
-          Login
-        </button>
+        <React.Fragment>
+          <li className={'login-state'}>
+            <button onClick={() => toggleSignUpModal()} className={'login-btn'}>
+              Sign Up
+            </button>
+          </li>
+          <li className={'login-state'}>
+            <button onClick={() => toggleLoginModal()} className={'login-btn'}>
+              Login
+            </button>
+          </li>
+        </React.Fragment>
       );
     }
   };
@@ -94,12 +108,11 @@ const NavBar = (props) => {
       <header css={headerStyle}>
         <div className="logo">{'{ 2R2F }'}</div>
         <nav>
-          <ul>
-            <li className={'login-state'}>{accountBtn()}</li>
-          </ul>
+          <ul>{accountBtns()}</ul>
         </nav>
       </header>
       {showLoginModal && <ModalLogin toggleModal={toggleLoginModal} />}
+      {showSignUpModal && <ModalSignUp toggleModal={toggleSignUpModal} />}
       <ProfileMenu show={showAccountMenu} displayToggle={setShowAccountMenu} />
     </React.Fragment>
   );

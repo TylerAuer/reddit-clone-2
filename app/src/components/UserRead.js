@@ -4,6 +4,7 @@ import UserProfileBox from './UserProfileBox';
 // TODO: Make this handle status(204) - No Content response
 const UserRead = (props) => {
   const [userJSON, setUserJSON] = useState(null);
+
   const submit = (event) => {
     event.preventDefault();
     const inputUsername = event.target.elements['username'].value;
