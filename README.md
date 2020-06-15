@@ -6,18 +6,6 @@
 - Help me with buying a domain, just making sure I don't F it **up**
 - Lookover my functions in routeHandlers.js
 
-## Tyler's TODO
-
-- Implement the GetUserInfo function the way Josh and I discussed
-- Create user profile update form (maybe extract sign up form to be reused and take a request type (post patch etc.) prop)
-- Make user lookup handle No Data response 204 I **think**
-- Replace buttons in NavBar with Button Components
-- Extract all forms to separate elements WITH their styles
-- For reused Styles (like forms) extract styles to separate component and put them in a styles folder
-- Reimplement modal using React.portal
-- Remove transitions, will be handled with Springs animation library
-- Remake forms to be controlled components (hooked into state)
-
 ## Roadmap
 
   1. ~~!CSS Styles~~
