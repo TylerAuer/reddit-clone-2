@@ -9,6 +9,7 @@ const sequelize = new Sequelize('reddit', 'tylerauer', null, {
 const createNewPost = (userID, metadata) => {
   return content(sequelize, DataTypes)
     .create({
+      content_type: 4,
       creater: userID,
       metadata: metadata,
     })

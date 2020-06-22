@@ -9,11 +9,12 @@ export const LoginContextProvider = (props) => {
 
   // TEST: Keeps me logged in for testing
   const [loginState, setLoginState] = useState({
-    username: 'Bob',
-    first_name: 'jfdsal',
-    last_name: 'fadsjl',
-    date_joined: 1592151583,
-    email_address: 'adsgfj@jgfdsl',
+    id: 9,
+    username: 'Prestoneous',
+    first_name: 'Tyler',
+    last_name: 'Auer',
+    date_joined: 1590687513,
+    email_address: 'fakeTyler@gmail.com',
   });
 
   return (

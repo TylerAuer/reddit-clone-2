@@ -11,6 +11,9 @@ const navStyle = css`
 function Nav(props) {
   return (
     <div css={navStyle}>
+      <GenericButton onClick={() => props.onClick(FEATURES.POST_CREATE)}>
+        Create Post
+      </GenericButton>
       <GenericButton onClick={() => props.onClick(FEATURES.FEED)}>
         Show Feed
       </GenericButton>
