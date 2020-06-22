@@ -69,6 +69,13 @@ const updateUser = (
 };
 
 // DELETE user in DB
-// deleteUser()
+const deleteUser = (username) => {
+  console.log(`Deleting ${username} from the database`);
+  return user(sequelize, DataTypes).destroy({
+    where: {
+      username: username,
+    },
+  });
+};
 
-module.exports = { createUser, readUser, updateUser };
+module.exports = { createUser, readUser, updateUser, deleteUser };

@@ -18,6 +18,7 @@ app.get('/', routeHandlers.base);
 app.get('/API/user/', routeHandlers.userGet);
 app.post('/API/user/', routeHandlers.userPost);
 app.patch('/API/user/', routeHandlers.updateUser);
+app.delete('/API/user/', routeHandlers.deleteUser);
 
 // Where to set up the app to listen
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

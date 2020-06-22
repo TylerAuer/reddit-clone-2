@@ -46,4 +46,10 @@ const updateUser = async (req, res) => {
   res.send('User info was updated');
 };
 
-module.exports = { base, userGet, userPost, updateUser };
+const deleteUser = async (req, res) => {
+  console.log(`Trying to delete ${req.query.username}`);
+  const userDeleteDB = await usersAPI.deleteUser(req.query.username);
+  res.send(`${req.query.username}'s account was delete`);
+};
+
+module.exports = { base, userGet, userPost, updateUser, deleteUser };
