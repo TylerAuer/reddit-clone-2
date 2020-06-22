@@ -4,6 +4,7 @@ import { css, jsx } from '@emotion/core';
 import { COLORS } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import Modal from './Modal';
+import getUserInfo from '../functions/getUserInfo';
 
 const loginStyles = css`
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -57,18 +58,8 @@ const ModalLogin = (props) => {
     const username = elems['username'].value;
     // const password = elems['password'].value;
 
-    fetch('/API/user/?username=' + username).then((response) => {
-      if (response.status === 200) {
-        // Found user
-        response.json().then((data) => setLoginState(data.username));
-        props.toggleModal();
-      } else {
-        alert(
-          username +
-            ' does not exist. Please double-check your login information or create an account'
-        );
-      }
-    });
+    getUserInfo(username, setLoginState);
+    props.toggleModal();
   };
 
   return (

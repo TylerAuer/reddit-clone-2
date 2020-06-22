@@ -10,20 +10,19 @@ Passes the object to the given callback function, usually setSOMETHING
 
   }
 
-Returns null when user is not found
+Alerts and returns FALSE to callback
 */
 const getUserInfo = async (username, callback) => {
-  let userData = await fetch('/API/user/?username=' + username).then(
-    (response) => {
-      if (response.status === 200) {
-        // Found user
-        response.json().then((data) => callback(data));
-      } else {
-        // username not in DB
-        callback(null);
-      }
+  await fetch('/API/user/?username=' + username).then((response) => {
+    if (response.status === 200) {
+      // Found user
+      response.json().then((data) => callback(data));
+    } else {
+      // username not in DB
+      alert('User not found');
+      callback(false);
     }
-  );
+  });
 };
 
 export default getUserInfo;

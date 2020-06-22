@@ -79,8 +79,8 @@ const NavBar = (props) => {
     if (loginState) {
       return (
         <li className={'login-state'}>
-          <button className={'logout-btn'} onClick={() => toggleAccountMenu()}>
-            {loginState + ' \u2630'}
+          <button onClick={() => toggleAccountMenu()}>
+            {loginState.username + ' \u2630'}
           </button>
         </li>
       );

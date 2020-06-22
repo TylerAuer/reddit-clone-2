@@ -3,15 +3,9 @@ import getUserInfo from '../functions/getUserInfo';
 import { LoginContext } from '../contexts/LoginContext';
 
 const UserUpdate = (props) => {
-  const [userInfo, setUserInfo] = React.useState(false);
-  const [formData, setFormData] = React.useState(false);
   const [loginState, setLoginState] = React.useContext(LoginContext);
-
-  // If hasn't yet looked for user info, makes fetch request
-  // Sets state to object with user info or null if none found
-  if (!formData) {
-    getUserInfo(loginState, setFormData);
-  }
+  //const [userInfo, setUserInfo] = React.useState(false);
+  const [formData, setFormData] = React.useState(loginState);
 
   const handleFormChange = (event) =>
     setFormData({
@@ -22,18 +16,19 @@ const UserUpdate = (props) => {
   const submit = (event) => {
     event.preventDefault();
     const elems = event.target.elements;
-    const currentUsername = '?orig_username=' + loginState;
+    const currentUsername = '?orig_username=' + loginState.username;
     const username = '&username=' + elems['username'].value;
-    const first = '&first=' + elems['first'].value;
-    const last = '&last=' + elems['last'].value;
-    const email = '&email=' + elems['email'].value;
+    const first = '&first=' + elems['first_name'].value;
+    const last = '&last=' + elems['last_name'].value;
+    const email = '&email=' + elems['email_address'].value;
     const queryString = currentUsername + username + first + last + email;
 
     fetch('/API/user/' + queryString, {
       method: 'PATCH',
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((response) => response.text())
+      .then((text) => alert(text))
+      .then(() => setLoginState(formData));
   };
 
   return (
@@ -48,46 +43,45 @@ const UserUpdate = (props) => {
           type="text"
           id="username"
           name="username"
-          value={formData ? formData.username : undefined}
+          value={formData.username}
           onChange={handleFormChange}
         />{' '}
         <br />
-        <label htmlFor="first">
+        <label htmlFor="first_name">
           <b>First Name: </b>
         </label>
         <input
           type="text"
-          id="first"
+          id="first_name"
           name="first_name"
-          value={formData ? formData.first_name : undefined}
+          value={formData.first_name}
           onChange={handleFormChange}
         />{' '}
         <br />
-        <label htmlFor="last">
+        <label htmlFor="last_name">
           <b>Last Name: </b>
         </label>
         <input
           type="text"
-          id="last"
+          id="last_name"
           name="last_name"
-          value={formData ? formData.last_name : undefined}
+          value={formData.last_name}
           onChange={handleFormChange}
         />{' '}
         <br />
-        <label htmlFor="email">
+        <label htmlFor="email_address">
           <b>Email: </b>
         </label>
         <input
           type="email"
-          id="email"
+          id="email_address"
           name="email_address"
-          value={formData ? formData.email_address : undefined}
+          value={formData.email_address}
           onChange={handleFormChange}
         />{' '}
         <br />
-        <button type="submit">Join Reddit 2</button>
+        <button type="submit">Update User Info</button>
       </form>
-      {/* {responseMsg && Response} */}
     </div>
   );
 };
