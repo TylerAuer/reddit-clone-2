@@ -4,6 +4,7 @@ import { css, jsx } from '@emotion/core';
 import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import ModalUserChange from './ModalUserChange';
+import deleteUser from '../functions/deleteUser';
 
 const ProfileMenu = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
@@ -87,8 +88,15 @@ const ProfileMenu = (props) => {
             Logout
           </li>
           <li onClick={() => toggleUserChangeModal()}>Change user info</li>
-          <li>See all posts</li>
-          <li>Delete account</li>
+          <li>See all posts (not implemented)</li>
+          <li
+            onClick={() => {
+              deleteUser(loginState.username, setLoginState);
+              props.displayToggle();
+            }}
+          >
+            Delete account
+          </li>
         </ul>
       </div>
       {showUserChangeModal && (
