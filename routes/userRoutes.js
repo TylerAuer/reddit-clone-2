@@ -1,10 +1,7 @@
 const path = require('path');
-const usersAPI = require('./api/users');
+const usersAPI = require('../api/users');
 
-const base = (req, res) =>
-  res.sendFile(path.join(__dirname + '/app/public/index.html'));
-
-const userGet = async (req, res) => {
+const getUserInfoByUsername = async (req, res) => {
   console.log('Looking up ' + req.query.username);
   const userInfo = await usersAPI.readUser(req.query.username);
   userInfo
@@ -13,7 +10,7 @@ const userGet = async (req, res) => {
 };
 
 // TODO: Be more explicit about what the function does
-const userPost = async (req, res) => {
+const makeNewUser = async (req, res) => {
   console.log('Trying to create ' + req.query.username);
   const username = req.query.username;
   // If username is taken
@@ -34,7 +31,7 @@ const userPost = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
+const updateUserAccountInfo = async (req, res) => {
   const userUpdateDBResponse = await usersAPI.updateUser(
     req.query.orig_username,
     req.query.username,
@@ -52,4 +49,9 @@ const deleteUser = async (req, res) => {
   res.send(`${req.query.username}'s account was delete`);
 };
 
-module.exports = { base, userGet, userPost, updateUser, deleteUser };
+module.exports = {
+  getUserInfoByUsername,
+  makeNewUser,
+  updateUserAccountInfo,
+  deleteUser,
+};

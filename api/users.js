@@ -1,6 +1,6 @@
 // TODO: Will want to refactor requires and sequelize so they aren't repeated
 // in the APIs for Content Type and Content
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const user = require('../models/user');
 // Connect to postgres DB
 const sequelize = new Sequelize('reddit', 'tylerauer', null, {
@@ -26,6 +26,7 @@ const readUser = (username) => {
   return user(sequelize, DataTypes)
     .findOne({
       attributes: [
+        'id',
         'username',
         'first_name',
         'last_name',
