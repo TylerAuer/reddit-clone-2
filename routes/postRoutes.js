@@ -1,15 +1,13 @@
-const usersAPI = require('../api/users');
 const postsAPI = require('../api/posts');
 
 const createNewPost = async (req, res) => {
-  console.log(`Trying to create new post`);
-  console.log(req.body);
+  console.log(`Create new post`);
   await postsAPI.createNewPost(req.query.userID, req.body);
   res.send('Post created');
 };
 
 const readSinglePost = async (req, res) => {
-  console.log(`Trying to read a post`);
+  console.log(`Getting info for a single post`);
   const postData = await postsAPI.readSinglePost(req.query.postID);
   res.send(postData);
 };

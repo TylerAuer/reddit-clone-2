@@ -1,13 +1,5 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const models = require('../models');
-
-// Connect to postgres DB
-const sequelize = new Sequelize('reddit', 'tylerauer', null, {
-  host: 'localhost',
-  dialect: 'postgres',
-});
-
-// sequelize.sync();
 
 const getFeedOfAllPosts = async () => {
   // Gets raw data with foreign key

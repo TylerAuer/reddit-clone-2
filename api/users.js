@@ -1,16 +1,8 @@
-// TODO: Will want to refactor requires and sequelize so they aren't repeated
-// in the APIs for Content Type and Content
-const { Sequelize, DataTypes } = require('sequelize');
-const user = require('../models/user');
-// Connect to postgres DB
-const sequelize = new Sequelize('reddit', 'tylerauer', null, {
-  host: 'localhost',
-  dialect: 'postgres',
-});
+const { Sequelize } = require('sequelize');
+const models = require('../models');
 
-// CREATE new user in DB
 const createUser = (username, first_name, last_name, email_address) => {
-  return user(sequelize, DataTypes)
+  return models.user
     .create({
       username: username,
       first_name: first_name,
@@ -21,9 +13,8 @@ const createUser = (username, first_name, last_name, email_address) => {
     .catch((error) => console.log('Error on Create User', error));
 };
 
-// READ user in from Username
 const readUserByUsername = (username) => {
-  return user(sequelize, DataTypes)
+  return models.user
     .findOne({
       attributes: [
         'id',
@@ -46,9 +37,8 @@ const readUserByUsername = (username) => {
     });
 };
 
-// READ user by ID
 const readUserByID = (id) => {
-  return user(sequelize, DataTypes)
+  return models.user
     .findOne({
       attributes: [
         'id',
@@ -67,7 +57,6 @@ const readUserByID = (id) => {
     });
 };
 
-// UPDATE user in DB
 const updateUser = (
   orig_username,
   username,
@@ -75,7 +64,7 @@ const updateUser = (
   last_name,
   email_address
 ) => {
-  return user(sequelize, DataTypes).update(
+  return models.user.update(
     {
       username: username,
       first_name: first_name,
@@ -90,10 +79,8 @@ const updateUser = (
   );
 };
 
-// DELETE user in DB
 const deleteUser = (username) => {
-  console.log(`Deleting ${username} from the database`);
-  return user(sequelize, DataTypes).destroy({
+  return models.user.destroy({
     where: {
       username: username,
     },

@@ -1,14 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const content = require('../models/content');
-const user = require('../models/user');
-// Connect to postgres DB
-const sequelize = new Sequelize('reddit', 'tylerauer', null, {
-  host: 'localhost',
-  dialect: 'postgres',
-});
+const { Sequelize } = require('sequelize');
+const models = require('../models');
 
 const createNewPost = (userID, metadata) => {
-  return content(sequelize, DataTypes)
+  return models.content
     .create({
       content_type: 4,
       creator: userID,
@@ -19,7 +13,7 @@ const createNewPost = (userID, metadata) => {
 
 const readSinglePost = async (postID) => {
   // Gets post info
-  const post = await content(sequelize, DataTypes)
+  const post = await models.content
     .findOne({
       attributes: ['id', 'creator', 'metadata', 'createdAt', 'updatedAt'],
       where: {
@@ -32,14 +26,13 @@ const readSinglePost = async (postID) => {
     });
 
   // Gets author info
-  const creator = await user(sequelize, DataTypes).findOne({
+  const creator = await models.user.findOne({
     attributes: ['username'],
     where: {
       id: post.creator,
     },
   });
 
-  console.log(post.metadata.author);
   const postInfo = {
     id: post.id,
     author: creator.username,

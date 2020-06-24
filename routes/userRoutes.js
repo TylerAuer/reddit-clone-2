@@ -1,4 +1,3 @@
-const path = require('path');
 const usersAPI = require('../api/users');
 
 const getUserInfoByUsername = async (req, res) => {
@@ -9,12 +8,11 @@ const getUserInfoByUsername = async (req, res) => {
     : res.status(404).send(req.query.username + 'does not exist');
 };
 
-// TODO: Be more explicit about what the function does
 const makeNewUser = async (req, res) => {
   console.log('Trying to create ' + req.query.username);
   const username = req.query.username;
   // If username is taken
-  if (await usersAPI.readUser(username)) {
+  if (await usersAPI.readUserByUsername(username)) {
     console.log('Failed to create ' + req.query.username);
     res.send(username + ' is already taken');
   } else {
@@ -32,6 +30,7 @@ const makeNewUser = async (req, res) => {
 };
 
 const updateUserAccountInfo = async (req, res) => {
+  console.log(`Updating account info for ${req.query.orig_username}`);
   const userUpdateDBResponse = await usersAPI.updateUser(
     req.query.orig_username,
     req.query.username,
