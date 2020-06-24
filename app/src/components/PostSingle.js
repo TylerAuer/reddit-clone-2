@@ -1,13 +1,12 @@
 import React from 'react';
-import { css, jsx } from '@emotion/core';
-import getSinglePost from '../functions/getSinglePost';
+import truncate from '../functions/truncate';
 
 const PostSingle = (props) => {
   const post = (
     <div className="post">
       <h2>{props.postData.title}</h2>
       <div>By: {props.postData.author_username}</div>
-      <p>{props.postData.body}</p>
+      <p>{truncate(props.postData.body, 150)}</p>
       <div>Created: {new Date(props.postData.createdAt).toDateString()}</div>
       <div>
         Last Updated: {new Date(props.postData.lastUpdated).toDateString()}
