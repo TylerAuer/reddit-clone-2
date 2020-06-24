@@ -13,6 +13,7 @@ const getFeedOfAllPosts = async () => {
   // Gets raw data with foreign key
   const rawListOfPosts = await models.content.findAll({
     include: [models.user], // used foreign key to lookup user info
+    order: [['updatedAt', 'DESC']], // newer posts first
   });
 
   // Reformats data to send
