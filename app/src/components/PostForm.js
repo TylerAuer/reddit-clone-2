@@ -73,13 +73,17 @@ const PostForm = (props) => {
 
   const submit = (event) => {
     event.preventDefault();
-    const metadata = JSON.stringify({
-      post_title: event.target.elements.post_title.value,
-      post_body: event.target.elements.post_body.value,
-    });
 
-    fetch(`/API/post/?userID=${loginState.id}&metadata=${metadata}`, {
+    fetch(`/API/post/?userID=${loginState.id}`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        author: loginState.id,
+        post_title: formData.post_title,
+        post_body: formData.post_body,
+      }),
     })
       .then((response) => response.text())
       .then((data) => alert(data));

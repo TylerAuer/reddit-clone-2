@@ -9,7 +9,7 @@ import { GlobalContextProvider } from './contexts/GlobalContext';
 import PostForm from './components/PostForm';
 
 function App() {
-  const [activeFeature, setActiveFeature] = useState(FEATURES.POST_CREATE);
+  const [activeFeature, setActiveFeature] = useState(FEATURES.FEED);
 
   // onClick to load site features
   const mountUnmountFeature = (feature) => {
@@ -24,7 +24,7 @@ function App() {
 
         <Nav onClick={mountUnmountFeature} />
 
-        {activeFeature === FEATURES.FEED && <Feed />}
+        {activeFeature === FEATURES.FEED && <Feed postID="15" />}
         {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
         {activeFeature === FEATURES.USER_READ && <UserRead />}
         {activeFeature === FEATURES.POST_CREATE && <PostForm />}

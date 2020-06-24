@@ -1,42 +1,11 @@
-/** @jsx jsx */
-//import React from 'react';
-import { css, jsx } from '@emotion/core';
-import { COLORS } from '../constants';
-
-const postDivStyle = css`
-  margin: 1rem auto;
-  border: 1px solid ${COLORS.blue};
-  border-radius: 10px;
-  padding: 5rem 2rem;
-`;
+import React from 'react';
+import PostSingle from './PostSingle';
 
 const Feed = (props) => {
   return (
     <div>
-      <h2>This is the feed...</h2>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
-      <div css={postDivStyle}>A post goes right here.</div>
+      <h2>Feed Placeholder</h2>
+      <PostSingle postID="15" />
     </div>
   );
 };

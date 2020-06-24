@@ -21,8 +21,8 @@ const createUser = (username, first_name, last_name, email_address) => {
     .catch((error) => console.log('Error on Create User', error));
 };
 
-// READ user in DB - return object of user's info
-const readUser = (username) => {
+// READ user in from Username
+const readUserByUsername = (username) => {
   return user(sequelize, DataTypes)
     .findOne({
       attributes: [
@@ -39,6 +39,27 @@ const readUser = (username) => {
           // A (very) quick look at the sequelize docs did not answer my question
           [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
         },
+      },
+    })
+    .catch((error) => {
+      console.log('Error: ', error);
+    });
+};
+
+// READ user by ID
+const readUserByID = (id) => {
+  return user(sequelize, DataTypes)
+    .findOne({
+      attributes: [
+        'id',
+        'username',
+        'first_name',
+        'last_name',
+        'date_joined',
+        'email_address',
+      ],
+      where: {
+        username: id,
       },
     })
     .catch((error) => {
@@ -79,4 +100,10 @@ const deleteUser = (username) => {
   });
 };
 
-module.exports = { createUser, readUser, updateUser, deleteUser };
+module.exports = {
+  createUser,
+  readUserByUsername,
+  readUserByID,
+  updateUser,
+  deleteUser,
+};

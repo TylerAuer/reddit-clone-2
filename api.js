@@ -6,8 +6,8 @@ const postRoutes = require('./routes/postRoutes');
 
 // App config
 const app = express();
+app.use(express.json());
 const port = 4000;
-
 ///////////////
 // ENDPOINTS //
 ///////////////
@@ -24,7 +24,7 @@ app.patch('/API/user/', userRoutes.updateUserAccountInfo);
 app.delete('/API/user/', userRoutes.deleteUser);
 
 // Posts
-//app.get('/API/post/', postRoutes.getPostInfo);
+app.get('/API/post/', postRoutes.readSinglePost);
 app.post('/API/post/', postRoutes.createNewPost);
 //app.patch('/API/post/', postRoutes.updatePost);
 //app.delete('/API/post/', postRoutes.deletePost);

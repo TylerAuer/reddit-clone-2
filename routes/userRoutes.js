@@ -3,7 +3,7 @@ const usersAPI = require('../api/users');
 
 const getUserInfoByUsername = async (req, res) => {
   console.log('Looking up ' + req.query.username);
-  const userInfo = await usersAPI.readUser(req.query.username);
+  const userInfo = await usersAPI.readUserByUsername(req.query.username);
   userInfo
     ? res.send(userInfo) // defaults to status(200)
     : res.status(404).send(req.query.username + 'does not exist');
