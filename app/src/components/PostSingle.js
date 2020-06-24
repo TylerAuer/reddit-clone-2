@@ -6,7 +6,7 @@ const PostSingle = (props) => {
   const post = (
     <div className="post">
       <h2>{props.postData.title}</h2>
-      <div>By: {props.postData.author}</div>
+      <div>By: {props.postData.author_username}</div>
       <p>{props.postData.body}</p>
       <div>Created: {new Date(props.postData.createdAt).toDateString()}</div>
       <div>
