@@ -24,7 +24,7 @@ function App() {
 
         <Nav onClick={mountUnmountFeature} />
 
-        {activeFeature === FEATURES.FEED && <Feed postID="15" />}
+        {activeFeature === FEATURES.FEED && <Feed />}
         {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
         {activeFeature === FEATURES.USER_READ && <UserRead />}
         {activeFeature === FEATURES.POST_CREATE && <PostForm />}

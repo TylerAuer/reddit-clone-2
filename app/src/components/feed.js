@@ -2,12 +2,17 @@ import React from 'react';
 import PostSingle from './PostSingle';
 
 const Feed = (props) => {
-  return (
-    <div>
-      <h2>Feed Placeholder</h2>
-      <PostSingle postID="15" />
-    </div>
-  );
+  const [postList, setPostList] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('/API/feed/all/').then((response) => {
+      if (response.status === 200) {
+        response.json().then((data) => setPostList(data));
+      }
+    });
+  }, []); // Only make API call if postID changes
+
+  return postList.map((post) => <PostSingle postData={post} />);
 };
 
 export default Feed;

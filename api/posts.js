@@ -21,7 +21,7 @@ const readSinglePost = async (postID) => {
   // Gets post info
   const post = await content(sequelize, DataTypes)
     .findOne({
-      attributes: ['creator', 'metadata', 'createdAt', 'updatedAt'],
+      attributes: ['id', 'creator', 'metadata', 'createdAt', 'updatedAt'],
       where: {
         id: postID,
       },
@@ -32,7 +32,7 @@ const readSinglePost = async (postID) => {
     });
 
   // Gets author info
-  const creater = await user(sequelize, DataTypes).findOne({
+  const creator = await user(sequelize, DataTypes).findOne({
     attributes: ['username'],
     where: {
       id: post.creator,
@@ -41,7 +41,8 @@ const readSinglePost = async (postID) => {
 
   console.log(post.metadata.author);
   const postInfo = {
-    author: creater.username,
+    id: post.id,
+    author: creator.username,
     title: post.metadata.post_title,
     body: post.metadata.post_body,
     createdAt: post.createdAt,
