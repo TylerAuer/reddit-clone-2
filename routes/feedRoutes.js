@@ -6,14 +6,12 @@ const getFeedOfAllPosts = async (req, res) => {
   res.send(feedOfAllPosts);
 };
 
-const getFeedOfPostsByAuthorID = async (req, res) => {
+const getFeedOfPostsByConditions = async (req, res) => {
   console.log(`Loading posts by ${req.query.authorID}`);
-  const feedOfPostsByAnAuthor = await feedsAPI.getFeedOfPostsByAuthorID(
-    req.query.authorID
+  const feedOfPostsByAnAuthor = await feedsAPI.getFeedOfPostsByConditions(
+    req.query
   );
   res.send(feedOfPostsByAnAuthor);
 };
 
-feedsAPI.getFeedOfPostsByAuthorID(9).then((data) => console.log(data));
-
-module.exports = { getFeedOfAllPosts, getFeedOfPostsByAuthorID };
+module.exports = { getFeedOfAllPosts, getFeedOfPostsByConditions };

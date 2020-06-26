@@ -31,7 +31,6 @@ app.post('/API/post/', postRoutes.createNewPost);
 //app.delete('/API/post/', postRoutes.deletePost);
 
 // FEEDS
-app.get('/API/feed/all/', feedRoutes.getFeedOfAllPosts);
-app.get('/API/feed/author/', feedRoutes.getFeedOfPostsByAuthorID);
+app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
 //app.get('/API/feed/date/', feedRoutes.NAME);
 //app.get('/API/feed/sorted/', feedRoutes.NAME);
