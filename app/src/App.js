@@ -34,7 +34,7 @@ function App() {
         <Nav onClick={mountUnmountFeature} />
 
         {activeFeature === FEATURES.FEED && (
-          <Feed conditions={{ feedConditions }} onClickPost={onClickPost} />
+          <Feed conditions={feedConditions} onClickPost={onClickPost} />
         )}
         {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
         {activeFeature === FEATURES.USER_READ && <UserRead />}

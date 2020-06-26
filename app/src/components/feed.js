@@ -13,13 +13,19 @@ const Feed = (props) => {
     }
   }
 
+  console.log('Length: ', Object.keys(props.conditions).length);
+  console.log(' ');
+  console.log('queryString: ', queryString);
+  console.log(' ');
+  console.log('Conditions Object', props.conditions);
+
   React.useEffect(() => {
     fetch(`/API/feed/options/${queryString}`).then((response) => {
       if (response.status === 200) {
         response.json().then((data) => setPostList(data));
       }
     });
-  }, []);
+  }, [props.conditions]);
 
   return postList.map((post) => (
     <FeedPostSingle

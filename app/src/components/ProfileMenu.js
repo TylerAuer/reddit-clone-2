@@ -3,11 +3,13 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS, STYLES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
 import ModalUserChange from './ModalUserChange';
 import deleteUser from '../functions/deleteUser';
 
 const ProfileMenu = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
+  const [, setFeedConditions] = React.useContext(FeedConditionsContext);
   const [showUserChangeModal, setShowUserChangeModal] = React.useState(false);
 
   const toggleUserChangeModal = () => {
@@ -88,7 +90,14 @@ const ProfileMenu = (props) => {
             Logout
           </li>
           <li onClick={() => toggleUserChangeModal()}>Change user info</li>
-          <li>See all posts (not implemented)</li>
+          <li
+            onClick={() => {
+              setFeedConditions({ authorID: loginState.id });
+              props.displayToggle();
+            }}
+          >
+            See all your posts
+          </li>
           <li
             onClick={() => {
               deleteUser(loginState.username, setLoginState);
