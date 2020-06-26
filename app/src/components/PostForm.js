@@ -3,6 +3,7 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import GenericButton from './GenericBtn';
 
 const postStyles = css`
   padding-top: 3rem;
@@ -118,7 +119,7 @@ const PostForm = (props) => {
           />
         </label>
         <br />
-        <button type="submit">Make this post official!</button>
+        <GenericButton type="submit">Make this post official!</GenericButton>
       </form>
     </div>
   );
