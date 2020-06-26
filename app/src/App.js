@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { FEATURES } from './constants';
+import { GlobalContextProvider } from './contexts/GlobalContext';
 import UserRead from './components/UserRead';
 import UserCreate from './components/UserCreate';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
-import { GlobalContextProvider } from './contexts/GlobalContext';
 import PostForm from './components/PostForm';
+import PostFull from './components/PostFull';
 
 function App() {
   const [activeFeature, setActiveFeature] = useState(FEATURES.FEED);
+  const [activePost, setActivePost] = useState();
 
   // onClick to load site features
   const mountUnmountFeature = (feature) => {
     activeFeature === feature ? setActiveFeature() : setActiveFeature(feature);
+  };
+
+  const onClickPost = (post) => {
+    setActivePost(post);
+    setActiveFeature(FEATURES.POST_READ);
   };
 
   return (
@@ -24,10 +31,11 @@ function App() {
 
         <Nav onClick={mountUnmountFeature} />
 
-        {activeFeature === FEATURES.FEED && <Feed />}
+        {activeFeature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
         {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
         {activeFeature === FEATURES.USER_READ && <UserRead />}
         {activeFeature === FEATURES.POST_CREATE && <PostForm />}
+        {activeFeature === FEATURES.POST_READ && <PostFull post={activePost} />}
       </section>
     </GlobalContextProvider>
   );

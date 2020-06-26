@@ -1,5 +1,5 @@
 import React from 'react';
-import PostSingle from './PostSingle';
+import FeedPostSingle from './FeedPostSingle';
 
 const Feed = (props) => {
   const [postList, setPostList] = React.useState([]);
@@ -10,9 +10,15 @@ const Feed = (props) => {
         response.json().then((data) => setPostList(data));
       }
     });
-  }, []); // Only make API call if postID changes
+  }, []);
 
-  return postList.map((post) => <PostSingle postData={post} />);
+  return postList.map((post) => (
+    <FeedPostSingle
+      key={post.id}
+      onClickPost={props.onClickPost}
+      postData={post}
+    />
+  ));
 };
 
 export default Feed;

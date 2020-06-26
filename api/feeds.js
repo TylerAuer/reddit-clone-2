@@ -11,6 +11,7 @@ const getFeedOfAllPosts = async () => {
   const cleanListOfPosts = rawListOfPosts.map((data) => {
     const post = data.dataValues;
     return {
+      id: post.id,
       title: post.metadata.post_title,
       body: post.metadata.post_body,
       author_username: post.user.dataValues.username,
