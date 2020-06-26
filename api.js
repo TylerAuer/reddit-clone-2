@@ -32,5 +32,9 @@ app.post('/API/post/', postRoutes.createNewPost);
 
 // FEEDS
 app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
-//app.get('/API/feed/date/', feedRoutes.NAME);
-//app.get('/API/feed/sorted/', feedRoutes.NAME);
+
+// COMMENTS
+//app.get('/API/comment/', commentRoutes.readComment);
+//app.post('/API/comment/', commentRoutes.createNewComment);
+//app.patch('/API/comment/', commentRoutes.updateComment);
+//app.delete('/API/comment/', commentRoutes.deleteComment);

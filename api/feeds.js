@@ -18,10 +18,6 @@ const getFeedOfPostsByConditions = async (query) => {
     };
   }
 
-  console.log('     ');
-  console.log(conditions);
-  console.log('     ');
-
   const rawListOfPosts = await models.content.findAll(conditions);
 
   // Reformats data to send
@@ -41,4 +37,4 @@ const getFeedOfPostsByConditions = async (query) => {
   return cleanListOfPosts;
 };
 
-module.exports = { getFeedOfAllPosts, getFeedOfPostsByConditions };
+module.exports = { getFeedOfPostsByConditions };
