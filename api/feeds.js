@@ -24,4 +24,31 @@ const getFeedOfAllPosts = async () => {
   return cleanListOfPosts;
 };
 
-module.exports = { getFeedOfAllPosts };
+const getFeedOfPostsByAuthorID = async (userID) => {
+  const rawListOfPosts = await models.content.findAll({
+    include: {
+      model: models.user,
+      where: {
+        id: userID,
+      },
+    },
+  });
+
+  // Reformats data to send
+  const cleanListOfPosts = rawListOfPosts.map((data) => {
+    const post = data.dataValues;
+    return {
+      id: post.id,
+      title: post.metadata.post_title,
+      body: post.metadata.post_body,
+      author_username: post.user.dataValues.username,
+      author_id: post.creator,
+      createdAt: post.createdAt,
+      lastUpdated: post.updatedAt,
+    };
+  });
+
+  return cleanListOfPosts;
+};
+
+module.exports = { getFeedOfAllPosts, getFeedOfPostsByAuthorID };

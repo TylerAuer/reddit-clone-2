@@ -32,6 +32,6 @@ app.post('/API/post/', postRoutes.createNewPost);
 
 // FEEDS
 app.get('/API/feed/all/', feedRoutes.getFeedOfAllPosts);
-//app.get('/API/feed/author/', postRoutes.NAME);
-//app.get('/API/feed/date/', postRoutes.NAME);
-//app.get('/API/feed/sorted/', postRoutes.NAME);
+app.get('/API/feed/author/', feedRoutes.getFeedOfPostsByAuthorID);
+//app.get('/API/feed/date/', feedRoutes.NAME);
+//app.get('/API/feed/sorted/', feedRoutes.NAME);
