@@ -60,7 +60,7 @@ const NavBar = (props) => {
   const [showAccountMenu, setShowAccountMenu] = React.useState(false);
   const [showLoginModal, setShowLoginModal] = React.useState(false);
   const [showSignUpModal, setShowSignUpModal] = React.useState(false);
-  const [loginState, setLoginState] = React.useContext(LoginContext);
+  const [loginState] = React.useContext(LoginContext);
 
   const toggleAccountMenu = () => {
     showAccountMenu ? setShowAccountMenu(false) : setShowAccountMenu(true);

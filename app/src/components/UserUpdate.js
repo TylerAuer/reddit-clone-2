@@ -1,10 +1,8 @@
 import React from 'react';
-import getUserInfo from '../functions/getUserInfo';
 import { LoginContext } from '../contexts/LoginContext';
 
 const UserUpdate = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
-  //const [userInfo, setUserInfo] = React.useState(false);
   const [formData, setFormData] = React.useState(loginState);
 
   const handleFormChange = (event) =>

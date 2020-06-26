@@ -22,7 +22,7 @@ const Feed = (props) => {
         response.json().then((data) => setPostList(data));
       }
     });
-  }, [feedConditions]);
+  }, [queryString]);
 
   return postList.map((post) => (
     <FeedPostSingle

@@ -59,7 +59,7 @@ const postStyles = css`
 `;
 
 const PostForm = (props) => {
-  const [loginState, setLoginState] = React.useContext(LoginContext);
+  const [loginState] = React.useContext(LoginContext);
   const [formData, setFormData] = React.useState({
     post_title: '',
     post_body: '',

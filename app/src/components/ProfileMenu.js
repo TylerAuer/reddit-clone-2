@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { COLORS, STYLES, FEATURES } from '../constants';
+import { COLORS, FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
 import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';

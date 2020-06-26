@@ -50,7 +50,7 @@ const loginStyles = css`
 `;
 
 const ModalLogin = (props) => {
-  const [loginState, setLoginState] = React.useContext(LoginContext);
+  const [, setLoginState] = React.useContext(LoginContext);
 
   const submit = (event) => {
     event.preventDefault();

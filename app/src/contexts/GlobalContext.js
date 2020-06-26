@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LoginContextProvider } from './LoginContext';
 import { FeedConditionsContextProvider } from './FeedConditionsContext';
 import { ActiveFeatureContextProvider } from './ActiveFeatureContext';
