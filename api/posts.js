@@ -10,7 +10,7 @@ const createNewPost = (userID, metadata) => {
     .catch((error) => console.error(error));
 };
 
-const readSinglePost = async (postID) => {
+const readPost = async (postID) => {
   // Gets post info
   const post = await models.content
     .findOne({
@@ -44,4 +44,19 @@ const readSinglePost = async (postID) => {
   return postInfo;
 };
 
-module.exports = { createNewPost, readSinglePost };
+const updatePost = (postID, metadata) => {
+  return models.content
+    .update(
+      {
+        metadata: metadata,
+      },
+      {
+        where: {
+          id: postID,
+        },
+      }
+    )
+    .catch((error) => console.error(error));
+};
+
+module.exports = { createNewPost, readPost, updatePost };

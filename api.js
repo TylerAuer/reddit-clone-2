@@ -25,9 +25,9 @@ app.patch('/API/user/', userRoutes.updateUserAccountInfo);
 app.delete('/API/user/', userRoutes.deleteUser);
 
 // POSTS
-app.get('/API/post/', postRoutes.readSinglePost);
+app.get('/API/post/', postRoutes.readPost);
 app.post('/API/post/', postRoutes.createNewPost);
-//app.patch('/API/post/', postRoutes.updatePost);
+app.patch('/API/post/', postRoutes.updatePost);
 //app.delete('/API/post/', postRoutes.deletePost);
 
 // FEEDS
