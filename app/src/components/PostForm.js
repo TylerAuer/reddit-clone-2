@@ -80,7 +80,7 @@ const PostForm = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        author: loginState.id,
+        author: loginState.username,
         post_title: formData.post_title,
         post_body: formData.post_body,
       }),

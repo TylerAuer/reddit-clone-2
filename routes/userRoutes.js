@@ -1,7 +1,7 @@
 const usersAPI = require('../api/users');
 
 const getUserInfoByUsername = async (req, res) => {
-  console.log('Looking up ' + req.query.username);
+  console.log(`USER: Looking up ${req.query.username} by username`);
   const userInfo = await usersAPI.readUserByUsername(req.query.username);
   userInfo
     ? res.send(userInfo) // defaults to status(200)
@@ -9,7 +9,9 @@ const getUserInfoByUsername = async (req, res) => {
 };
 
 const makeNewUser = async (req, res) => {
-  console.log('Trying to create ' + req.query.username);
+  console.log(
+    `USER: Creating new account with username: ${req.query.username}`
+  );
   const username = req.query.username;
   // If username is taken
   if (await usersAPI.readUserByUsername(username)) {
@@ -30,7 +32,7 @@ const makeNewUser = async (req, res) => {
 };
 
 const updateUserAccountInfo = async (req, res) => {
-  console.log(`Updating account info for ${req.query.orig_username}`);
+  console.log(`USER: Updating account info for ${req.query.orig_username}`);
   const userUpdateDBResponse = await usersAPI.updateUser(
     req.query.orig_username,
     req.query.username,
@@ -43,7 +45,7 @@ const updateUserAccountInfo = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  console.log(`Trying to delete ${req.query.username}`);
+  console.log(`USER: Deleting ${req.query.username}'s account'`);
   const userDeleteDB = await usersAPI.deleteUser(req.query.username);
   res.send(`${req.query.username}'s account was delete`);
 };

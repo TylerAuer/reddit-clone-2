@@ -5,6 +5,7 @@
     "database": "reddit",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "operatorsAliases": 0
+    "operatorsAliases": 0,
+    "logging": false
   }
 }
