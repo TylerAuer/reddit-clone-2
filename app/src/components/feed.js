@@ -1,23 +1,20 @@
 import React from 'react';
+import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
 import FeedPostSingle from './FeedPostSingle';
 
 const Feed = (props) => {
+  const [feedConditions] = React.useContext(FeedConditionsContext);
   const [postList, setPostList] = React.useState([]);
 
-  // If there are conditions specified
+  // If there are conditions specified for the feed
+  // build a query string
   let queryString = '';
-  if (Object.keys(props.conditions).length) {
+  if (Object.keys(feedConditions).length) {
     queryString += '?';
-    for (const prop in props.conditions) {
-      queryString += `${prop}=${props.conditions[prop]}&`;
+    for (const prop in feedConditions) {
+      queryString += `${prop}=${feedConditions[prop]}&`;
     }
   }
-
-  console.log('Length: ', Object.keys(props.conditions).length);
-  console.log(' ');
-  console.log('queryString: ', queryString);
-  console.log(' ');
-  console.log('Conditions Object', props.conditions);
 
   React.useEffect(() => {
     fetch(`/API/feed/options/${queryString}`).then((response) => {
@@ -25,7 +22,7 @@ const Feed = (props) => {
         response.json().then((data) => setPostList(data));
       }
     });
-  }, [props.conditions]);
+  }, [feedConditions]);
 
   return postList.map((post) => (
     <FeedPostSingle

@@ -3,18 +3,26 @@ import React from 'react';
 import { FEATURES } from '../constants';
 import GenericButton from './GenericBtn';
 import { css, jsx } from '@emotion/core';
+import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
 
 const navStyle = css`
   margin: 2rem;
 `;
 
-function Nav(props) {
+const Nav = (props) => {
+  const [, setFeedConditions] = React.useContext(FeedConditionsContext);
+
   return (
     <div css={navStyle}>
       <GenericButton onClick={() => props.onClick(FEATURES.POST_CREATE)}>
         Create Post
       </GenericButton>
-      <GenericButton onClick={() => props.onClick(FEATURES.FEED)}>
+      <GenericButton
+        onClick={() => {
+          props.onClick(FEATURES.FEED);
+          setFeedConditions({});
+        }}
+      >
         Show Feed
       </GenericButton>
       <GenericButton onClick={() => props.onClick(FEATURES.USER_READ)}>
@@ -25,6 +33,6 @@ function Nav(props) {
       </GenericButton>
     </div>
   );
-}
+};
 
 export default Nav;
