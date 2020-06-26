@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { FEATURES } from './constants';
+import { ActiveFeatureContext } from './contexts/ActiveFeatureContext';
 import UserRead from './components/UserRead';
 import UserCreate from './components/UserCreate';
 import NavBar from './components/NavBar';
@@ -9,13 +10,8 @@ import PostForm from './components/PostForm';
 import PostFull from './components/PostFull';
 
 function App() {
-  const [activeFeature, setActiveFeature] = useState(FEATURES.FEED);
+  const [activeFeature, setActiveFeature] = useContext(ActiveFeatureContext);
   const [activePost, setActivePost] = useState();
-
-  // onClick to load site features
-  const mountUnmountFeature = (feature) => {
-    activeFeature === feature ? setActiveFeature() : setActiveFeature(feature);
-  };
 
   const onClickPost = (post) => {
     setActivePost(post);
@@ -28,7 +24,7 @@ function App() {
       <section className="section-main">
         <h1>2 Reddit 2 Furious</h1>
 
-        <Nav onClick={mountUnmountFeature} />
+        <Nav />
 
         {activeFeature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
         {activeFeature === FEATURES.USER_CREATE && <UserCreate />}

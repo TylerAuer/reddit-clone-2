@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LoginContextProvider } from './LoginContext';
 import { FeedConditionsContextProvider } from './FeedConditionsContext';
+import { ActiveFeatureContextProvider } from './ActiveFeatureContext';
 
 // Creates context object
 export const GlobalContext = React.createContext();
@@ -10,9 +11,11 @@ export const GlobalContextProvider = (props) => {
   return (
     <GlobalContext.Provider>
       <LoginContextProvider>
-        <FeedConditionsContextProvider>
-          {props.children}
-        </FeedConditionsContextProvider>
+        <ActiveFeatureContextProvider>
+          <FeedConditionsContextProvider>
+            {props.children}
+          </FeedConditionsContextProvider>
+        </ActiveFeatureContextProvider>
       </LoginContextProvider>
     </GlobalContext.Provider>
   );
