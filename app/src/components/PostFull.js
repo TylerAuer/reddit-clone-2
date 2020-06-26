@@ -7,9 +7,7 @@ import deletePost from '../functions/deletePost';
 
 const PostFull = ({ post }) => {
   const [loginContext] = React.useContext(LoginContext);
-  const [activeFeatureContext, setActiveFeatureContext] = React.useContext(
-    ActiveFeatureContext
-  );
+  const [, setActiveFeatureContext] = React.useContext(ActiveFeatureContext);
 
   const bodySplitIntoPTags = post.body
     .split('\n') // Split into array
