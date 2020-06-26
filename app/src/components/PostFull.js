@@ -3,6 +3,7 @@ import { FEATURES } from '../constants';
 import GenericBtn from './GenericBtn';
 import { LoginContext } from '../contexts/LoginContext';
 import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
+import deletePost from '../functions/deletePost';
 
 const PostFull = ({ post }) => {
   const [loginContext] = React.useContext(LoginContext);
@@ -33,7 +34,14 @@ const PostFull = ({ post }) => {
             >
               Edit Post
             </GenericBtn>
-            <GenericBtn>Delete Post</GenericBtn>
+            <GenericBtn
+              onClick={() => {
+                deletePost(post.id);
+                setActiveFeatureContext(FEATURES.FEED);
+              }}
+            >
+              Delete Post
+            </GenericBtn>
           </>
         )}
         <GenericBtn>Leave Comment</GenericBtn>

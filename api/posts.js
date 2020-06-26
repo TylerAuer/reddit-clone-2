@@ -59,4 +59,14 @@ const updatePost = (postID, metadata) => {
     .catch((error) => console.error(error));
 };
 
-module.exports = { createNewPost, readPost, updatePost };
+const deletePost = (postID) => {
+  return models.content
+    .destroy({
+      where: {
+        id: postID,
+      },
+    })
+    .catch((error) => console.error(error));
+};
+
+module.exports = { createNewPost, readPost, updatePost, deletePost };

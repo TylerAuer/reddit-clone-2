@@ -14,14 +14,19 @@ const readPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
   console.log(`POSTS: Updating post with post ID: ${req.query.postID}`);
-  console.log(req.query);
-  console.log(req.body);
   await postsAPI.updatePost(req.query.postID, req.body);
   res.send('Post updated.');
+};
+
+const deletePost = async (req, res) => {
+  console.log(`POSTS: Deleting post with post ID: ${req.query.postID}`);
+  await postsAPI.deletePost(req.query.postID, req.body);
+  res.send('Post deleted.');
 };
 
 module.exports = {
   createNewPost,
   readPost,
   updatePost,
+  deletePost,
 };

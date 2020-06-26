@@ -1,9 +1,11 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { COLORS } from '../constants';
+import { COLORS, FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
 import GenericButton from './GenericBtn';
+import deletePost from '../functions/deletePost';
 
 const postStyles = css`
   padding-top: 3rem;
@@ -61,6 +63,7 @@ const postStyles = css`
 
 const PostFormEdit = ({ post }) => {
   const [loginState] = React.useContext(LoginContext);
+  const [, setActiveFeature] = React.useContext(ActiveFeatureContext);
   const [formData, setFormData] = React.useState({
     post_title: post.title,
     post_body: post.body,
@@ -123,6 +126,14 @@ const PostFormEdit = ({ post }) => {
           Update your post
         </GenericButton>
       </form>
+      <GenericButton
+        onClick={() => {
+          deletePost(post.id);
+          setActiveFeature(FEATURES.FEED);
+        }}
+      >
+        Delete your post
+      </GenericButton>
     </div>
   );
 };

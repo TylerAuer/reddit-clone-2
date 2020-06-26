@@ -28,7 +28,7 @@ app.delete('/API/user/', userRoutes.deleteUser);
 app.get('/API/post/', postRoutes.readPost);
 app.post('/API/post/', postRoutes.createNewPost);
 app.patch('/API/post/', postRoutes.updatePost);
-//app.delete('/API/post/', postRoutes.deletePost);
+app.delete('/API/post/', postRoutes.deletePost);
 
 // FEEDS
 app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
