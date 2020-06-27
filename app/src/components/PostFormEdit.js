@@ -4,7 +4,7 @@ import { css, jsx } from '@emotion/core';
 import { COLORS, FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
-import GenericButton from './GenericBtn';
+import BtnBlue from './BtnBlue';
 import deletePost from '../functions/deletePost';
 
 const postStyles = css`
@@ -122,18 +122,18 @@ const PostFormEdit = ({ post }) => {
           />
         </label>
         <br />
-        <GenericButton onClick={() => console.log('Hi')} type="submit">
+        <BtnBlue onClick={() => console.log('Hi')} type="submit">
           Update your post
-        </GenericButton>
+        </BtnBlue>
       </form>
-      <GenericButton
+      <BtnBlue
         onClick={() => {
           deletePost(post.id);
           setActiveFeature(FEATURES.FEED);
         }}
       >
         Delete your post
-      </GenericButton>
+      </BtnBlue>
     </div>
   );
 };

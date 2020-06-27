@@ -1,6 +1,6 @@
 import React from 'react';
 import { FEATURES } from '../constants';
-import GenericBtn from './GenericBtn';
+import BtnBlue from './BtnBlue';
 import { LoginContext } from '../contexts/LoginContext';
 import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
 import deletePost from '../functions/deletePost';
@@ -25,24 +25,24 @@ const PostFull = ({ post }) => {
       <div>
         {loginContext.id === post.author_id && (
           <>
-            <GenericBtn
+            <BtnBlue
               onClick={() => {
                 setActiveFeatureContext(FEATURES.POST_UPDATE);
               }}
             >
               Edit Post
-            </GenericBtn>
-            <GenericBtn
+            </BtnBlue>
+            <BtnBlue
               onClick={() => {
                 deletePost(post.id);
                 setActiveFeatureContext(FEATURES.FEED);
               }}
             >
               Delete Post
-            </GenericBtn>
+            </BtnBlue>
           </>
         )}
-        <GenericBtn>Leave Comment</GenericBtn>
+        <BtnBlue>Leave Comment</BtnBlue>
       </div>
       <div>Comments</div>
     </div>

@@ -6,7 +6,7 @@ import UserCreate from './components/UserCreate';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
-import PostForm from './components/PostForm';
+import FormPostCreate from './components/FormPostCreate';
 import PostFormEdit from './components/PostFormEdit';
 import PostFull from './components/PostFull';
 
@@ -28,7 +28,7 @@ function App() {
         {activeFeature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
         {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
         {activeFeature === FEATURES.USER_READ && <UserRead />}
-        {activeFeature === FEATURES.POST_CREATE && <PostForm />}
+        {activeFeature === FEATURES.POST_CREATE && <FormPostCreate />}
         {activeFeature === FEATURES.POST_READ && <PostFull post={activePost} />}
         {activeFeature === FEATURES.POST_UPDATE && (
           <PostFormEdit post={activePost} />

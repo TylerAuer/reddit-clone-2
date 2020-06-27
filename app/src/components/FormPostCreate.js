@@ -3,7 +3,7 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
-import GenericButton from './GenericBtn';
+import BtnBlue from './BtnBlue';
 
 const postStyles = css`
   padding-top: 3rem;
@@ -59,7 +59,7 @@ const postStyles = css`
   }
 `;
 
-const PostForm = (props) => {
+const FormCreatePost = (props) => {
   const [loginState] = React.useContext(LoginContext);
   const [formData, setFormData] = React.useState({
     post_title: '',
@@ -119,10 +119,10 @@ const PostForm = (props) => {
           />
         </label>
         <br />
-        <GenericButton type="submit">Make this post official!</GenericButton>
+        <BtnBlue type="submit">Make this post official!</BtnBlue>
       </form>
     </div>
   );
 };
 
-export default PostForm;
+export default FormCreatePost;

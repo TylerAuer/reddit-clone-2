@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoginContext } from '../contexts/LoginContext';
-import GenericButton from './GenericBtn';
+import BtnBlue from './BtnBlue';
 
 const UserUpdate = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
@@ -79,7 +79,7 @@ const UserUpdate = (props) => {
           onChange={handleFormChange}
         />{' '}
         <br />
-        <GenericButton type="submit">Update Your Info</GenericButton>
+        <BtnBlue type="submit">Update Your Info</BtnBlue>
       </form>
     </div>
   );

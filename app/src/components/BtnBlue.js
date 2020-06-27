@@ -28,7 +28,7 @@ const btnStyle = css`
   }
 `;
 
-const GenericButton = (props) => {
+const BtnBlue = (props) => {
   return (
     <button css={btnStyle} onClick={() => props.onClick()}>
       {props.children}
@@ -36,4 +36,4 @@ const GenericButton = (props) => {
   );
 };
 
-export default GenericButton;
+export default BtnBlue;

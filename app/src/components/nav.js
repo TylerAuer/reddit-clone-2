@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { FEATURES } from '../constants';
-import GenericButton from './GenericBtn';
+import BtnBlue from './BtnBlue';
 import { css, jsx } from '@emotion/core';
 import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
 import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
@@ -16,22 +16,22 @@ const Nav = (props) => {
 
   return (
     <div css={navStyle}>
-      <GenericButton onClick={() => setActiveFeature(FEATURES.POST_CREATE)}>
+      <BtnBlue onClick={() => setActiveFeature(FEATURES.POST_CREATE)}>
         Create Post
-      </GenericButton>
+      </BtnBlue>
 
-      <GenericButton
+      <BtnBlue
         onClick={() => {
           setFeedConditions({});
           setActiveFeature(FEATURES.FEED);
         }}
       >
         Show Feed
-      </GenericButton>
+      </BtnBlue>
 
-      <GenericButton onClick={() => setActiveFeature(FEATURES.USER_READ)}>
+      <BtnBlue onClick={() => setActiveFeature(FEATURES.USER_READ)}>
         Find User
-      </GenericButton>
+      </BtnBlue>
     </div>
   );
 };
