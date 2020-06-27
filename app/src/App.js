@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
 import FormPostCreate from './components/FormPostCreate';
-import PostFormEdit from './components/PostFormEdit';
+import FormPostEdit from './components/FormPostEdit';
 import PostFull from './components/PostFull';
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
         {activeFeature === FEATURES.POST_CREATE && <FormPostCreate />}
         {activeFeature === FEATURES.POST_READ && <PostFull post={activePost} />}
         {activeFeature === FEATURES.POST_UPDATE && (
-          <PostFormEdit post={activePost} />
+          <FormPostEdit post={activePost} />
         )}
       </section>
     </div>

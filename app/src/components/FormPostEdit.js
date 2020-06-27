@@ -61,7 +61,7 @@ const postStyles = css`
   }
 `;
 
-const PostFormEdit = ({ post }) => {
+const FormPostEdit = ({ post }) => {
   const [loginState] = React.useContext(LoginContext);
   const [, setActiveFeature] = React.useContext(ActiveFeatureContext);
   const [formData, setFormData] = React.useState({
@@ -138,4 +138,4 @@ const PostFormEdit = ({ post }) => {
   );
 };
 
-export default PostFormEdit;
+export default FormPostEdit;
