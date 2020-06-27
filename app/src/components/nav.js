@@ -3,7 +3,7 @@ import React from 'react';
 import { FEATURES } from '../constants';
 import BtnBlue from './BtnBlue';
 import { css, jsx } from '@emotion/core';
-import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
+import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
 
 const navStyle = css`
@@ -11,7 +11,7 @@ const navStyle = css`
 `;
 
 const Nav = (props) => {
-  const [, setFeedConditions] = React.useContext(FeedConditionsContext);
+  const [, setFeed] = React.useContext(FeedContext);
   const [, setFeature] = React.useContext(FeatureContext);
 
   return (
@@ -22,7 +22,7 @@ const Nav = (props) => {
 
       <BtnBlue
         onClick={() => {
-          setFeedConditions({});
+          setFeed({});
           setFeature(FEATURES.FEED);
         }}
       >

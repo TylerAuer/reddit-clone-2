@@ -1,5 +1,5 @@
 import React from 'react';
-import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
+import { FeedContext } from '../contexts/FeedContext';
 import truncate from '../functions/truncate';
 
 const FeedPostSingle = (props) => {
@@ -17,16 +17,16 @@ const FeedPostSingle = (props) => {
 };
 
 const Feed = (props) => {
-  const [feedConditions] = React.useContext(FeedConditionsContext);
+  const [feed] = React.useContext(FeedContext);
   const [postList, setPostList] = React.useState([]);
 
   // If there are conditions specified for the feed
   // build a query string
   let queryString = '';
-  if (Object.keys(feedConditions).length) {
+  if (Object.keys(feed).length) {
     queryString += '?';
-    for (const prop in feedConditions) {
-      queryString += `${prop}=${feedConditions[prop]}&`;
+    for (const prop in feed) {
+      queryString += `${prop}=${feed[prop]}&`;
     }
   }
 

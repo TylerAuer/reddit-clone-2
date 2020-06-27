@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoginContextProvider } from './LoginContext';
-import { FeedConditionsContextProvider } from './FeedConditionsContext';
+import { FeedContextProvider } from './FeedContext';
 import { FeatureContextProvider } from './FeatureContext';
 
 export const GlobalContext = React.createContext();
@@ -12,9 +12,7 @@ export const GlobalContextProvider = (props) => {
     <GlobalContext.Provider>
       <LoginContextProvider>
         <FeatureContextProvider>
-          <FeedConditionsContextProvider>
-            {props.children}
-          </FeedConditionsContextProvider>
+          <FeedContextProvider>{props.children}</FeedContextProvider>
         </FeatureContextProvider>
       </LoginContextProvider>
     </GlobalContext.Provider>

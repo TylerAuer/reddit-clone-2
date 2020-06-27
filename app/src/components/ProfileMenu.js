@@ -3,14 +3,14 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS, FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
-import { FeedConditionsContext } from '../contexts/FeedConditionsContext';
+import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
 import ModalUserChange from './ModalUserChange';
 import deleteUser from '../functions/deleteUser';
 
 const ProfileMenu = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
-  const [, setFeedConditions] = React.useContext(FeedConditionsContext);
+  const [, setFeed] = React.useContext(FeedContext);
   const [, setFeature] = React.useContext(FeatureContext);
   const [showUserChangeModal, setShowUserChangeModal] = React.useState(false);
 
@@ -94,7 +94,7 @@ const ProfileMenu = (props) => {
           <li onClick={() => toggleUserChangeModal()}>Change user info</li>
           <li
             onClick={() => {
-              setFeedConditions({ authorID: loginState.id });
+              setFeed({ authorID: loginState.id });
               setFeature(FEATURES.FEED);
               props.displayToggle();
             }}
