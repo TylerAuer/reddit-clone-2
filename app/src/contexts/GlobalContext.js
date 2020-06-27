@@ -1,21 +1,21 @@
 import React from 'react';
 import { LoginContextProvider } from './LoginContext';
 import { FeedConditionsContextProvider } from './FeedConditionsContext';
-import { ActiveFeatureContextProvider } from './ActiveFeatureContext';
+import { FeatureContextProvider } from './FeatureContext';
 
-// Creates context object
 export const GlobalContext = React.createContext();
 
-// Creates a provider for components to consume and subscribe to changes
+// Creates a general provider for providing all contexts
+// Use in Index.js so it reaches app.js
 export const GlobalContextProvider = (props) => {
   return (
     <GlobalContext.Provider>
       <LoginContextProvider>
-        <ActiveFeatureContextProvider>
+        <FeatureContextProvider>
           <FeedConditionsContextProvider>
             {props.children}
           </FeedConditionsContextProvider>
-        </ActiveFeatureContextProvider>
+        </FeatureContextProvider>
       </LoginContextProvider>
     </GlobalContext.Provider>
   );

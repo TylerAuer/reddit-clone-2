@@ -2,12 +2,12 @@ import React from 'react';
 import { FEATURES } from '../constants';
 import BtnBlue from './BtnBlue';
 import { LoginContext } from '../contexts/LoginContext';
-import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
+import { FeatureContext } from '../contexts/FeatureContext';
 import deletePost from '../functions/deletePost';
 
 const PostFull = ({ post }) => {
   const [loginContext] = React.useContext(LoginContext);
-  const [, setActiveFeatureContext] = React.useContext(ActiveFeatureContext);
+  const [, setFeatureContext] = React.useContext(FeatureContext);
 
   const bodySplitIntoPTags = post.body
     .split('\n') // Split into array
@@ -27,7 +27,7 @@ const PostFull = ({ post }) => {
           <>
             <BtnBlue
               onClick={() => {
-                setActiveFeatureContext(FEATURES.POST_UPDATE);
+                setFeatureContext(FEATURES.POST_UPDATE);
               }}
             >
               Edit Post
@@ -35,7 +35,7 @@ const PostFull = ({ post }) => {
             <BtnBlue
               onClick={() => {
                 deletePost(post.id);
-                setActiveFeatureContext(FEATURES.FEED);
+                setFeatureContext(FEATURES.FEED);
               }}
             >
               Delete Post

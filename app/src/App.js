@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { FEATURES } from './constants';
-import { ActiveFeatureContext } from './contexts/ActiveFeatureContext';
+import { FeatureContext } from './contexts/FeatureContext';
 import UserRead from './components/UserRead';
 import UserCreate from './components/UserCreate';
 import NavBar from './components/NavBar';
@@ -11,12 +11,12 @@ import FormPostEdit from './components/FormPostEdit';
 import PostFull from './components/PostSingle';
 
 function App() {
-  const [activeFeature, setActiveFeature] = useContext(ActiveFeatureContext);
+  const [feature, setFeature] = useContext(FeatureContext);
   const [activePost, setActivePost] = useState();
 
   const onClickPost = (post) => {
     setActivePost(post);
-    setActiveFeature(FEATURES.POST_READ);
+    setFeature(FEATURES.POST_READ);
   };
 
   return (
@@ -25,14 +25,12 @@ function App() {
       <section className="section-main">
         <h1>2 Reddit 2 Furious</h1>
         <Nav />
-        {activeFeature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
-        {activeFeature === FEATURES.USER_CREATE && <UserCreate />}
-        {activeFeature === FEATURES.USER_READ && <UserRead />}
-        {activeFeature === FEATURES.POST_CREATE && <FormPostCreate />}
-        {activeFeature === FEATURES.POST_READ && <PostFull post={activePost} />}
-        {activeFeature === FEATURES.POST_UPDATE && (
-          <FormPostEdit post={activePost} />
-        )}
+        {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
+        {feature === FEATURES.USER_CREATE && <UserCreate />}
+        {feature === FEATURES.USER_READ && <UserRead />}
+        {feature === FEATURES.POST_CREATE && <FormPostCreate />}
+        {feature === FEATURES.POST_READ && <PostFull post={activePost} />}
+        {feature === FEATURES.POST_UPDATE && <FormPostEdit post={activePost} />}
       </section>
     </div>
   );

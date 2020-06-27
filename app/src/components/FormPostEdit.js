@@ -3,7 +3,7 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { COLORS, FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
-import { ActiveFeatureContext } from '../contexts/ActiveFeatureContext';
+import { FeatureContext } from '../contexts/FeatureContext';
 import BtnBlue from './BtnBlue';
 import deletePost from '../functions/deletePost';
 
@@ -63,7 +63,7 @@ const postStyles = css`
 
 const FormPostEdit = ({ post }) => {
   const [loginState] = React.useContext(LoginContext);
-  const [, setActiveFeature] = React.useContext(ActiveFeatureContext);
+  const [, setFeature] = React.useContext(FeatureContext);
   const [formData, setFormData] = React.useState({
     post_title: post.title,
     post_body: post.body,
@@ -129,7 +129,7 @@ const FormPostEdit = ({ post }) => {
       <BtnBlue
         onClick={() => {
           deletePost(post.id);
-          setActiveFeature(FEATURES.FEED);
+          setFeature(FEATURES.FEED);
         }}
       >
         Delete your post
