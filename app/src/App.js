@@ -8,7 +8,7 @@ import Nav from './components/Nav';
 import Feed from './components/Feed';
 import FormPostCreate from './components/FormPostCreate';
 import FormPostEdit from './components/FormPostEdit';
-import PostFull from './components/PostFull';
+import PostFull from './components/PostSingle';
 
 function App() {
   const [activeFeature, setActiveFeature] = useContext(ActiveFeatureContext);
