@@ -11,4 +11,14 @@ const createNewComment = (postBody) => {
     .catch((error) => console.error(error));
 };
 
-module.exports = { createNewComment };
+const deleteComment = (commentID) => {
+  return models.content
+    .destroy({
+      where: {
+        id: commentID,
+      },
+    })
+    .catch((error) => console.error(error));
+};
+
+module.exports = { createNewComment, deleteComment };

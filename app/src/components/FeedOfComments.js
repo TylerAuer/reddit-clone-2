@@ -7,6 +7,16 @@ const SingleCommentInFeed = ({ commentData }) => {
   const [login] = React.useContext(LoginContext);
   const commentSplitIntoPTags = splitTextIntoPTags(commentData.metadata);
 
+  const deleteOnClick = (commentID) => {
+    if (window.confirm('Are you sure you want to delete your comment?')) {
+      fetch(`/API/comment/?commentID=${commentID}`, {
+        method: 'DELETE',
+      })
+        .then((response) => response.text())
+        .then((data) => console.log(data));
+    }
+  };
+
   const comment = (
     <div className="comment">
       <div>{commentSplitIntoPTags}</div>
@@ -15,7 +25,13 @@ const SingleCommentInFeed = ({ commentData }) => {
         {new Date(commentData.createdAt).toDateString()}
       </div>
       {login.id === commentData.creator && (
-        <BtnBlue>Delete Your Comment</BtnBlue>
+        <BtnBlue
+          onClick={() => {
+            deleteOnClick(commentData.id);
+          }}
+        >
+          Delete Your Comment
+        </BtnBlue>
       )}
     </div>
   );

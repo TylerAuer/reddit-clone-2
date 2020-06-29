@@ -35,7 +35,5 @@ app.delete('/API/post/', postRoutes.deletePost);
 app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
 
 // COMMENTS
-//app.get('/API/comment/', commentRoutes.readComment);
 app.post('/API/comment/', commentRoutes.createNewComment);
-//app.patch('/API/comment/', commentRoutes.updateComment);
-//app.delete('/API/comment/', commentRoutes.deleteComment);
+app.delete('/API/comment/', commentRoutes.deleteComment);
