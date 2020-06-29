@@ -12,23 +12,19 @@ const createNewPost = (userID, metadata) => {
 
 const readPost = async (postID) => {
   // Gets post info
-  const post = await models.content
-    .findOne({
-      attributes: ['id', 'creator', 'metadata', 'createdAt', 'updatedAt'],
-      where: {
-        id: postID,
-      },
-    })
-    .catch((error) => {
-      console.log(' ');
-      console.log('Could not find post. ERROR MSG: ', error);
-    });
-
-  // Gets author info
-  const creator = await models.user.findOne({
-    attributes: ['username'],
+  const post = await models.content.findOne({
+    attributes: ['id', 'creator', 'metadata', 'createdAt', 'updatedAt'],
     where: {
-      id: post.creator,
+      id: postID,
+    },
+    include: [models.user],
+  });
+
+  // Gets comments for the post
+  const comments = await models.content.findAll({
+    where: {
+      content_type: 5,
+      content_parent: postID,
     },
   });
 
@@ -39,6 +35,7 @@ const readPost = async (postID) => {
     body: post.metadata.post_body,
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,
+    comments: comments,
   };
 
   return postInfo;
