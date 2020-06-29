@@ -28,9 +28,11 @@ const readPost = async (postID) => {
     },
   });
 
+  console.log(post.user);
   const postInfo = {
     id: post.id,
-    author: creator.username,
+    author: post.user.dataValues.username,
+    authorID: post.user.dataValues.id,
     title: post.metadata.post_title,
     body: post.metadata.post_body,
     createdAt: post.createdAt,

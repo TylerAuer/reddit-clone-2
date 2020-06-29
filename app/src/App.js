@@ -14,8 +14,8 @@ function App() {
   const [feature, setFeature] = useContext(FeatureContext);
   const [activePost, setActivePost] = useState();
 
-  const onClickPost = (post) => {
-    setActivePost(post);
+  const onClickPost = (postID) => {
+    setActivePost(postID);
     setFeature(FEATURES.POST_READ);
   };
 
@@ -29,7 +29,7 @@ function App() {
         {feature === FEATURES.USER_CREATE && <UserCreate />}
         {feature === FEATURES.USER_READ && <UserRead />}
         {feature === FEATURES.POST_CREATE && <FormPostCreate />}
-        {feature === FEATURES.POST_READ && <PostFull post={activePost} />}
+        {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
         {feature === FEATURES.POST_UPDATE && <FormPostEdit post={activePost} />}
       </section>
     </div>

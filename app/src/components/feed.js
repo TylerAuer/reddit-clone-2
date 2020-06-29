@@ -5,7 +5,7 @@ import truncate from '../functions/truncate';
 const FeedPostSingle = (props) => {
   const post = (
     <div className="post">
-      <h2 onClick={() => props.onClickPost(props.postData)}>
+      <h2 onClick={() => props.onClickPost(props.postData.id)}>
         {props.postData.title}
       </h2>
       <div>By: {props.postData.author_username}</div>
