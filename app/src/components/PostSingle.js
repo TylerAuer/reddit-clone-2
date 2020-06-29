@@ -7,6 +7,7 @@ import getSinglePost from '../functions/getSinglePost';
 import FormCommentCreate from './FormCommentCreate';
 import BtnBlue from './BtnBlue';
 import FeedOfComments from './FeedOfComments';
+import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 
 const PostFull = ({ postID }) => {
   const [loginContext] = React.useContext(LoginContext);
@@ -26,10 +27,7 @@ const PostFull = ({ postID }) => {
     getSinglePost(postID, setPostInfo);
   }, [postID, showCreateComment]);
 
-  const bodySplitIntoPTags = postInfo.body
-    .split('\n') // Split into array
-    .filter((p) => p !== '') // Remove empty strings from "\n\n" in body
-    .map((p, index) => <p key={index}>{p}</p>); // wrap each paragraph with <p></p>
+  const bodySplitIntoPTags = splitTextIntoPTags(postInfo.body);
 
   return (
     <div>
