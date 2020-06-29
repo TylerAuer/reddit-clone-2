@@ -45,20 +45,15 @@ const PostFull = ({ post }) => {
           </>
         )}
       </div>
-      <div className="comments">
-        <div>A comment</div>
-        <div>A comment</div>
-        <div>A comment</div>
-        <div>A comment</div>
-        <div>A comment</div>
-        <div>A comment</div>
-      </div>
+      <div className="comments">Comments show here</div>
       {!showCreateComment && (
         <BtnBlue onClick={() => setShowCreateComment(true)}>
           Leave Comment
         </BtnBlue>
       )}
-      {showCreateComment && <FormCommentCreate parent={post.id} />}
+      {showCreateComment && (
+        <FormCommentCreate showForm={setShowCreateComment} parent={post.id} />
+      )}
     </div>
   );
 };

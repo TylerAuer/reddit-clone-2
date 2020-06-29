@@ -75,6 +75,7 @@ const FormCommentCreate = (props) => {
   const submit = (event) => {
     event.preventDefault();
     createComment(loginState.id, props.parent, formData.comment_body);
+    props.showForm(false);
   };
 
   return (
