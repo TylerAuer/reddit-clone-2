@@ -17,6 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     models.content.belongsTo(models.content, {
       foreignKey: 'content_parent',
     });
+    models.content.hasMany(models.content, {
+      foreignKey: 'content_parent',
+      sourceKey: 'id',
+    });
+    models.content.belongsTo(models.content, {
+      foreignKey: 'id',
+    });
   };
   return content;
 };

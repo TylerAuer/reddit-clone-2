@@ -1,6 +1,5 @@
 import React from 'react';
 import { FeedContext } from '../contexts/FeedContext';
-import truncate from '../functions/truncate';
 
 const FeedPostSingle = (props) => {
   const post = (
@@ -9,7 +8,10 @@ const FeedPostSingle = (props) => {
         {props.postData.title}
       </h2>
       <div>By: {props.postData.author_username}</div>
-      <p>{truncate(props.postData.body, 150)}</p>
+      <div>
+        Comments: {props.postData.commentCount} | Last Updated:{' '}
+        {new Date(props.postData.lastUpdated).toDateString()}
+      </div>
     </div>
   );
 

@@ -22,8 +22,11 @@ const getFeedOfPostsByConditions = async (query) => {
   const rawListOfPosts = await models.content.findAll(conditions);
 
   // Reformats data to send
-  const cleanListOfPosts = rawListOfPosts.map((data) => {
+  const cleanListOfPosts = await rawListOfPosts.map(async (data) => {
     const post = data.dataValues;
+    const comments = await models.content.findAll({
+      where: { content_parent: post.id },
+    });
     return {
       id: post.id,
       title: post.metadata.post_title,
@@ -32,10 +35,11 @@ const getFeedOfPostsByConditions = async (query) => {
       author_id: post.creator,
       createdAt: post.createdAt,
       lastUpdated: post.updatedAt,
+      commentCount: comments.length,
     };
   });
 
-  return cleanListOfPosts;
+  return Promise.all(cleanListOfPosts);
 };
 
 module.exports = { getFeedOfPostsByConditions };
