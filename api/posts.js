@@ -26,10 +26,10 @@ const readPost = async (postID) => {
       content_type: 5,
       content_parent: postID,
     },
+    order: [['createdAt', 'ASC']], // newer comments first;
     include: [models.user],
   });
 
-  console.log(post.user);
   const postInfo = {
     id: post.id,
     author: post.user.dataValues.username,
