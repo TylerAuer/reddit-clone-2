@@ -26,6 +26,7 @@ const readPost = async (postID) => {
       content_type: 5,
       content_parent: postID,
     },
+    include: [models.user],
   });
 
   console.log(post.user);

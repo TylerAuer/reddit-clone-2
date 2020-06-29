@@ -5,7 +5,7 @@ const SingleCommentInFeed = ({ commentData }) => {
     <div className="comment">
       <div>{commentData.metadata}</div>
       <div>
-        By: {commentData.creator} on{' '}
+        By: {commentData.user.username} on{' '}
         {new Date(commentData.createdAt).toDateString()}
       </div>
     </div>
