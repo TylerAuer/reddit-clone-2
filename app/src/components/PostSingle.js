@@ -42,7 +42,9 @@ const PostFull = ({ post }) => {
             </BtnBlue>
           </>
         )}
-        <BtnBlue>Leave Comment</BtnBlue>
+        <BtnBlue onClick={() => console.log('leave comment')}>
+          Leave Comment
+        </BtnBlue>
       </div>
       <div>Comments</div>
     </div>
@@ -50,5 +52,3 @@ const PostFull = ({ post }) => {
 };
 
 export default PostFull;
-
-//{new Date(postData.createdAt).toDateString()}</div>
