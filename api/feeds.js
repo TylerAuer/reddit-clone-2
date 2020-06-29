@@ -7,6 +7,7 @@ const getFeedOfPostsByConditions = async (query) => {
   const conditions = {
     include: [models.user], // used foreign key to lookup user info
     order: [['createdAt', 'DESC']], // newer posts first;
+    where: { content_type: 4 }, // Only return posts
   };
 
   if (query && query.authorID) {
