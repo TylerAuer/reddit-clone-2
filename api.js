@@ -2,6 +2,7 @@ const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const feedRoutes = require('./routes/feedRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 // App config
 const app = express();
@@ -35,6 +36,6 @@ app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
 
 // COMMENTS
 //app.get('/API/comment/', commentRoutes.readComment);
-//app.post('/API/comment/', commentRoutes.createNewComment);
+app.post('/API/comment/', commentRoutes.createNewComment);
 //app.patch('/API/comment/', commentRoutes.updateComment);
 //app.delete('/API/comment/', commentRoutes.deleteComment);

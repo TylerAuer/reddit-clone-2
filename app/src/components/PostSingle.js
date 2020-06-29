@@ -4,10 +4,12 @@ import BtnBlue from './BtnBlue';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
 import deletePost from '../functions/deletePost';
+import FormCommentCreate from './FormCommentCreate';
 
 const PostFull = ({ post }) => {
   const [loginContext] = React.useContext(LoginContext);
   const [, setFeatureContext] = React.useContext(FeatureContext);
+  const [showCreateComment, setShowCreateComment] = React.useState(false);
 
   const bodySplitIntoPTags = post.body
     .split('\n') // Split into array
@@ -42,11 +44,21 @@ const PostFull = ({ post }) => {
             </BtnBlue>
           </>
         )}
-        <BtnBlue onClick={() => console.log('leave comment')}>
+      </div>
+      <div className="comments">
+        <div>A comment</div>
+        <div>A comment</div>
+        <div>A comment</div>
+        <div>A comment</div>
+        <div>A comment</div>
+        <div>A comment</div>
+      </div>
+      {!showCreateComment && (
+        <BtnBlue onClick={() => setShowCreateComment(true)}>
           Leave Comment
         </BtnBlue>
-      </div>
-      <div>Comments</div>
+      )}
+      {showCreateComment && <FormCommentCreate parent={post.id} />}
     </div>
   );
 };
