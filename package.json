@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "pg": "^8.0.2",
     "pg-hstore": "^2.3.3",
+    "semantic-ui-react": "^0.88.2",
     "sequelize": "^5.21.6",
     "sequelize-cli": "^5.5.1"
   },
