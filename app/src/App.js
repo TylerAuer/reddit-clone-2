@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Container } from 'semantic-ui-react';
 import { FEATURES } from './constants';
 import { FeatureContext } from './contexts/FeatureContext';
 import UserRead from './components/UserRead';
@@ -20,19 +21,23 @@ function App() {
   };
 
   return (
-    <div>
-      <NavBar />
-      <section className="section-main">
-        <h1>2 Reddit 2 Furious</h1>
-        <Nav />
-        {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
-        {feature === FEATURES.USER_CREATE && <UserCreate />}
-        {feature === FEATURES.USER_READ && <UserRead />}
-        {feature === FEATURES.POST_CREATE && <FormPostCreate />}
-        {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
-        {feature === FEATURES.POST_UPDATE && <FormPostEdit post={activePost} />}
-      </section>
-    </div>
+    <>
+      <Container>
+        <NavBar />
+        <section className="section-main">
+          <h1>2 Reddit 2 Furious</h1>
+          <Nav />
+          {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
+          {feature === FEATURES.USER_CREATE && <UserCreate />}
+          {feature === FEATURES.USER_READ && <UserRead />}
+          {feature === FEATURES.POST_CREATE && <FormPostCreate />}
+          {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
+          {feature === FEATURES.POST_UPDATE && (
+            <FormPostEdit post={activePost} />
+          )}
+        </section>
+      </Container>
+    </>
   );
 }
 

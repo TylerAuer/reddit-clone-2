@@ -5,9 +5,9 @@ export const LoginContext = React.createContext();
 
 // Creates a provider for components to consume and subscribe to changes
 export const LoginContextProvider = (props) => {
-  // const [loginState, setLoginState] = useState(false);
+  //const [loginState, setLoginState] = useState(false);
 
-  // TEST: Keeps me logged in for testing
+  //TEST: Keeps me logged in for testing
   const [loginState, setLoginState] = useState({
     id: 9,
     username: 'Prestoneous',
