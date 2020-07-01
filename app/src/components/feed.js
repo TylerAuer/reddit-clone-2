@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDistance, subDays } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { Feed, Icon, Divider } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
 import truncate from '../functions/truncate';

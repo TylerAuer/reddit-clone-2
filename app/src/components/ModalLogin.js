@@ -1,56 +1,15 @@
-/** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
-import { COLORS } from '../constants';
+import { Form, Button, Modal } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import Modal from './Modal';
 import getUserInfo from '../functions/getUserInfo';
 
-const loginStyles = css`
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  h2 {
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    font-size: 5rem;
-    display: inline-block;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid ${COLORS['green-light']};
-  }
-
-  label {
-    color: ${COLORS.tan};
-    display: block;
-    font-size: 2rem;
-  }
-
-  input {
-    width: 100%;
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 1rem;
-    background: none;
-    color: white;
-    border: 2px solid ${COLORS['green-light']};
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    outline: none;
-  }
-
-  input:focus {
-    border-color: ${COLORS.orange};
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  input::placeholder {
-    color: ${COLORS['green-light']};
-    opacity: 0.5;
-    font-weight: normal;
-    text-shadow: none;
-  }
-`;
-
 const ModalLogin = (props) => {
+  const [modalOpen, setModalOpen] = React.useState(false);
   const [, setLoginState] = React.useContext(LoginContext);
+
+  const handleOpen = () => setModalOpen(true);
+
+  const handleClose = () => setModalOpen(false);
 
   const submit = (event) => {
     event.preventDefault();
@@ -59,37 +18,49 @@ const ModalLogin = (props) => {
     // const password = elems['password'].value;
 
     getUserInfo(username, setLoginState);
-    props.toggleModal();
+    setModalOpen(false);
   };
 
   return (
-    <Modal toggleModal={props.toggleModal}>
-      <div css={loginStyles}>
-        <h2>Login</h2>
-        <form onSubmit={submit} id="formId">
-          <label htmlFor="username">
-            <b>Username </b>
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder={'Username'}
-          />{' '}
-          <br />
-          <label htmlFor="password">
-            <b>Password </b>
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder={'Password'}
-          />{' '}
-          <br />
-          <button type="submit">Login</button>
-        </form>
-      </div>
+    <Modal
+      trigger={
+        <Button color="teal" onClick={handleOpen}>
+          Log In
+        </Button>
+      }
+      open={modalOpen}
+      onClose={handleClose}
+    >
+      <Modal.Header>Log in to your account</Modal.Header>
+      <Modal.Content>
+        <Modal.Description>
+          <Form onSubmit={submit}>
+            <Form.Field>
+              <label htmlFor="username">
+                <b>Username </b>
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder={'Username'}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label htmlFor="password">
+                <b>Password </b>
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder={'Password'}
+              />
+            </Form.Field>
+            <Button type="submit">Login</Button>
+          </Form>
+        </Modal.Description>
+      </Modal.Content>
     </Modal>
   );
 };
