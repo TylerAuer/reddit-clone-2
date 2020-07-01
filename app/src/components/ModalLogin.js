@@ -4,20 +4,28 @@ import { LoginContext } from '../contexts/LoginContext';
 import getUserInfo from '../functions/getUserInfo';
 
 const ModalLogin = (props) => {
-  const [modalOpen, setModalOpen] = React.useState(false);
   const [, setLoginState] = React.useContext(LoginContext);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    username: '',
+    password: '',
+  });
 
   const handleOpen = () => setModalOpen(true);
-
   const handleClose = () => setModalOpen(false);
+
+  const handleFormChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const submit = (event) => {
     event.preventDefault();
-    const elems = event.target.elements;
-    const username = elems['username'].value;
     // const password = elems['password'].value;
 
-    getUserInfo(username, setLoginState);
+    getUserInfo(formData.username, setLoginState);
     setModalOpen(false);
   };
 
@@ -46,7 +54,8 @@ const ModalLogin = (props) => {
                 type="text"
                 id="username"
                 name="username"
-                placeholder={'Username'}
+                value={formData.username}
+                onChange={handleFormChange}
               />
             </Form.Field>
             <Form.Field>
@@ -57,7 +66,8 @@ const ModalLogin = (props) => {
                 type="password"
                 id="password"
                 name="password"
-                placeholder={'Password'}
+                value={formData.password}
+                onChange={handleFormChange}
               />
             </Form.Field>
             <Button type="submit">Login</Button>
