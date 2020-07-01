@@ -1,24 +1,38 @@
 import React from 'react';
+import { formatDistance, subDays } from 'date-fns';
+import { Feed, Icon, Divider } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
+import truncate from '../functions/truncate';
 
 const FeedPostSingle = (props) => {
   const post = (
-    <div className="post">
-      <h2 onClick={() => props.onClickPost(props.postData.id)}>
-        {props.postData.title}
-      </h2>
-      <div>By: {props.postData.author_username}</div>
-      <div>
-        Comments: {props.postData.commentCount} | Last Updated:{' '}
-        {new Date(props.postData.lastUpdated).toDateString()}
-      </div>
-    </div>
+    <>
+      <Feed.Event>
+        <Feed.Content>
+          <Feed.Summary onClick={() => props.onClickPost(props.postData.id)}>
+            {props.postData.title}
+          </Feed.Summary>
+          <Feed.Summary>
+            <Feed.User>{props.postData.author_username}</Feed.User>
+            <Feed.Date>
+              {formatDistance(new Date(props.postData.lastUpdated), new Date())}{' '}
+              ago
+            </Feed.Date>
+          </Feed.Summary>
+          <Feed.Extra>{truncate(props.postData.body, 300)}</Feed.Extra>
+          <Feed.Meta>
+            <Icon name="comment" /> {props.postData.commentCount}
+          </Feed.Meta>
+        </Feed.Content>
+      </Feed.Event>
+      <Divider />
+    </>
   );
 
   return props.postData ? post : <div>Post loading...</div>;
 };
 
-const Feed = (props) => {
+const FeedOfPosts = (props) => {
   const [feed] = React.useContext(FeedContext);
   const [postList, setPostList] = React.useState([]);
 
@@ -40,13 +54,15 @@ const Feed = (props) => {
     });
   }, [queryString]);
 
-  return postList.map((post) => (
+  const arrOfPosts = postList.map((post) => (
     <FeedPostSingle
       key={post.id}
       onClickPost={props.onClickPost}
       postData={post}
     />
   ));
+
+  return <Feed size="large">{arrOfPosts}</Feed>;
 };
 
-export default Feed;
+export default FeedOfPosts;
