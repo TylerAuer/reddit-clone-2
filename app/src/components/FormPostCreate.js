@@ -1,63 +1,6 @@
-/** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
-import { COLORS } from '../constants';
+import { Form, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import BtnBlue from './BtnBlue';
-
-const postStyles = css`
-  padding-top: 3rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  h2 {
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    font-size: 5rem;
-    display: inline-block;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid ${COLORS['green-light']};
-  }
-
-  label {
-    color: ${COLORS.tan};
-    display: block;
-    font-size: 2.25rem;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 1rem;
-    background: white;
-    color: #555555;
-    border: 2px solid ${COLORS['green-light']};
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    outline: none;
-    font-family: 'Lato';
-  }
-
-  textarea {
-    width: 100%;
-    height: 400px;
-    padding: 1rem;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: ${COLORS['green-xdark']};
-    opacity: 0.25;
-    font-weight: normal;
-    text-shadow: none;
-  }
-
-  input:focus,
-  textarea:focus {
-    border-color: ${COLORS.orange};
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  }
-`;
 
 const FormCreatePost = (props) => {
   const [loginState] = React.useContext(LoginContext);
@@ -91,10 +34,10 @@ const FormCreatePost = (props) => {
   };
 
   return (
-    <div css={postStyles}>
-      <h2>Create a new post</h2>
+    <Form>
+      <Header>Create a new post</Header>
 
-      <form onSubmit={submit} id="formId">
+      <Form.Field onSubmit={submit} id="formId">
         <label htmlFor="post_title">
           <b>Title: </b>
         </label>
@@ -105,8 +48,9 @@ const FormCreatePost = (props) => {
           placeholder="Give your post a title"
           onChange={handleFormChange}
           value={formData.post_title}
-        />{' '}
-        <br />
+        />
+      </Form.Field>
+      <Form.Field>
         <label htmlFor="post_body">
           <b>Body: </b>
 
@@ -118,12 +62,11 @@ const FormCreatePost = (props) => {
             onChange={handleFormChange}
           />
         </label>
-        <br />
-        <BtnBlue onClick={() => null} type="submit">
-          Make this post official!
-        </BtnBlue>
-      </form>
-    </div>
+      </Form.Field>
+      <Button onClick={() => null} type="submit">
+        Make this post official!
+      </Button>
+    </Form>
   );
 };
 
