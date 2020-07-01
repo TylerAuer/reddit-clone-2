@@ -1,4 +1,5 @@
 import React from 'react';
+import { Menu, Button } from 'semantic-ui-react';
 import { FEATURES } from '../constants';
 import BtnBlue from './BtnBlue';
 import { FeedContext } from '../contexts/FeedContext';
@@ -6,27 +7,34 @@ import { FeatureContext } from '../contexts/FeatureContext';
 
 const Nav = (props) => {
   const [, setFeed] = React.useContext(FeedContext);
-  const [, setFeature] = React.useContext(FeatureContext);
+  const [feature, setFeature] = React.useContext(FeatureContext);
 
   return (
-    <div>
-      <BtnBlue onClick={() => setFeature(FEATURES.POST_CREATE)}>
-        Create Post
-      </BtnBlue>
-
-      <BtnBlue
+    <Menu id="menu" pointing secondary>
+      <Menu.Item
+        name="Feed"
+        color="purple"
+        active={feature === FEATURES.FEED}
         onClick={() => {
           setFeed({});
           setFeature(FEATURES.FEED);
         }}
-      >
-        Show Feed
-      </BtnBlue>
+      />
 
-      <BtnBlue onClick={() => setFeature(FEATURES.USER_READ)}>
-        Find User
-      </BtnBlue>
-    </div>
+      <Menu.Item
+        name="New Post"
+        color="purple"
+        active={feature === FEATURES.POST_CREATE}
+        onClick={() => setFeature(FEATURES.POST_CREATE)}
+      />
+
+      <Menu.Item
+        name="Find User"
+        color="purple"
+        active={feature === FEATURES.USER_READ}
+        onClick={() => setFeature(FEATURES.USER_READ)}
+      />
+    </Menu>
   );
 };
 

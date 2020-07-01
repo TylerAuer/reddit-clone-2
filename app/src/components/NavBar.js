@@ -36,7 +36,7 @@ const NavBar = (props) => {
       // If logged out
       return (
         <Button.Group floated="right">
-          <Button color="violet" onClick={() => toggleSignUpModal}>
+          <Button color="teal" onClick={() => toggleSignUpModal}>
             Log In
           </Button>
           <Button.Or />
