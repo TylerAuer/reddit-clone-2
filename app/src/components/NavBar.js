@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Header, Button } from 'semantic-ui-react';
+import { Grid, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import ProfileMenu from './ProfileMenu';
 import ModalLogin from './ModalLogin';
@@ -38,9 +38,7 @@ const NavBar = (props) => {
         <Button.Group floated="right">
           <ModalLogin />
           <Button.Or />
-          <Button color="purple" onClick={() => toggleLoginModal}>
-            Sign Up
-          </Button>
+          <ModalSignUp />
         </Button.Group>
       );
     }

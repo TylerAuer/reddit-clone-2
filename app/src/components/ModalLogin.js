@@ -30,6 +30,9 @@ const ModalLogin = (props) => {
       }
       open={modalOpen}
       onClose={handleClose}
+      centered={false}
+      size="mini"
+      closeIcon
     >
       <Modal.Header>Log in to your account</Modal.Header>
       <Modal.Content>
