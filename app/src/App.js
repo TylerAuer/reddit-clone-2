@@ -21,23 +21,18 @@ function App() {
   };
 
   return (
-    <>
-      <Container>
-        <NavBar />
-        <section className="section-main">
-          <h1>2 Reddit 2 Furious</h1>
-          <Nav />
-          {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
-          {feature === FEATURES.USER_CREATE && <UserCreate />}
-          {feature === FEATURES.USER_READ && <UserRead />}
-          {feature === FEATURES.POST_CREATE && <FormPostCreate />}
-          {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
-          {feature === FEATURES.POST_UPDATE && (
-            <FormPostEdit post={activePost} />
-          )}
-        </section>
-      </Container>
-    </>
+    <Container>
+      <NavBar />
+      <section className="section-main">
+        <Nav />
+        {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
+        {feature === FEATURES.USER_CREATE && <UserCreate />}
+        {feature === FEATURES.USER_READ && <UserRead />}
+        {feature === FEATURES.POST_CREATE && <FormPostCreate />}
+        {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
+        {feature === FEATURES.POST_UPDATE && <FormPostEdit post={activePost} />}
+      </section>
+    </Container>
   );
 }
 

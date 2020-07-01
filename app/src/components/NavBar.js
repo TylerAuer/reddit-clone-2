@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Header } from 'semantic-ui-react';
+import { Container, Grid, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import ProfileMenu from './ProfileMenu';
 import ModalLogin from './ModalLogin';
@@ -27,37 +27,39 @@ const NavBar = (props) => {
     // If logged in
     if (loginState) {
       return (
-        <Menu.Item
-          onClick={() => toggleAccountMenu}
-          position="right"
-          name={loginState.username}
-        />
+        <Button animated floated="right" onClick={() => toggleAccountMenu}>
+          <Button.Content visible>{loginState.username}</Button.Content>
+          <Button.Content hidden>Account</Button.Content>
+        </Button>
       );
     } else {
       // If logged out
       return (
-        <>
-          <Menu.Item
-            onClick={() => toggleSignUpModal}
-            position="right"
-            name="Sign Up"
-          />
-          <Menu.Item onClick={() => toggleLoginModal} name="Log In" />
-        </>
+        <Button.Group floated="right">
+          <Button color="violet" onClick={() => toggleSignUpModal}>
+            Log In
+          </Button>
+          <Button.Or />
+          <Button color="purple" onClick={() => toggleLoginModal}>
+            Sign Up
+          </Button>
+        </Button.Group>
       );
     }
   };
 
   return (
-    <Menu pointing secondary>
-      <Menu.Item>
+    <Grid>
+      <Grid.Column floated="left" width={6}>
         <Header as="h1">Reddit Clone</Header>
-      </Menu.Item>
-      {accountBtns()}
+      </Grid.Column>
+      <Grid.Column floated="right" width={10}>
+        {accountBtns()}
+      </Grid.Column>
       {showLoginModal && <ModalLogin toggleModal={toggleLoginModal} />}
       {showSignUpModal && <ModalSignUp toggleModal={toggleSignUpModal} />}
       <ProfileMenu show={showAccountMenu} displayToggle={setShowAccountMenu} />
-    </Menu>
+    </Grid>
   );
 };
 
