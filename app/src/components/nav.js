@@ -1,13 +1,14 @@
 import React from 'react';
 import { Menu, Button } from 'semantic-ui-react';
 import { FEATURES } from '../constants';
-import BtnBlue from './BtnBlue';
 import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
+import { LoginContext } from '../contexts/LoginContext';
 
 const Nav = (props) => {
   const [, setFeed] = React.useContext(FeedContext);
   const [feature, setFeature] = React.useContext(FeatureContext);
+  const [loginState] = React.useContext(LoginContext);
 
   return (
     <Menu id="menu" pointing secondary>
@@ -20,13 +21,14 @@ const Nav = (props) => {
           setFeature(FEATURES.FEED);
         }}
       />
-
-      <Menu.Item
-        name="New Post"
-        color="purple"
-        active={feature === FEATURES.POST_CREATE}
-        onClick={() => setFeature(FEATURES.POST_CREATE)}
-      />
+      {loginState && (
+        <Menu.Item
+          name="New Post"
+          color="purple"
+          active={feature === FEATURES.POST_CREATE}
+          onClick={() => setFeature(FEATURES.POST_CREATE)}
+        />
+      )}
 
       <Menu.Item
         name="Find User"
@@ -34,13 +36,15 @@ const Nav = (props) => {
         active={feature === FEATURES.USER_READ}
         onClick={() => setFeature(FEATURES.USER_READ)}
       />
-      <Menu.Item
-        position="right"
-        name="Account Info"
-        color="purple"
-        active={feature === FEATURES.USER_UPDATE}
-        onClick={() => setFeature(FEATURES.USER_UPDATE)}
-      />
+      {loginState && (
+        <Menu.Item
+          position="right"
+          name="Account Info"
+          color="purple"
+          active={feature === FEATURES.USER_UPDATE}
+          onClick={() => setFeature(FEATURES.USER_UPDATE)}
+        />
+      )}
     </Menu>
   );
 };
