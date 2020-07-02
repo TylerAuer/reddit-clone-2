@@ -1,6 +1,6 @@
 import React from 'react';
+import { Form, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import BtnWhite from './BtnWhite';
 
 const UserUpdate = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
@@ -31,10 +31,10 @@ const UserUpdate = (props) => {
   };
 
   return (
-    <div>
-      <h2>Ready for a makeover?</h2>
+    <Form onSubmit={submit}>
+      <Header>Ready for a makeover?</Header>
       <p>Update anything you'd like.</p>
-      <form onSubmit={submit} id="formId">
+      <Form.Field>
         <label htmlFor="username">
           <b>Username: </b>
         </label>
@@ -44,8 +44,9 @@ const UserUpdate = (props) => {
           name="username"
           value={formData.username}
           onChange={handleFormChange}
-        />{' '}
-        <br />
+        />
+      </Form.Field>
+      <Form.Field>
         <label htmlFor="first_name">
           <b>First Name: </b>
         </label>
@@ -55,8 +56,9 @@ const UserUpdate = (props) => {
           name="first_name"
           value={formData.first_name}
           onChange={handleFormChange}
-        />{' '}
-        <br />
+        />
+      </Form.Field>
+      <Form.Field>
         <label htmlFor="last_name">
           <b>Last Name: </b>
         </label>
@@ -66,8 +68,9 @@ const UserUpdate = (props) => {
           name="last_name"
           value={formData.last_name}
           onChange={handleFormChange}
-        />{' '}
-        <br />
+        />
+      </Form.Field>
+      <Form.Field>
         <label htmlFor="email_address">
           <b>Email: </b>
         </label>
@@ -77,11 +80,10 @@ const UserUpdate = (props) => {
           name="email_address"
           value={formData.email_address}
           onChange={handleFormChange}
-        />{' '}
-        <br />
-        <BtnWhite type="submit">Update Your Info</BtnWhite>
-      </form>
-    </div>
+        />
+      </Form.Field>
+      <Button type="submit">Update Your Info</Button>
+    </Form>
   );
 };
 

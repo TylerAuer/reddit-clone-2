@@ -1,120 +1,73 @@
-/** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
-import { COLORS, FEATURES } from '../constants';
+import { Container, List, Button, Modal } from 'semantic-ui-react';
+import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
-import ModalUserChange from './ModalUserChange';
 import deleteUser from '../functions/deleteUser';
 
 const ProfileMenu = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
   const [, setFeed] = React.useContext(FeedContext);
   const [, setFeature] = React.useContext(FeatureContext);
-  const [showUserChangeModal, setShowUserChangeModal] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
 
-  const toggleUserChangeModal = () => {
-    showUserChangeModal
-      ? setShowUserChangeModal(false)
-      : setShowUserChangeModal(true);
-  };
-
-  const hide = css`
-    opacity: 0;
-    transform: scale(0);
-  `;
-  const menu = css`
-    position: absolute;
-    opacity: 1;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: radial-gradient(
-      ${COLORS['green-light']},
-      ${COLORS['green-medium']}
-    );
-    z-index: 100;
-    transition: all 0.2s;
-
-    .close-btn {
-      position: absolute;
-      top: 4rem;
-      right: 6rem;
-      font-size: 6rem;
-      color: white;
-      cursor: pointer;
-    }
-
-    .menu-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    ul {
-      list-style: none;
-
-      li {
-        color: white;
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 3.5rem;
-        margin-bottom: 2rem;
-        padding: 1rem;
-      }
-
-      li:hover,
-      li:active {
-        background-color: white;
-        color: ${COLORS['green-dark']};
-        cursor: pointer;
-      }
-    }
-  `;
-  let style = props.show ? menu : [menu, hide];
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
 
   return (
-    <div css={style}>
-      <div className="close-btn" onClick={() => props.displayToggle(false)}>
-        {'\u2715'}
-      </div>
-      <div className="menu-container">
-        <ul>
-          <li
+    <Modal
+      trigger={
+        <Button animated floated="right" onClick={handleOpen}>
+          <Button.Content visible>{loginState.username}</Button.Content>
+          <Button.Content hidden>Account</Button.Content>
+        </Button>
+      }
+      open={modalOpen}
+      onClose={handleClose}
+      centered={false}
+      size="mini"
+      closeIcon
+    >
+      <Modal.Header>Profile Actions</Modal.Header>
+      <Modal.Content>
+        <List>
+          <List.Item
             onClick={() => {
               setLoginState(false);
-              props.displayToggle(false);
+              handleClose();
             }}
           >
             Logout
-          </li>
-          <li onClick={() => toggleUserChangeModal()}>Change user info</li>
-          <li
+          </List.Item>
+          <List.Item
+            onClick={() => {
+              setFeature(FEATURES.USER_UPDATE);
+              handleClose();
+            }}
+          >
+            Change user info
+          </List.Item>
+          <List.Item
             onClick={() => {
               setFeed({ authorID: loginState.id });
               setFeature(FEATURES.FEED);
-              props.displayToggle();
+              handleClose();
             }}
           >
             See all your posts
-          </li>
-          <li
+          </List.Item>
+          <List.Item
             onClick={() => {
               deleteUser(loginState.username, setLoginState);
-              props.displayToggle();
+              handleClose();
             }}
           >
             Delete account
-          </li>
-        </ul>
-      </div>
-      {showUserChangeModal && (
-        <ModalUserChange toggleModal={toggleUserChangeModal} />
-      )}
-    </div>
+          </List.Item>
+        </List>
+      </Modal.Content>
+    </Modal>
   );
 };
 

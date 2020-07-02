@@ -26,12 +26,7 @@ const NavBar = (props) => {
   const accountBtns = () => {
     // If logged in
     if (loginState) {
-      return (
-        <Button animated floated="right" onClick={() => toggleAccountMenu}>
-          <Button.Content visible>{loginState.username}</Button.Content>
-          <Button.Content hidden>Account</Button.Content>
-        </Button>
-      );
+      return <ProfileMenu />;
     } else {
       // If logged out
       return (
@@ -52,9 +47,6 @@ const NavBar = (props) => {
       <Grid.Column floated="right" width={10}>
         {accountBtns()}
       </Grid.Column>
-      {showLoginModal && <ModalLogin toggleModal={toggleLoginModal} />}
-      {showSignUpModal && <ModalSignUp toggleModal={toggleSignUpModal} />}
-      <ProfileMenu show={showAccountMenu} displayToggle={setShowAccountMenu} />
     </Grid>
   );
 };

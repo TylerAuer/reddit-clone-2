@@ -63,7 +63,7 @@ const FormCreatePost = (props) => {
           />
         </label>
       </Form.Field>
-      <Button onClick={() => null} type="submit">
+      <Button onClick={submit} type="submit">
         Make this post official!
       </Button>
     </Form>

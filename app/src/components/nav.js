@@ -34,6 +34,13 @@ const Nav = (props) => {
         active={feature === FEATURES.USER_READ}
         onClick={() => setFeature(FEATURES.USER_READ)}
       />
+      <Menu.Item
+        position="right"
+        name="Account Info"
+        color="purple"
+        active={feature === FEATURES.USER_UPDATE}
+        onClick={() => setFeature(FEATURES.USER_UPDATE)}
+      />
     </Menu>
   );
 };

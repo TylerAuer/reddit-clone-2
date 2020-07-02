@@ -10,6 +10,7 @@ import Feed from './components/Feed';
 import FormPostCreate from './components/FormPostCreate';
 import FormPostEdit from './components/FormPostEdit';
 import PostFull from './components/PostSingle';
+import UserUpdate from './components/UserUpdate';
 
 function App() {
   const [feature, setFeature] = useContext(FeatureContext);
@@ -31,6 +32,7 @@ function App() {
         {feature === FEATURES.POST_CREATE && <FormPostCreate />}
         {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
         {feature === FEATURES.POST_UPDATE && <FormPostEdit post={activePost} />}
+        {feature === FEATURES.USER_UPDATE && <UserUpdate />}
       </section>
     </Container>
   );
