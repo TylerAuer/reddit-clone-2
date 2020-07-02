@@ -1,6 +1,6 @@
 import React from 'react';
+import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import BtnBlue from './BtnBlue';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 
 const SingleCommentInFeed = ({ commentData }) => {
@@ -18,22 +18,25 @@ const SingleCommentInFeed = ({ commentData }) => {
   };
 
   const comment = (
-    <div className="comment">
-      <div>{commentSplitIntoPTags}</div>
-      <div>
-        By: {commentData.user.username} on{' '}
-        {new Date(commentData.createdAt).toDateString()}
+    <>
+      <Divider />
+      <div className="comment">
+        <div>{commentSplitIntoPTags}</div>
+        <div>
+          By: {commentData.user.username} on{' '}
+          {new Date(commentData.createdAt).toDateString()}
+        </div>
+        {login.id === commentData.creator && (
+          <Button
+            onClick={() => {
+              deleteOnClick(commentData.id);
+            }}
+          >
+            Delete Your Comment
+          </Button>
+        )}
       </div>
-      {login.id === commentData.creator && (
-        <BtnBlue
-          onClick={() => {
-            deleteOnClick(commentData.id);
-          }}
-        >
-          Delete Your Comment
-        </BtnBlue>
-      )}
-    </div>
+    </>
   );
   return comment;
 };

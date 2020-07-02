@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { FEATURES } from '../constants';
 import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';

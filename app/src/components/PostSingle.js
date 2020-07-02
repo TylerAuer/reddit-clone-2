@@ -1,11 +1,11 @@
 import React from 'react';
+import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
 import deletePost from '../functions/deletePost';
 import getSinglePost from '../functions/getSinglePost';
 import FormCommentCreate from './FormCommentCreate';
-import BtnBlue from './BtnBlue';
 import FeedOfComments from './FeedOfComments';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 
@@ -30,41 +30,42 @@ const PostFull = ({ postID }) => {
   const bodySplitIntoPTags = splitTextIntoPTags(postInfo.body);
 
   return (
-    <div>
-      <h2>{postInfo.title}</h2>
-      <h3>Author: {postInfo.author}</h3>
-      <div>{bodySplitIntoPTags}</div>
-      <div>
+    <Container>
+      <Header as="h2">{postInfo.title}</Header>
+      <Header as="h3">Author: {postInfo.author}</Header>
+      <Divider />
+      {bodySplitIntoPTags}
+      <Container>
         Created: {new Date(postInfo.createdAt).toDateString()} | Updated:{' '}
         {new Date(postInfo.updatedAt).toDateString()}
-      </div>
-
-      <div>
+      </Container>
+      <Container>
         {loginContext.id === postInfo.authorID && (
           <>
-            <BtnBlue
+            <Button
               onClick={() => {
                 setFeatureContext(FEATURES.POST_UPDATE);
               }}
             >
               Edit Post
-            </BtnBlue>
-            <BtnBlue
+            </Button>
+            <Button
               onClick={() => {
                 deletePost(postInfo.id);
                 setFeatureContext(FEATURES.FEED);
               }}
             >
               Delete Post
-            </BtnBlue>
+            </Button>
           </>
         )}
-      </div>
+      </Container>
       <FeedOfComments comments={postInfo.comments} />
-      {!showCreateComment && (
-        <BtnBlue onClick={() => setShowCreateComment(true)}>
-          Leave Comment
-        </BtnBlue>
+      <Divider />
+      {!showCreateComment && loginContext && (
+        <Button onClick={() => setShowCreateComment(true)}>
+          Leave New Comment
+        </Button>
       )}
       {showCreateComment && (
         <FormCommentCreate
@@ -72,7 +73,7 @@ const PostFull = ({ postID }) => {
           parent={postInfo.id}
         />
       )}
-    </div>
+    </Container>
   );
 };
 
