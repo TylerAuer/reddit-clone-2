@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Container } from 'semantic-ui-react';
 import { FEATURES } from './constants';
 import { FeatureContext } from './contexts/FeatureContext';
-import UserCreate from './components/UserCreate';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
@@ -26,7 +25,6 @@ function App() {
       <section className="section-main">
         <Nav />
         {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
-        {feature === FEATURES.USER_CREATE && <UserCreate />}
         {feature === FEATURES.USER_READ && <UserProfile />}
         {feature === FEATURES.POST_CREATE && <FormPostCreate />}
         {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
