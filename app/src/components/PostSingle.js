@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Divider, Header, Button } from 'semantic-ui-react';
+import { formatDistance } from 'date-fns';
 import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
@@ -22,7 +23,6 @@ const PostFull = ({ postID }) => {
     updatedAt: '',
     comments: [],
   });
-
   React.useEffect(() => {
     getSinglePost(postID, setPostInfo);
   }, [postID, showCreateComment]);
@@ -32,13 +32,17 @@ const PostFull = ({ postID }) => {
   return (
     <Container>
       <Header as="h2">{postInfo.title}</Header>
-      <Header as="h3">Author: {postInfo.author}</Header>
+      <p as="h3">
+        By: {postInfo.author}{' '}
+        <span style={{ fontStyle: 'italic', color: 'darkgrey' }}>
+          {postInfo.createdAt &&
+            formatDistance(new Date(postInfo.createdAt), new Date())}{' '}
+          ago
+        </span>
+      </p>
       <Divider />
       {bodySplitIntoPTags}
-      <Container>
-        Created: {new Date(postInfo.createdAt).toDateString()} | Updated:{' '}
-        {new Date(postInfo.updatedAt).toDateString()}
-      </Container>
+      <Container></Container>
       <Container>
         {loginContext.id === postInfo.authorID && (
           <>

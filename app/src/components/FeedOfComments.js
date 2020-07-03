@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDistance } from 'date-fns';
 import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
@@ -20,31 +21,42 @@ const SingleCommentInFeed = ({ commentData }) => {
   const comment = (
     <>
       <Divider />
-      <div className="comment">
+      <Container style={{ borderLeft: '2px grey solid', paddingLeft: '20px' }}>
         <div>{commentSplitIntoPTags}</div>
-        <div>
-          By: {commentData.user.username} on{' '}
-          {new Date(commentData.createdAt).toDateString()}
-        </div>
-        {login.id === commentData.creator && (
-          <Button
-            onClick={() => {
-              deleteOnClick(commentData.id);
-            }}
-          >
-            Delete Your Comment
-          </Button>
-        )}
-      </div>
+        <br />
+        <p>
+          {commentData.user.username}{' '}
+          <span style={{ fontStyle: 'italic', color: 'darkgrey' }}>
+            {formatDistance(new Date(commentData.createdAt), new Date())} ago
+          </span>
+        </p>
+      </Container>
+      <br />
+      {login.id === commentData.creator && (
+        <Button
+          onClick={() => {
+            deleteOnClick(commentData.id);
+          }}
+        >
+          Delete Your Comment
+        </Button>
+      )}
     </>
   );
   return comment;
 };
 
 const FeedOfComments = (props) => {
-  return props.comments.map((comment) => (
+  const commentList = props.comments.map((comment) => (
     <SingleCommentInFeed commentData={comment} key={comment.id} />
   ));
+
+  return (
+    <>
+      <Header as="h3">Comments</Header>
+      {commentList}
+    </>
+  );
 };
 
 export default FeedOfComments;

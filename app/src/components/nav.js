@@ -11,7 +11,7 @@ const Nav = (props) => {
   const [loginState] = React.useContext(LoginContext);
 
   return (
-    <Menu id="menu" pointing secondary>
+    <Menu style={{ marginBottom: '20px' }} id="menu" pointing secondary>
       <Menu.Item
         name="Feed"
         color="purple"
