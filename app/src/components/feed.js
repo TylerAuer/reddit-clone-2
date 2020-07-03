@@ -12,7 +12,10 @@ const FeedPostSingle = (props) => {
   const post = (
     <Item>
       <Item.Content>
-        <Item.Header onClick={() => props.onClickPost(props.postData.id)}>
+        <Item.Header
+          style={{ cursor: 'pointer' }}
+          onClick={() => props.onClickPost(props.postData.id)}
+        >
           {props.postData.title}
         </Item.Header>
 
