@@ -1,7 +1,10 @@
 import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 import { LoginContext } from '../contexts/LoginContext';
 import deletePost from '../functions/deletePost';
+import truncate from '../functions/truncate';
 
 const FormPostEdit = ({ postInfo, setEditMode }) => {
   const [loginState] = React.useContext(LoginContext);
@@ -31,8 +34,12 @@ const FormPostEdit = ({ postInfo, setEditMode }) => {
       }),
     })
       .then((response) => response.text())
-      .then((data) => alert(data))
-      .then(() => setEditMode(false));
+      .then((data) => {
+        toaster.notify(
+          `We've updated your post "${truncate(formData.post_title, 25)}"`
+        );
+        setEditMode(false);
+      });
   };
 
   return (
