@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
-import { Item, Icon } from 'semantic-ui-react';
+import { Item, Icon, Label } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
 import truncate from '../functions/truncate';
@@ -34,7 +34,9 @@ const FeedPostSingle = (props) => {
         </Item.Description>
 
         <Item.Extra>
-          <Icon name="comment" /> {props.postData.commentCount}
+          <Label>
+            <Icon name="comment" /> {props.postData.commentCount}
+          </Label>
         </Item.Extra>
       </Item.Content>
     </Item>
