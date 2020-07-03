@@ -41,7 +41,7 @@ const Nav = (props) => {
       {loginState && (
         <Menu.Item
           position="right"
-          name="Account Info"
+          name="Account"
           color="purple"
           active={feature === FEATURES.USER_UPDATE}
           onClick={() => setFeature(FEATURES.USER_UPDATE)}
