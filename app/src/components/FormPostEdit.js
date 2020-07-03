@@ -1,16 +1,13 @@
 import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
-import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
-import { FeatureContext } from '../contexts/FeatureContext';
 import deletePost from '../functions/deletePost';
 
-const FormPostEdit = ({ post, setEditMode }) => {
+const FormPostEdit = ({ postInfo, setEditMode }) => {
   const [loginState] = React.useContext(LoginContext);
-  const [, setFeature] = React.useContext(FeatureContext);
   const [formData, setFormData] = React.useState({
-    post_title: post.title,
-    post_body: post.body,
+    post_title: postInfo.title,
+    post_body: postInfo.body,
   });
 
   const handleFormChange = (event) =>
@@ -22,7 +19,7 @@ const FormPostEdit = ({ post, setEditMode }) => {
   const submit = (event) => {
     event.preventDefault();
 
-    fetch(`/API/post/?postID=${post.id}`, {
+    fetch(`/API/post/?postID=${postInfo.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +70,7 @@ const FormPostEdit = ({ post, setEditMode }) => {
       <Button
         negative
         onClick={() => {
-          deletePost(post.id);
+          deletePost(postInfo.id);
           setEditMode(false);
         }}
       >
