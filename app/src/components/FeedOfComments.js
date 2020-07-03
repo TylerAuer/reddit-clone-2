@@ -75,7 +75,7 @@ const FeedOfComments = (props) => {
 
   return (
     <>
-      <Header as="h3">Comments</Header>
+      {commentList.length > 0 && <Header as="h3">Comments</Header>}
       {commentList}
     </>
   );
