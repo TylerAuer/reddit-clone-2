@@ -1,4 +1,6 @@
 import React from 'react';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { formatDistance } from 'date-fns';
 import { FEATURES } from '../constants';
@@ -53,6 +55,9 @@ const PostDisplay = ({
               negative
               onClick={() => {
                 deletePost(postInfo.id);
+                toaster.notify(
+                  `We've deleted your post. Makes sense, it wasn't your best work IMHO.`
+                );
                 setFeatureContext(FEATURES.FEED);
               }}
             >
