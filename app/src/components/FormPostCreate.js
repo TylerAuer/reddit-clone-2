@@ -1,8 +1,11 @@
 import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
+import truncate from '../functions/truncate';
 
 const FormCreatePost = (props) => {
   const [loginState] = React.useContext(LoginContext);
@@ -33,8 +36,15 @@ const FormCreatePost = (props) => {
       }),
     })
       .then((response) => response.text())
-      .then((data) => alert(data))
-      .then(() => setActiveFeature(FEATURES.FEED));
+      .then((data) => {
+        toaster.notify(
+          `We've added your post "${truncate(
+            formData.post_title,
+            25
+          )}" to the feed!`
+        );
+        setActiveFeature(FEATURES.FEED);
+      });
   };
 
   return (
