@@ -6,22 +6,7 @@ import ModalLogin from './ModalLogin';
 import ModalSignUp from './ModalSignUp';
 
 const NavBar = (props) => {
-  const [showAccountMenu, setShowAccountMenu] = React.useState(false);
-  const [showLoginModal, setShowLoginModal] = React.useState(false);
-  const [showSignUpModal, setShowSignUpModal] = React.useState(false);
   const [loginState] = React.useContext(LoginContext);
-
-  const toggleAccountMenu = () => {
-    showAccountMenu ? setShowAccountMenu(false) : setShowAccountMenu(true);
-  };
-
-  const toggleLoginModal = () => {
-    showLoginModal ? setShowLoginModal(false) : setShowLoginModal(true);
-  };
-
-  const toggleSignUpModal = () => {
-    showSignUpModal ? setShowSignUpModal(false) : setShowSignUpModal(true);
-  };
 
   const accountBtns = () => {
     // If logged in
