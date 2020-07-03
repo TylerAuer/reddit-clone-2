@@ -2,9 +2,15 @@ import React from 'react';
 import { formatDistance } from 'date-fns';
 import { Feed, Icon, Divider } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
+import { FeatureContext } from '../contexts/FeatureContext';
+import { UserProfileContext } from '../contexts/UserProfileContext';
+import { FEATURES } from '../constants';
 import truncate from '../functions/truncate';
 
 const FeedPostSingle = (props) => {
+  const [, setUserProfile] = React.useContext(UserProfileContext);
+  const [, setFeature] = React.useContext(FeatureContext);
+
   const post = (
     <>
       <Feed.Event>
@@ -13,7 +19,14 @@ const FeedPostSingle = (props) => {
             {props.postData.title}
           </Feed.Summary>
           <Feed.Summary>
-            <Feed.User>{props.postData.author_username}</Feed.User>
+            <Feed.User
+              onClick={() => {
+                setUserProfile(props.postData.author_username);
+                setFeature(FEATURES.USER_READ);
+              }}
+            >
+              {props.postData.author_username}
+            </Feed.User>
             <Feed.Date>
               {formatDistance(new Date(props.postData.lastUpdated), new Date())}{' '}
               ago

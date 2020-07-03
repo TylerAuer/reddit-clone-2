@@ -30,12 +30,14 @@ const Nav = (props) => {
         />
       )}
 
-      <Menu.Item
-        name="Find User"
-        color="purple"
-        active={feature === FEATURES.USER_READ}
-        onClick={() => setFeature(FEATURES.USER_READ)}
-      />
+      {feature === FEATURES.USER_READ && (
+        <Menu.Item
+          name="User Profile"
+          color="purple"
+          active={feature === FEATURES.USER_READ}
+          onClick={() => setFeature(FEATURES.USER_READ)}
+        />
+      )}
       {loginState && (
         <Menu.Item
           position="right"
