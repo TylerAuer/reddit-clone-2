@@ -3,12 +3,10 @@ import { formatDistance } from 'date-fns';
 import { Item, Icon } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
-import { UserProfileContext } from '../contexts/UserProfileContext';
 import truncate from '../functions/truncate';
 import ProfileReference from './ProfileReference';
 
 const FeedPostSingle = (props) => {
-  const [, setUserProfile] = React.useContext(UserProfileContext);
   const [, setFeature] = React.useContext(FeatureContext);
 
   const post = (

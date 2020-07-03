@@ -3,6 +3,7 @@ import { formatDistance } from 'date-fns';
 import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
+import ProfileReference from './ProfileReference';
 
 const SingleCommentInFeed = ({ commentData, postInfo, setPostInfo, index }) => {
   const [login] = React.useContext(LoginContext);
@@ -34,10 +35,14 @@ const SingleCommentInFeed = ({ commentData, postInfo, setPostInfo, index }) => {
         <div>{commentSplitIntoPTags}</div>
         <br />
         <p>
-          {commentData.user.username}{' '}
-          <span style={{ fontStyle: 'italic', color: 'darkgrey' }}>
-            {formatDistance(new Date(commentData.createdAt), new Date())} ago
-          </span>
+          <ProfileReference username={commentData.user.username}>
+            <span style={{ color: 'blue', cursor: 'pointer' }}>
+              {commentData.user.username}
+            </span>{' '}
+            <span style={{ fontStyle: 'italic', color: 'darkgrey' }}>
+              {formatDistance(new Date(commentData.createdAt), new Date())} ago
+            </span>
+          </ProfileReference>
         </p>
       </Container>
       <br />

@@ -4,9 +4,10 @@ import { formatDistance } from 'date-fns';
 import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
-import deletePost from '../functions/deletePost';
+import ProfileReference from './ProfileReference';
 import FormCommentCreate from './FormCommentCreate';
 import FeedOfComments from './FeedOfComments';
+import deletePost from '../functions/deletePost';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 
 const PostDisplay = ({
@@ -25,7 +26,11 @@ const PostDisplay = ({
     <Container>
       <Header as="h2">{postInfo.title}</Header>
       <p as="h3">
-        By: {postInfo.author}{' '}
+        <ProfileReference username={postInfo.author}>
+          <span style={{ color: 'blue', cursor: 'pointer' }}>
+            {postInfo.author}
+          </span>{' '}
+        </ProfileReference>
         <span style={{ fontStyle: 'italic', color: 'darkgrey' }}>
           {postInfo.createdAt &&
             formatDistance(new Date(postInfo.createdAt), new Date())}{' '}
