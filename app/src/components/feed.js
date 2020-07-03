@@ -6,6 +6,7 @@ import { FeatureContext } from '../contexts/FeatureContext';
 import { UserProfileContext } from '../contexts/UserProfileContext';
 import { FEATURES } from '../constants';
 import truncate from '../functions/truncate';
+import ProfileReference from './ProfileReference';
 
 const FeedPostSingle = (props) => {
   const [, setUserProfile] = React.useContext(UserProfileContext);
@@ -19,14 +20,9 @@ const FeedPostSingle = (props) => {
             {props.postData.title}
           </Feed.Summary>
           <Feed.Summary>
-            <Feed.User
-              onClick={() => {
-                setUserProfile(props.postData.author_username);
-                setFeature(FEATURES.USER_READ);
-              }}
-            >
-              {props.postData.author_username}
-            </Feed.User>
+            <ProfileReference username={props.postData.author_username}>
+              <Feed.User>{props.postData.author_username}</Feed.User>
+            </ProfileReference>
             <Feed.Date>
               {formatDistance(new Date(props.postData.lastUpdated), new Date())}{' '}
               ago
