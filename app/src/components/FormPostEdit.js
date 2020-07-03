@@ -1,67 +1,11 @@
-/** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
-import { COLORS, FEATURES } from '../constants';
+import { Form, Header, Button } from 'semantic-ui-react';
+import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
-import BtnBlue from './BtnBlue';
 import deletePost from '../functions/deletePost';
 
-const postStyles = css`
-  padding-top: 3rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  h2 {
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    font-size: 5rem;
-    display: inline-block;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid ${COLORS['green-light']};
-  }
-
-  label {
-    color: ${COLORS.tan};
-    display: block;
-    font-size: 2.25rem;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 1rem;
-    background: white;
-    color: #555555;
-    border: 2px solid ${COLORS['green-light']};
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    outline: none;
-    font-family: 'Lato';
-  }
-
-  textarea {
-    width: 100%;
-    height: 400px;
-    padding: 1rem;
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: ${COLORS['green-xdark']};
-    opacity: 0.25;
-    font-weight: normal;
-    text-shadow: none;
-  }
-
-  input:focus,
-  textarea:focus {
-    border-color: ${COLORS.orange};
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  }
-`;
-
-const FormPostEdit = ({ post }) => {
+const FormPostEdit = ({ post, setEditMode }) => {
   const [loginState] = React.useContext(LoginContext);
   const [, setFeature] = React.useContext(FeatureContext);
   const [formData, setFormData] = React.useState({
@@ -90,14 +34,14 @@ const FormPostEdit = ({ post }) => {
       }),
     })
       .then((response) => response.text())
-      .then((data) => alert(data));
+      .then((data) => alert(data))
+      .then(() => setEditMode(false));
   };
 
   return (
-    <div css={postStyles}>
-      <h2>Edit Your Post</h2>
-
-      <form onSubmit={submit} id="formId">
+    <Form onSubmit={submit} id="formId">
+      <Header>Edit Your Post</Header>
+      <Form.Field>
         <label htmlFor="post_title">
           <b>Title: </b>
         </label>
@@ -108,8 +52,9 @@ const FormPostEdit = ({ post }) => {
           placeholder="Give your post a title"
           onChange={handleFormChange}
           value={formData.post_title}
-        />{' '}
-        <br />
+        />
+      </Form.Field>
+      <Form.Field>
         <label htmlFor="post_body">
           <b>Body: </b>
 
@@ -121,20 +66,20 @@ const FormPostEdit = ({ post }) => {
             onChange={handleFormChange}
           />
         </label>
-        <br />
-        <BtnBlue onClick={() => console.log('Hi')} type="submit">
-          Update your post
-        </BtnBlue>
-      </form>
-      <BtnBlue
+      </Form.Field>
+      <Button primary onClick={submit} type="submit">
+        Update your post
+      </Button>
+      <Button
+        negative
         onClick={() => {
           deletePost(post.id);
-          setFeature(FEATURES.FEED);
+          setEditMode(false);
         }}
       >
         Delete your post
-      </BtnBlue>
-    </div>
+      </Button>
+    </Form>
   );
 };
 

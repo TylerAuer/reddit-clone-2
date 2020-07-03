@@ -31,7 +31,6 @@ function App() {
         {feature === FEATURES.USER_READ && <UserRead />}
         {feature === FEATURES.POST_CREATE && <FormPostCreate />}
         {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
-        {feature === FEATURES.POST_UPDATE && <FormPostEdit post={activePost} />}
         {feature === FEATURES.USER_UPDATE && <UserUpdate />}
       </section>
     </Container>

@@ -9,11 +9,13 @@ import getSinglePost from '../functions/getSinglePost';
 import FormCommentCreate from './FormCommentCreate';
 import FeedOfComments from './FeedOfComments';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
+import FormPostEdit from './FormPostEdit';
 
 const PostFull = ({ postID }) => {
   const [loginContext] = React.useContext(LoginContext);
   const [, setFeatureContext] = React.useContext(FeatureContext);
   const [showCreateComment, setShowCreateComment] = React.useState(false);
+  const [editMode, setEditMode] = React.useState(false);
   const [postInfo, setPostInfo] = React.useState({
     id: '',
     author: '',
@@ -25,11 +27,11 @@ const PostFull = ({ postID }) => {
   });
   React.useEffect(() => {
     getSinglePost(postID, setPostInfo);
-  }, [postID, showCreateComment]);
+  }, [postID, editMode, showCreateComment]);
 
   const bodySplitIntoPTags = splitTextIntoPTags(postInfo.body);
 
-  return (
+  const viewPost = (
     <Container>
       <Header as="h2">{postInfo.title}</Header>
       <p as="h3">
@@ -48,7 +50,7 @@ const PostFull = ({ postID }) => {
           <>
             <Button
               onClick={() => {
-                setFeatureContext(FEATURES.POST_UPDATE);
+                setEditMode(true);
               }}
             >
               Edit Post
@@ -84,6 +86,10 @@ const PostFull = ({ postID }) => {
       )}
     </Container>
   );
+
+  const editPost = <FormPostEdit setEditMode={setEditMode} post={postInfo} />;
+
+  return editMode ? editPost : viewPost;
 };
 
 export default PostFull;
