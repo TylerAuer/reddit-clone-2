@@ -1,10 +1,9 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
-import { Feed, Icon, Divider } from 'semantic-ui-react';
+import { Item, Icon } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
 import { FeatureContext } from '../contexts/FeatureContext';
 import { UserProfileContext } from '../contexts/UserProfileContext';
-import { FEATURES } from '../constants';
 import truncate from '../functions/truncate';
 import ProfileReference from './ProfileReference';
 
@@ -13,29 +12,34 @@ const FeedPostSingle = (props) => {
   const [, setFeature] = React.useContext(FeatureContext);
 
   const post = (
-    <>
-      <Feed.Event>
-        <Feed.Content>
-          <Feed.Summary onClick={() => props.onClickPost(props.postData.id)}>
-            {props.postData.title}
-          </Feed.Summary>
-          <Feed.Summary>
-            <ProfileReference username={props.postData.author_username}>
-              <Feed.User>{props.postData.author_username}</Feed.User>
-            </ProfileReference>
-            <Feed.Date>
+    <Item>
+      <Item.Content>
+        <Item.Header onClick={() => props.onClickPost(props.postData.id)}>
+          {props.postData.title}
+        </Item.Header>
+
+        <ProfileReference username={props.postData.author_username}>
+          <Item.Meta>
+            <span style={{ color: 'blue' }}>
+              {' '}
+              {props.postData.author_username}
+            </span>{' '}
+            <span style={{ fontStyle: 'italic' }}>
               {formatDistance(new Date(props.postData.lastUpdated), new Date())}{' '}
               ago
-            </Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra>{truncate(props.postData.body, 300)}</Feed.Extra>
-          <Feed.Meta>
-            <Icon name="comment" /> {props.postData.commentCount}
-          </Feed.Meta>
-        </Feed.Content>
-      </Feed.Event>
-      <Divider />
-    </>
+            </span>
+          </Item.Meta>
+        </ProfileReference>
+
+        <Item.Description>
+          {truncate(props.postData.body, 300)}
+        </Item.Description>
+
+        <Item.Extra>
+          <Icon name="comment" /> {props.postData.commentCount}
+        </Item.Extra>
+      </Item.Content>
+    </Item>
   );
 
   return props.postData ? post : <div>Post loading...</div>;
@@ -71,7 +75,7 @@ const FeedOfPosts = (props) => {
     />
   ));
 
-  return <Feed size="large">{arrOfPosts}</Feed>;
+  return <Item.Group divided>{arrOfPosts}</Item.Group>;
 };
 
 export default FeedOfPosts;
