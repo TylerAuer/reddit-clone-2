@@ -54,6 +54,7 @@ const PostFull = ({ postID }) => {
               Edit Post
             </Button>
             <Button
+              negative
               onClick={() => {
                 deletePost(postInfo.id);
                 setFeatureContext(FEATURES.FEED);
@@ -64,10 +65,14 @@ const PostFull = ({ postID }) => {
           </>
         )}
       </Container>
-      <FeedOfComments comments={postInfo.comments} />
+      <FeedOfComments
+        postInfo={postInfo}
+        setPostInfo={setPostInfo}
+        comments={postInfo.comments}
+      />
       <Divider />
       {!showCreateComment && loginContext && (
-        <Button onClick={() => setShowCreateComment(true)}>
+        <Button primary size="small" onClick={() => setShowCreateComment(true)}>
           Leave New Comment
         </Button>
       )}

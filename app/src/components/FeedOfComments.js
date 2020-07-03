@@ -4,7 +4,7 @@ import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 
-const SingleCommentInFeed = ({ commentData }) => {
+const SingleCommentInFeed = ({ commentData, postInfo, setPostInfo, index }) => {
   const [login] = React.useContext(LoginContext);
   const commentSplitIntoPTags = splitTextIntoPTags(commentData.metadata);
 
@@ -14,7 +14,16 @@ const SingleCommentInFeed = ({ commentData }) => {
         method: 'DELETE',
       })
         .then((response) => response.text())
-        .then((data) => console.log(data));
+        .then((data) => console.log(data))
+        .then(() => {
+          const newComments = [...postInfo.comments];
+          newComments.splice(index, 1);
+
+          setPostInfo({
+            ...postInfo,
+            comments: newComments,
+          });
+        });
     }
   };
 
@@ -34,6 +43,8 @@ const SingleCommentInFeed = ({ commentData }) => {
       <br />
       {login.id === commentData.creator && (
         <Button
+          size="small"
+          negative
           onClick={() => {
             deleteOnClick(commentData.id);
           }}
@@ -47,8 +58,14 @@ const SingleCommentInFeed = ({ commentData }) => {
 };
 
 const FeedOfComments = (props) => {
-  const commentList = props.comments.map((comment) => (
-    <SingleCommentInFeed commentData={comment} key={comment.id} />
+  const commentList = props.comments.map((comment, index) => (
+    <SingleCommentInFeed
+      postInfo={props.postInfo}
+      setPostInfo={props.setPostInfo}
+      commentData={comment}
+      key={comment.id}
+      index={index}
+    />
   ));
 
   return (
