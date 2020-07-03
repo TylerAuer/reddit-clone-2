@@ -33,7 +33,7 @@ const ModalLogin = (props) => {
     <Modal
       trigger={
         <Button color="teal" onClick={handleOpen}>
-          Log In
+          Sign In
         </Button>
       }
       open={modalOpen}
@@ -42,7 +42,7 @@ const ModalLogin = (props) => {
       size="mini"
       closeIcon
     >
-      <Modal.Header>Log in to your account</Modal.Header>
+      <Modal.Header>Sign in to your account</Modal.Header>
       <Modal.Content>
         <Modal.Description>
           <Form onSubmit={submit}>
@@ -70,7 +70,7 @@ const ModalLogin = (props) => {
                 onChange={handleFormChange}
               />
             </Form.Field>
-            <Button type="submit">Login</Button>
+            <Button type="submit">Sign In</Button>
           </Form>
         </Modal.Description>
       </Modal.Content>
