@@ -2,12 +2,15 @@ import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
+import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
+import { FeatureContext } from '../contexts/FeatureContext';
 import deletePost from '../functions/deletePost';
 import truncate from '../functions/truncate';
 
 const FormPostEdit = ({ postInfo, setEditMode }) => {
   const [loginState] = React.useContext(LoginContext);
+  const [, setActiveFeature] = React.useContext(FeatureContext);
   const [formData, setFormData] = React.useState({
     post_title: postInfo.title,
     post_body: postInfo.body,
@@ -78,7 +81,11 @@ const FormPostEdit = ({ postInfo, setEditMode }) => {
         negative
         onClick={() => {
           deletePost(postInfo.id);
+          toaster.notify(
+            `We've deleted your post. Makes sense, it wasn't your best work IMHO.`
+          );
           setEditMode(false);
+          setActiveFeature(FEATURES.FEED);
         }}
       >
         Delete your post
