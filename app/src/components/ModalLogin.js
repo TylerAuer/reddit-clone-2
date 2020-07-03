@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button, Modal } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import getUserInfo from '../functions/getUserInfo';
+import userLogin from '../functions/userLogin';
 
 const ModalLogin = (props) => {
   const [, setLoginState] = React.useContext(LoginContext);
@@ -25,7 +25,7 @@ const ModalLogin = (props) => {
     event.preventDefault();
     // const password = elems['password'].value;
 
-    getUserInfo(formData.username, setLoginState);
+    userLogin(formData.username, setLoginState);
     setModalOpen(false);
   };
 
