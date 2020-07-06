@@ -40,6 +40,9 @@ const FeedPostSingle = (props) => {
           <Label>
             <Icon name="comment" /> {props.postData.commentCount}
           </Label>
+          <Label>
+            <Icon name="heart" /> {props.postData.heartCount}
+          </Label>
         </Item.Extra>
       </Item.Content>
     </Item>

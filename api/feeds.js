@@ -25,8 +25,12 @@ const getFeedOfPostsByConditions = async (query) => {
   const cleanListOfPosts = await rawListOfPosts.map(async (data) => {
     const post = data.dataValues;
     const comments = await models.content.findAll({
-      where: { content_parent: post.id },
+      where: { content_parent: post.id, content_type: 5 },
     });
+    const hearts = await models.content.findAll({
+      where: { content_parent: post.id, content_type: 7 },
+    });
+
     return {
       id: post.id,
       title: post.metadata.post_title,
@@ -36,6 +40,7 @@ const getFeedOfPostsByConditions = async (query) => {
       createdAt: post.createdAt,
       lastUpdated: post.updatedAt,
       commentCount: comments.length,
+      heartCount: hearts.length,
     };
   });
 

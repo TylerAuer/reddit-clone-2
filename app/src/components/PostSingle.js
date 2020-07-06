@@ -14,6 +14,7 @@ const PostFull = ({ postID }) => {
     createdAt: '',
     updatedAt: '',
     comments: [],
+    hearts: [],
   });
 
   React.useEffect(() => {

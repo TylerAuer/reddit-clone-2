@@ -30,6 +30,16 @@ const readPost = async (postID) => {
     include: [models.user],
   });
 
+  const heartsRawArr = await models.content.findAll({
+    where: {
+      content_type: 7,
+      content_parent: postID,
+    },
+    order: [['creator', 'ASC']],
+  });
+
+  const heartsUserIDOnlyArr = heartsRawArr.map((heart) => heart.creator);
+
   const postInfo = {
     id: post.id,
     author: post.user.dataValues.username,
@@ -39,6 +49,7 @@ const readPost = async (postID) => {
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,
     comments: comments,
+    hearts: heartsUserIDOnlyArr,
   };
 
   return postInfo;

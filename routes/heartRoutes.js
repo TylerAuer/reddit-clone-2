@@ -6,6 +6,7 @@ const addHeart = async (req, res) => {
     `HEART: Adding heart by user ${req.query.userID} to content ${req.query.content_parent}`
   );
   heartsAPI.addHeart(req.query.userID, req.query.content_parent);
+  res.send('Heart recorded');
 };
 
 // Remove heart
@@ -14,6 +15,7 @@ const removeHeart = async (req, res) => {
     `HEART: Deleting heart by user ${req.query.userID} to content ${req.query.content_parent}`
   );
   heartsAPI.removeHeart(req.query.userID, req.query.content_parent);
+  res.send('Heart deleted');
 };
 
 module.exports = { addHeart, removeHeart };

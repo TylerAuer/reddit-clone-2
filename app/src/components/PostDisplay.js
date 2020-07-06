@@ -1,16 +1,13 @@
 import React from 'react';
-import toaster from 'toasted-notes';
-import 'toasted-notes/src/styles.css';
 import { Container, Divider, Header, Button } from 'semantic-ui-react';
 import { formatDistance } from 'date-fns';
-import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
-import { FeatureContext } from '../contexts/FeatureContext';
 import ProfileReference from './ProfileReference';
 import FormCommentCreate from './FormCommentCreate';
 import FeedOfComments from './FeedOfComments';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 import DeletePost from './DeletePost';
+import HeartBtn from './HeartBtn';
 
 const PostDisplay = ({
   setEditMode,
@@ -19,8 +16,7 @@ const PostDisplay = ({
   setShowAddCommentForm,
   showAddCommentForm,
 }) => {
-  const [loginContext] = React.useContext(LoginContext);
-  const [, setFeatureContext] = React.useContext(FeatureContext);
+  const [login] = React.useContext(LoginContext);
 
   const bodySplitIntoPTags = splitTextIntoPTags(postInfo.body);
 
@@ -42,7 +38,14 @@ const PostDisplay = ({
       <Divider />
       {bodySplitIntoPTags}
       <Container>
-        {loginContext.id === postInfo.authorID && (
+        {login && (
+          <HeartBtn
+            postInfo={postInfo}
+            setPostInfo={setPostInfo}
+            size="medium"
+          />
+        )}
+        {login.id === postInfo.authorID && (
           <>
             <Button
               onClick={() => {
@@ -61,7 +64,7 @@ const PostDisplay = ({
         comments={postInfo.comments}
       />
       <Divider />
-      {!showAddCommentForm && loginContext && (
+      {!showAddCommentForm && login && (
         <Button
           primary
           size="small"
