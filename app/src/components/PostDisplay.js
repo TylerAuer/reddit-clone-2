@@ -9,8 +9,8 @@ import { FeatureContext } from '../contexts/FeatureContext';
 import ProfileReference from './ProfileReference';
 import FormCommentCreate from './FormCommentCreate';
 import FeedOfComments from './FeedOfComments';
-import deletePost from '../functions/deletePost';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
+import DeletePost from './DeletePost';
 
 const PostDisplay = ({
   setEditMode,
@@ -51,18 +51,7 @@ const PostDisplay = ({
             >
               Edit Post
             </Button>
-            <Button
-              negative
-              onClick={() => {
-                deletePost(postInfo.id);
-                toaster.notify(
-                  `We've deleted your post. Makes sense, it wasn't your best work IMHO.`
-                );
-                setFeatureContext(FEATURES.FEED);
-              }}
-            >
-              Delete Post
-            </Button>
+            <DeletePost postID={postInfo.id} />
           </>
         )}
       </Container>

@@ -45,8 +45,8 @@ const DeleteUser = (props) => {
         open={openConfirm}
         onCancel={close}
         onConfirm={onConfirmDeleteUser}
-        cancelButton="Wait! Don't Delete Me!"
-        confirmButton="Yes, Delete Everything."
+        cancelButton="Wait! Don't delete me!"
+        confirmButton="Yes, delete everything."
         header="Are you sure you want to delete your account?"
         content="This will also delete all of your posts and comments."
       />
