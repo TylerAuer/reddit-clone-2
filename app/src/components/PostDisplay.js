@@ -23,7 +23,7 @@ const PostDisplay = ({
   return (
     <Container>
       <Header as="h2">{postInfo.title}</Header>
-      <p as="h3">
+      <div as="h3">
         <ProfileReference username={postInfo.author}>
           <span style={{ color: 'blue', cursor: 'pointer' }}>
             {postInfo.author}
@@ -34,7 +34,7 @@ const PostDisplay = ({
             formatDistance(new Date(postInfo.createdAt), new Date())}{' '}
           ago
         </span>
-      </p>
+      </div>
       <Divider />
       {bodySplitIntoPTags}
       <Container>
