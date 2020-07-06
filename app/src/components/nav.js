@@ -35,7 +35,13 @@ const Nav = (props) => {
           name="User Profile"
           color="purple"
           active={feature === FEATURES.USER_READ}
-          onClick={() => setFeature(FEATURES.USER_READ)}
+        />
+      )}
+      {feature === FEATURES.POST_READ && (
+        <Menu.Item
+          name="Read Post"
+          color="purple"
+          active={feature === FEATURES.POST_READ}
         />
       )}
       {loginState && (
