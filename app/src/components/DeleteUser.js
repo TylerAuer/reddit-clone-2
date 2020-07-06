@@ -1,0 +1,57 @@
+import React from 'react';
+import { Confirm, Button } from 'semantic-ui-react';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
+import { FEATURES } from '../constants';
+import { FeatureContext } from '../contexts/FeatureContext';
+import { LoginContext } from '../contexts/LoginContext';
+
+const DeleteUser = (props) => {
+  const [, setActiveFeature] = React.useContext(FeatureContext);
+  const [login, setLogin] = React.useContext(LoginContext);
+  const [openConfirm, setOpenConfirm] = React.useState(false);
+
+  const open = () => {
+    setOpenConfirm(true);
+  };
+  const close = () => {
+    setOpenConfirm(false);
+  };
+
+  const onConfirmDeleteUser = () => {
+    fetch('/API/user/?username=' + login.username, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          setLogin(false);
+          toaster.notify('Your account has been removed from our system 😢');
+          setActiveFeature(FEATURES.FEED);
+        } else {
+          toaster.notify(
+            'An error occurred. We were unable to delete your account.'
+          );
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
+  return (
+    <>
+      <Button color="red" onClick={open}>
+        Delete Your Account
+      </Button>
+      <Confirm
+        open={openConfirm}
+        onCancel={close}
+        onConfirm={onConfirmDeleteUser}
+        cancelButton="Wait! Don't Delete Me!"
+        confirmButton="Yes, Delete Everything."
+        header="Are you sure you want to delete your account?"
+        content="This will also delete all of your posts and comments."
+      />
+    </>
+  );
+};
+
+export default DeleteUser;
