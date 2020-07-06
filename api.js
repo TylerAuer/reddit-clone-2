@@ -3,6 +3,7 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const feedRoutes = require('./routes/feedRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const heartRoutes = require('./routes/heartRoutes');
 
 // App config
 const app = express();
@@ -37,3 +38,7 @@ app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
 // COMMENTS
 app.post('/API/comment/', commentRoutes.createNewComment);
 app.delete('/API/comment/', commentRoutes.deleteComment);
+
+// HEART
+app.post('/API/heart', heartRoutes.addHeart);
+app.delete('/API/heart', heartRoutes.removeHeart);
