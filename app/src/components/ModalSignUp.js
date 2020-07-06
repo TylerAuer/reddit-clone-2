@@ -25,15 +25,18 @@ const ModalSignUp = (props) => {
 
   const submit = async (event) => {
     event.preventDefault();
-    const username = '?username=' + formData.username;
-    const first = '&first=' + formData.first;
-    const last = '&last=' + formData.last;
-    const email = '&email=' + formData.email;
-    const queryString = username + first + last + email;
 
-    //TODO: Add a .catch()
-    await fetch('/API/user/' + queryString, {
+    await fetch('/API/user/', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        first_name: formData.first,
+        last_name: formData.last,
+        email_address: formData.email,
+      }),
     })
       .then((response) => response.text())
       .then((data) => console.log(data))

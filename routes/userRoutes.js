@@ -9,23 +9,21 @@ const getUserInfoByUsername = async (req, res) => {
 };
 
 const makeNewUser = async (req, res) => {
-  console.log(
-    `USER: Creating new account with username: ${req.query.username}`
-  );
-  const username = req.query.username;
+  console.log(`USER: Creating new account with username: ${req.body.username}`);
+  const username = req.body.username;
   // If username is taken
   if (await usersAPI.readUserByUsername(username)) {
-    console.log('Failed to create ' + req.query.username);
+    console.log('Failed to create ' + req.body.username);
     res.send(username + ' is already taken');
   } else {
-    console.log('Successfully created ' + req.query.username);
     // If username is available
     const model = await usersAPI.createUser(
       username,
-      req.query.first,
-      req.query.last,
-      req.query.email
+      req.body.first_name,
+      req.body.last_name,
+      req.body.email_address
     );
+    console.log('Successfully created ' + req.body.username);
 
     res.send(model.dataValues.username + ' was created.');
   }
