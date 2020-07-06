@@ -43,8 +43,10 @@ const updateUserAccountInfo = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  console.log(`USER: Deleting ${req.query.username}'s account'`);
-  const userDeleteDB = await usersAPI.deleteUser(req.query.username);
+  console.log(
+    `USER: Deleting ${req.query.username}'s account and associated posts and comments'`
+  );
+  const userDeleteDB = await usersAPI.deleteUser(req.query.id);
   res.send(`${req.query.username}'s account was delete`);
 };
 

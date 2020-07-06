@@ -19,7 +19,7 @@ const DeleteUser = (props) => {
   };
 
   const onConfirmDeleteUser = () => {
-    fetch('/API/user/?username=' + login.username, {
+    fetch('/API/user/?username=' + login.username + '&id=' + login.id, {
       method: 'DELETE',
     })
       .then((response) => {

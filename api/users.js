@@ -79,10 +79,17 @@ const updateUser = (
   );
 };
 
-const deleteUser = (username) => {
-  return models.user.destroy({
+const deleteUser = (userID) => {
+  // removes user
+  models.user.destroy({
     where: {
-      username: username,
+      id: userID,
+    },
+  });
+  // removes user's posts and comments
+  models.content.destroy({
+    where: {
+      creator: userID,
     },
   });
 };
