@@ -3,19 +3,13 @@ import { Menu } from 'semantic-ui-react';
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 import NavLink from './NavLink';
-import { FEATURES } from '../constants';
-import { FeedContext } from '../contexts/FeedContext';
-import { FeatureContext } from '../contexts/FeatureContext';
 
 const Nav = (props) => {
   const { pathname } = useLocation();
-  const [, setFeed] = React.useContext(FeedContext);
-  const [feature, setFeature] = React.useContext(FeatureContext);
-
   const [loginState] = React.useContext(LoginContext);
 
   return (
-    <Menu style={{ marginBottom: '20px' }} id="menu" pointing secondary>
+    <Menu style={{ marginBottom: '25px' }} id="menu" pointing secondary>
       <NavLink doShow={true} to="/" active={pathname === '/'} text="Feed" />
       <NavLink
         doShow={loginState}
@@ -36,7 +30,7 @@ const Nav = (props) => {
       <div style={{ marginLeft: 'auto' }}>
         <NavLink
           doShow={loginState}
-          to={`/profile/update/`}
+          to="/profile/update/"
           active={pathname.includes('/profile/update')}
           text="Account"
         />
