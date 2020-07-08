@@ -24,14 +24,14 @@ function App() {
           <Route path="/post/read/:postID">
             <PostSingle />
           </Route>
-          <Route path="/post/new/:postID">
+          <Route path="/post/create/">
             <FormPostCreate />
           </Route>
 
           <Route path="/profile/read/:userID">
             <UserProfile />
           </Route>
-          <Route path="/profile/update/:userID">
+          <Route path="/profile/update/">
             <UserUpdate />
           </Route>
         </section>
