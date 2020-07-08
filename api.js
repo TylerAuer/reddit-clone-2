@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
 // app.delete('/API/account/delete', userRoutes.deleteUser);
 
 // USERS
-// app.get('/API/user/id/', userRoutes.getUserByID);
-// app.get('/API/user/username/', userRoutes.getUserByID);
+app.get('/API/user/id/:id', userRoutes.getUserByID);
+// app.get('/API/user/username/:username', userRoutes.getUserByID);
 
 // USERS
 app.patch('/API/user/', userRoutes.updateUserAccountInfo);
