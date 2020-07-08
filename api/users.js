@@ -33,6 +33,28 @@ const getUserByID = (userID) => {
     });
 };
 
+const getUserByUsername = (username) => {
+  return models.user
+    .findOne({
+      attributes: [
+        'id',
+        'username',
+        'first_name',
+        'last_name',
+        'date_joined',
+        'email_address',
+      ],
+      where: {
+        username: {
+          [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
+        },
+      },
+    })
+    .catch((error) => {
+      console.log('Error: ', error);
+    });
+};
+
 const updateUser = (
   orig_username,
   username,
@@ -73,6 +95,7 @@ const deleteUser = (userID) => {
 module.exports = {
   createUser,
   getUserByID,
+  getUserByUsername,
   updateUser,
   deleteUser,
 };

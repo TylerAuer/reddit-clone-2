@@ -15,7 +15,7 @@ const UserProfile = (props) => {
   });
 
   React.useEffect(() => {
-    fetch('/API/user/?userID=' + userID)
+    fetch(`/API/user/id/${userID}`)
       .then((response) => response.json())
       .then((data) => {
         setUserInfo(data);

@@ -1,14 +1,25 @@
 const usersAPI = require('../api/users');
 
 const getUserByID = async (req, res) => {
-  console.log(`USER: Looking up user with ID of ${req.query.userID}`);
-  const userInfo = await usersAPI.getUserByID(req.query.userID);
+  const userInfo = await usersAPI.getUserByID(req.params.userID);
+  console.log(
+    `USER by ID: Looked up ${userInfo.username} [ID: ${req.params.userID}]`
+  );
+  userInfo
+    ? res.send(userInfo) // defaults to status(200)
+    : res.status(404).send(req.params.username + 'does not exist');
+};
+
+const getUserByUsername = async (req, res) => {
+  const userInfo = await usersAPI.getUserByUsername(req.params.username);
+  console.log(
+    `USER by USERNAME: Looked up ${userInfo.username} [ID: ${req.params.userID}]`
+  );
   userInfo
     ? res.send(userInfo) // defaults to status(200)
     : res.status(404).send(req.query.username + 'does not exist');
 };
 
-// BUG: Broke when I rebuilt getUserByID, need to refactor
 const makeNewUser = async (req, res) => {
   console.log(`USER: Creating new account with username: ${req.body.username}`);
   const username = req.body.username;
@@ -53,6 +64,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getUserByID,
+  getUserByUsername,
   makeNewUser,
   updateUserAccountInfo,
   deleteUser,

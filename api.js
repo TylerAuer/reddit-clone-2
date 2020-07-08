@@ -28,12 +28,12 @@ app.get('/', (req, res) => {
 // app.delete('/API/account/delete', userRoutes.deleteUser);
 
 // USERS
-app.get('/API/user/id/:id', userRoutes.getUserByID);
-// app.get('/API/user/username/:username', userRoutes.getUserByID);
+app.get('/API/user/id/:userID', userRoutes.getUserByID);
+app.get('/API/user/username/:username', userRoutes.getUserByUsername);
 
 // USERS
 app.patch('/API/user/', userRoutes.updateUserAccountInfo);
-app.get('/API/user/', userRoutes.getUserByID);
+//app.get('/API/user/', userRoutes.getUserByID);
 app.post('/API/user/', userRoutes.makeNewUser);
 app.delete('/API/user/', userRoutes.deleteUser);
 
