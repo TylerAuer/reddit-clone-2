@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
@@ -17,8 +17,11 @@ function App() {
         <NavBar />
         <section className="section-main">
           <Nav />
+          <Route exact path="/">
+            <Redirect to="/feed/" />
+          </Route>
           <Switch>
-            <Route exact path="/" component={Feed} />
+            <Route path="/feed/" component={Feed} />
             <Route path="/post/read/:postID" component={PostSingle} />
             <Route exact path="/post/create/" component={FormPostCreate} />
             <Route path="/profile/read/:userID" component={UserProfile} />

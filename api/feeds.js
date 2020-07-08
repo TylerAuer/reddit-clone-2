@@ -8,8 +8,11 @@ const getFeedOfPostsByConditions = async (query) => {
     include: [models.user], // used foreign key to lookup user info
     order: [['updatedAt', 'DESC']], // newer posts first;
     where: { content_type: 4 }, // Only return posts
+    limit: query.post_count, // How many posts to return
+    offset: query.offset, // How many posts to skip (usually post_count * current_page)
   };
 
+  // TODO: Use spread operator here to add multiple conditions into the include
   if (query && query.authorID) {
     conditions.include = {
       model: models.user,

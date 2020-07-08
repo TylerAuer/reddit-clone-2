@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { formatDistance } from 'date-fns';
 import { Item, Icon, Label } from 'semantic-ui-react';
-import { FeedContext } from '../contexts/FeedContext';
-import { Link } from 'react-router-dom';
 import truncate from '../functions/truncate';
 import ProfileReference from './ProfileReference';
 
@@ -49,26 +48,18 @@ const FeedPostSingle = (props) => {
 };
 
 const FeedOfPosts = (props) => {
-  const [feed] = React.useContext(FeedContext);
-  const [postList, setPostList] = React.useState([]);
+  const [postList, setPostList] = useState([]);
+  const { search } = useLocation();
 
-  // If there are conditions specified for the feed
-  // build a query string
-  let queryString = '';
-  if (Object.keys(feed).length) {
-    queryString += '?';
-    for (const prop in feed) {
-      queryString += `${prop}=${feed[prop]}&`;
-    }
-  }
+  console.log(search);
 
   React.useEffect(() => {
-    fetch(`/API/feed/options/${queryString}`).then((response) => {
+    fetch(`/API/feed/${search}`).then((response) => {
       if (response.status === 200) {
         response.json().then((data) => setPostList(data));
       }
     });
-  }, [queryString]);
+  }, [search]);
 
   const arrOfPosts = postList.map((post) => (
     <FeedPostSingle
@@ -78,7 +69,11 @@ const FeedOfPosts = (props) => {
     />
   ));
 
-  return <Item.Group divided>{arrOfPosts}</Item.Group>;
+  return (
+    <>
+      <Item.Group divided>{arrOfPosts}</Item.Group>
+    </>
+  );
 };
 
 export default FeedOfPosts;

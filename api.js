@@ -42,7 +42,7 @@ app.patch('/API/post/', postRoutes.updatePost);
 app.delete('/API/post/', postRoutes.deletePost);
 
 // FEEDS
-app.get('/API/feed/options/', feedRoutes.getFeedOfPostsByConditions);
+app.get('/API/feed/', feedRoutes.getFeedOfPostsByConditions);
 
 // COMMENTS
 app.post('/API/comment/', commentRoutes.createNewComment);

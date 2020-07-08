@@ -4,13 +4,11 @@ import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
-import { FeedContext } from '../contexts/FeedContext';
 import ModalLogin from './ModalLogin';
 import ModalSignUp from './ModalSignUp';
 
 const NavBar = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
-  const [, setFeed] = React.useContext(FeedContext);
 
   const accountBtns = () => {
     // If logged in
@@ -22,11 +20,7 @@ const NavBar = (props) => {
               <Link to="/profile/update">Change Account Info</Link>
             </Dropdown.Item>
 
-            <Dropdown.Item
-              onClick={() => {
-                setFeed({ authorID: loginState.id });
-              }}
-            >
+            <Dropdown.Item>
               <Link to="/">See Your Posts</Link>
             </Dropdown.Item>
             <Dropdown.Item
