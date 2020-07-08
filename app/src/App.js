@@ -7,7 +7,8 @@ import FormPostCreate from './components/FormPostCreate';
 import PostSingle from './components/PostSingle';
 import UserUpdate from './components/UserUpdate';
 import UserProfile from './components/UserProfile';
-import { HashRouter, Route } from 'react-router-dom';
+import Error404 from './components/Error404';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
@@ -16,24 +17,14 @@ function App() {
         <NavBar />
         <section className="section-main">
           <Nav />
-
-          <Route path="/" exact>
-            <Feed />
-          </Route>
-
-          <Route path="/post/read/:postID">
-            <PostSingle />
-          </Route>
-          <Route path="/post/create/">
-            <FormPostCreate />
-          </Route>
-
-          <Route path="/profile/read/:userID">
-            <UserProfile />
-          </Route>
-          <Route path="/profile/update/">
-            <UserUpdate />
-          </Route>
+          <Switch>
+            <Route exact path="/" component={Feed} />
+            <Route path="/post/read/:postID" component={PostSingle} />
+            <Route exact path="/post/create/" component={FormPostCreate} />
+            <Route path="/profile/read/:userID" component={UserProfile} />
+            <Route exact path="/profile/update/" component={UserUpdate} />
+            <Route component={Error404} />
+          </Switch>
         </section>
       </HashRouter>
     </Container>
