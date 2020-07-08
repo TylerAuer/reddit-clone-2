@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Label } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 
 const HeartBtn = ({ size, postInfo, setPostInfo }) => {

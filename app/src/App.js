@@ -1,14 +1,14 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
-import FormPostCreate from './components/FormPostCreate';
 import PostSingle from './components/PostSingle';
-import UserUpdate from './components/UserUpdate';
+import FormPostCreate from './components/FormPostCreate';
 import UserProfile from './components/UserProfile';
+import UserUpdate from './components/UserUpdate';
 import Error404 from './components/Error404';
-import { HashRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
