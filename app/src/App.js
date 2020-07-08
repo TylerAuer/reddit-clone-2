@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Container } from 'semantic-ui-react';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
@@ -10,8 +10,6 @@ import UserProfile from './components/UserProfile';
 import { HashRouter, Route } from 'react-router-dom';
 
 function App() {
-  const [activePost] = useState();
-
   return (
     <Container>
       <HashRouter>
@@ -24,7 +22,7 @@ function App() {
           </Route>
 
           <Route path="/post/read/:postID">
-            <PostSingle postID={activePost} />
+            <PostSingle />
           </Route>
           <Route path="/post/new/:postID">
             <FormPostCreate />
@@ -43,27 +41,3 @@ function App() {
 }
 
 export default App;
-
-// REMOVE
-// EXAMPLE FROM UDEMY
-//
-// const PageOne = () => {
-//   return <div>PageOne</div>;
-// };
-
-// const PageTwo = () => {
-//   return <div>PageTwo</div>;
-// };
-
-// const App = () => {
-//   return (
-//     <div>
-//       <HashRouter>
-//        <div>
-//          <Route path="/" exact component={PageOne} />
-//          <Route path="/pagetwo" component={PageTwo} />
-//        </div>
-//       </HashRouter>
-//     </div>
-//   )
-// };
