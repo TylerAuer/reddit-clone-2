@@ -2,12 +2,11 @@ import React from 'react';
 import { Confirm, Button } from 'semantic-ui-react';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import { FEATURES } from '../constants';
-import { FeatureContext } from '../contexts/FeatureContext';
+import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 
 const DeleteUser = (props) => {
-  const [, setActiveFeature] = React.useContext(FeatureContext);
+  const history = useHistory();
   const [login, setLogin] = React.useContext(LoginContext);
   const [openConfirm, setOpenConfirm] = React.useState(false);
 
@@ -26,7 +25,7 @@ const DeleteUser = (props) => {
         if (response.status === 200) {
           setLogin(false);
           toaster.notify('Your account has been removed from our system 😢');
-          setActiveFeature(FEATURES.FEED);
+          history.push('/');
         } else {
           toaster.notify(
             'An error occurred. We were unable to delete your account.'
