@@ -3,13 +3,11 @@ import { Form, Header, Button } from 'semantic-ui-react';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 import { LoginContext } from '../contexts/LoginContext';
-import { FeatureContext } from '../contexts/FeatureContext';
 import truncate from '../functions/truncate';
 import DeletePost from './DeletePost';
 
 const FormPostEdit = ({ postInfo, setEditMode }) => {
   const [loginState] = React.useContext(LoginContext);
-  const [, setActiveFeature] = React.useContext(FeatureContext);
   const [formData, setFormData] = React.useState({
     post_title: postInfo.title,
     post_body: postInfo.body,
