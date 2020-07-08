@@ -1,23 +1,8 @@
 import React from 'react';
-import { FeatureContext } from '../contexts/FeatureContext';
-import { UserProfileContext } from '../contexts/UserProfileContext';
-import { FEATURES } from '../constants';
+import { Link } from 'react-router-dom';
 
-const ProfileReference = (props) => {
-  const [, setUserProfile] = React.useContext(UserProfileContext);
-  const [, setFeature] = React.useContext(FeatureContext);
-
-  return (
-    <div
-      style={{ cursor: 'pointer' }}
-      onClick={() => {
-        setUserProfile(props.username);
-        setFeature(FEATURES.USER_READ);
-      }}
-    >
-      {props.children}
-    </div>
-  );
+const ProfileReference = ({ children, userID }) => {
+  return <Link to={`/profile/read/${userID}`}>{children}</Link>;
 };
 
 export default ProfileReference;

@@ -11,16 +11,12 @@ const FeedPostSingle = (props) => {
     <Item>
       <Item.Content>
         <Item.Header style={{ cursor: 'pointer' }}>
-          <Link
-            to={{
-              pathname: `/post/read/${props.postData.id}`,
-            }}
-          >
+          <Link to={`/post/read/${props.postData.id}`}>
             {props.postData.title}
           </Link>
         </Item.Header>
 
-        <ProfileReference username={props.postData.author_username}>
+        <ProfileReference userID={props.postData.author_id}>
           <Item.Meta>
             <span style={{ color: 'blue' }}>
               {' '}
