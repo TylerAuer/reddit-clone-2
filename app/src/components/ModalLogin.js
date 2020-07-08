@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button, Modal } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import userLogin from '../functions/userLogin';
+import accountSignIn from '../functions/accountSignIn';
 
 const ModalLogin = (props) => {
   const [, setLoginState] = React.useContext(LoginContext);
@@ -23,10 +23,8 @@ const ModalLogin = (props) => {
 
   const submit = (event) => {
     event.preventDefault();
-    // const password = elems['password'].value;
 
-    userLogin(formData.username, setLoginState);
-    setModalOpen(false);
+    accountSignIn(formData.username, formData.password, setLoginState);
   };
 
   return (
