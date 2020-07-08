@@ -65,7 +65,7 @@ const SingleCommentInFeed = ({ commentData, postInfo, setPostInfo, index }) => {
         <div>{commentSplitIntoPTags}</div>
         <br />
 
-        <ProfileReference username={commentData.user.username}>
+        <ProfileReference userID={commentData.creator}>
           <span style={{ color: 'blue', cursor: 'pointer' }}>
             {commentData.user.username}
           </span>{' '}

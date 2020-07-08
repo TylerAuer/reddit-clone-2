@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // USERS
-app.get('/API/user/', userRoutes.getUserInfoByUsername);
+app.get('/API/user/', userRoutes.getUserByID);
 app.post('/API/user/', userRoutes.makeNewUser);
 app.patch('/API/user/', userRoutes.updateUserAccountInfo);
 app.delete('/API/user/', userRoutes.deleteUser);

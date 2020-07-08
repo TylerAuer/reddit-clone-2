@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
-import { UserProfileContext } from '../contexts/UserProfileContext';
 import { formatDistance } from 'date-fns';
+import { useParams } from 'react-router-dom';
 
 const UserProfile = (props) => {
-  const [userProfile, setUserProfile] = React.useContext(UserProfileContext);
+  const { userID } = useParams();
   const [userInfo, setUserInfo] = React.useState({
     id: '',
     username: '',
@@ -15,12 +15,12 @@ const UserProfile = (props) => {
   });
 
   React.useEffect(() => {
-    fetch('/API/user/?username=' + userProfile)
+    fetch('/API/user/?userID=' + userID)
       .then((response) => response.json())
       .then((data) => {
         setUserInfo(data);
       });
-  }, [userProfile]);
+  }, [userID]);
 
   return (
     <Container>

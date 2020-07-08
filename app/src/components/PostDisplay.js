@@ -24,7 +24,7 @@ const PostDisplay = ({
     <Container>
       <Header as="h2">{postInfo.title}</Header>
       <div as="h3">
-        <ProfileReference username={postInfo.author}>
+        <ProfileReference userID={postInfo.authorID}>
           <span style={{ color: 'blue', cursor: 'pointer' }}>
             {postInfo.author}
           </span>{' '}

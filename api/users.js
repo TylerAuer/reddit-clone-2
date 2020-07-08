@@ -13,7 +13,7 @@ const createUser = (username, first_name, last_name, email_address) => {
     .catch((error) => console.log('Error on Create User', error));
 };
 
-const readUserByUsername = (username) => {
+const getUserByID = (userID) => {
   return models.user
     .findOne({
       attributes: [
@@ -25,31 +25,7 @@ const readUserByUsername = (username) => {
         'email_address',
       ],
       where: {
-        username: {
-          // QUESTION: How this is making the value lowercase is a mystery to me
-          // A (very) quick look at the sequelize docs did not answer my question
-          [Sequelize.Op.iLike]: username, // iLike makes case-insensitive
-        },
-      },
-    })
-    .catch((error) => {
-      console.log('Error: ', error);
-    });
-};
-
-const readUserByID = (id) => {
-  return models.user
-    .findOne({
-      attributes: [
-        'id',
-        'username',
-        'first_name',
-        'last_name',
-        'date_joined',
-        'email_address',
-      ],
-      where: {
-        username: id,
+        id: userID,
       },
     })
     .catch((error) => {
@@ -96,8 +72,7 @@ const deleteUser = (userID) => {
 
 module.exports = {
   createUser,
-  readUserByUsername,
-  readUserByID,
+  getUserByID,
   updateUser,
   deleteUser,
 };
