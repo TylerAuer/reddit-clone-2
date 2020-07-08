@@ -2,21 +2,22 @@ import React from 'react';
 import { formatDistance } from 'date-fns';
 import { Item, Icon, Label } from 'semantic-ui-react';
 import { FeedContext } from '../contexts/FeedContext';
-import { FeatureContext } from '../contexts/FeatureContext';
+import { Link } from 'react-router-dom';
 import truncate from '../functions/truncate';
 import ProfileReference from './ProfileReference';
 
 const FeedPostSingle = (props) => {
-  const [, setFeature] = React.useContext(FeatureContext);
-
   const post = (
     <Item>
       <Item.Content>
-        <Item.Header
-          style={{ cursor: 'pointer' }}
-          onClick={() => props.onClickPost(props.postData.id)}
-        >
-          {props.postData.title}
+        <Item.Header style={{ cursor: 'pointer' }}>
+          <Link
+            to={{
+              pathname: `/post/read/${props.postData.id}`,
+            }}
+          >
+            {props.postData.title}
+          </Link>
         </Item.Header>
 
         <ProfileReference username={props.postData.author_username}>

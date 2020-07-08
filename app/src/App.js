@@ -1,24 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { Container } from 'semantic-ui-react';
-import { FEATURES } from './constants';
-import { FeatureContext } from './contexts/FeatureContext';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import Feed from './components/Feed';
 import FormPostCreate from './components/FormPostCreate';
-import PostFull from './components/PostSingle';
+import PostSingle from './components/PostSingle';
 import UserUpdate from './components/UserUpdate';
 import UserProfile from './components/UserProfile';
 import { HashRouter, Route } from 'react-router-dom';
 
 function App() {
-  const [feature, setFeature] = useContext(FeatureContext);
-  const [activePost, setActivePost] = useState();
-
-  const onClickPost = (postID) => {
-    setActivePost(postID);
-    setFeature(FEATURES.POST_READ);
-  };
+  const [activePost] = useState();
 
   return (
     <Container>
@@ -26,19 +18,22 @@ function App() {
         <NavBar />
         <section className="section-main">
           <Nav />
+
           <Route path="/" exact>
-            <Feed onClickPost={onClickPost} />
+            <Feed />
           </Route>
-          <Route path="/profile/read">
-            <UserProfile />
+
+          <Route path="/post/read/:postID">
+            <PostSingle postID={activePost} />
           </Route>
-          <Route path="/post/new">
+          <Route path="/post/new/:postID">
             <FormPostCreate />
           </Route>
-          <Route path="/post/read">
-            <PostFull postID={activePost} />
+
+          <Route path="/profile/read/:userID">
+            <UserProfile />
           </Route>
-          <Route path="/profile/update">
+          <Route path="/profile/update/:userID">
             <UserUpdate />
           </Route>
         </section>
