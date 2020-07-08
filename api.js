@@ -20,10 +20,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/app/public/index.html'));
 });
 
+// ACCOUNT
+// app.get('/API/account/signin', accountRoutes.signin);
+// app.get('/API/account/signout', accountRoutes.signout);
+// app.post('/API/account/create', userRoutes.makeNewUser);
+// app.patch('/API/account/update', userRoutes.updateUserAccountInfo);
+// app.delete('/API/account/delete', userRoutes.deleteUser);
+
 // USERS
+// app.get('/API/user/id/', userRoutes.getUserByID);
+// app.get('/API/user/username/', userRoutes.getUserByID);
+
+// USERS
+app.patch('/API/user/', userRoutes.updateUserAccountInfo);
 app.get('/API/user/', userRoutes.getUserByID);
 app.post('/API/user/', userRoutes.makeNewUser);
-app.patch('/API/user/', userRoutes.updateUserAccountInfo);
 app.delete('/API/user/', userRoutes.deleteUser);
 
 // POSTS
