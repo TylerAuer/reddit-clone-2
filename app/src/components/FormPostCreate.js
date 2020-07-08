@@ -2,14 +2,14 @@ import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import { FEATURES } from '../constants';
+import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
-import { FeatureContext } from '../contexts/FeatureContext';
 import truncate from '../functions/truncate';
 
 const FormCreatePost = (props) => {
+  const history = useHistory();
   const [loginState] = React.useContext(LoginContext);
-  const [, setActiveFeature] = React.useContext(FeatureContext);
+
   const [formData, setFormData] = React.useState({
     post_title: '',
     post_body: '',
@@ -43,7 +43,7 @@ const FormCreatePost = (props) => {
             25
           )}" to the feed!`
         );
-        setActiveFeature(FEATURES.FEED);
+        history.push('/');
       });
   };
 
