@@ -2,11 +2,10 @@ import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
-import { FEATURES } from '../constants';
 import { LoginContext } from '../contexts/LoginContext';
 import { FeatureContext } from '../contexts/FeatureContext';
-import deletePost from '../functions/deletePost';
 import truncate from '../functions/truncate';
+import DeletePost from './DeletePost';
 
 const FormPostEdit = ({ postInfo, setEditMode }) => {
   const [loginState] = React.useContext(LoginContext);
@@ -46,51 +45,41 @@ const FormPostEdit = ({ postInfo, setEditMode }) => {
   };
 
   return (
-    <Form onSubmit={submit} id="formId">
-      <Header>Edit Your Post</Header>
-      <Form.Field>
-        <label htmlFor="post_title">
-          <b>Title: </b>
-        </label>
-        <input
-          type="text"
-          id="post_title"
-          name="post_title"
-          placeholder="Give your post a title"
-          onChange={handleFormChange}
-          value={formData.post_title}
-        />
-      </Form.Field>
-      <Form.Field>
-        <label htmlFor="post_body">
-          <b>Body: </b>
-
-          <textarea
-            id="post_body"
-            name="post_body"
-            value={formData.post_body}
-            multiline="true"
+    <>
+      <Form onSubmit={submit} id="formId">
+        <Header>Edit Your Post</Header>
+        <Form.Field>
+          <label htmlFor="post_title">
+            <b>Title: </b>
+          </label>
+          <input
+            type="text"
+            id="post_title"
+            name="post_title"
+            placeholder="Give your post a title"
             onChange={handleFormChange}
+            value={formData.post_title}
           />
-        </label>
-      </Form.Field>
-      <Button primary onClick={submit} type="submit">
-        Update your post
-      </Button>
-      <Button
-        negative
-        onClick={() => {
-          deletePost(postInfo.id);
-          toaster.notify(
-            `We've deleted your post. Makes sense, it wasn't your best work IMHO.`
-          );
-          setEditMode(false);
-          setActiveFeature(FEATURES.FEED);
-        }}
-      >
-        Delete your post
-      </Button>
-    </Form>
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="post_body">
+            <b>Body: </b>
+
+            <textarea
+              id="post_body"
+              name="post_body"
+              value={formData.post_body}
+              multiline="true"
+              onChange={handleFormChange}
+            />
+          </label>
+        </Form.Field>
+        <Button primary onClick={submit} type="submit">
+          Update your post
+        </Button>
+      </Form>
+      <DeletePost postID={postInfo.id} />
+    </>
   );
 };
 
