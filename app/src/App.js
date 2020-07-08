@@ -9,6 +9,7 @@ import FormPostCreate from './components/FormPostCreate';
 import PostFull from './components/PostSingle';
 import UserUpdate from './components/UserUpdate';
 import UserProfile from './components/UserProfile';
+import { HashRouter, Route } from 'react-router-dom';
 
 function App() {
   const [feature, setFeature] = useContext(FeatureContext);
@@ -21,17 +22,53 @@ function App() {
 
   return (
     <Container>
-      <NavBar />
-      <section className="section-main">
-        <Nav />
-        {feature === FEATURES.FEED && <Feed onClickPost={onClickPost} />}
-        {feature === FEATURES.USER_READ && <UserProfile />}
-        {feature === FEATURES.POST_CREATE && <FormPostCreate />}
-        {feature === FEATURES.POST_READ && <PostFull postID={activePost} />}
-        {feature === FEATURES.USER_UPDATE && <UserUpdate />}
-      </section>
+      <HashRouter>
+        <NavBar />
+        <section className="section-main">
+          <Nav />
+          <Route path="/" exact>
+            <Feed onClickPost={onClickPost} />
+          </Route>
+          <Route path="/profile/read">
+            <UserProfile />
+          </Route>
+          <Route path="/post/new">
+            <FormPostCreate />
+          </Route>
+          <Route path="/post/read">
+            <PostFull postID={activePost} />
+          </Route>
+          <Route path="/profile/update">
+            <UserUpdate />
+          </Route>
+        </section>
+      </HashRouter>
     </Container>
   );
 }
 
 export default App;
+
+// REMOVE
+// EXAMPLE FROM UDEMY
+//
+// const PageOne = () => {
+//   return <div>PageOne</div>;
+// };
+
+// const PageTwo = () => {
+//   return <div>PageTwo</div>;
+// };
+
+// const App = () => {
+//   return (
+//     <div>
+//       <HashRouter>
+//        <div>
+//          <Route path="/" exact component={PageOne} />
+//          <Route path="/pagetwo" component={PageTwo} />
+//        </div>
+//       </HashRouter>
+//     </div>
+//   )
+// };
