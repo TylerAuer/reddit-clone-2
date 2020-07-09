@@ -21,7 +21,14 @@ const NavBar = (props) => {
             </Dropdown.Item>
 
             <Dropdown.Item>
-              <Link to="/">See Your Posts</Link>
+              <Link
+                to={{
+                  pathname: '/feed',
+                  search: `?userID=${loginState.id}`,
+                }}
+              >
+                See Your Posts
+              </Link>
             </Dropdown.Item>
             <Dropdown.Item
               onClick={() => {

@@ -18,10 +18,10 @@ function App() {
         <section className="section-main">
           <Nav />
           <Route exact path="/">
-            <Redirect to="/feed/" />
+            <Redirect to="/feed" />
           </Route>
           <Switch>
-            <Route path="/feed/" component={Feed} />
+            <Route path="/feed" component={Feed} />
             <Route path="/post/read/:postID" component={PostSingle} />
             <Route exact path="/post/create/" component={FormPostCreate} />
             <Route path="/profile/read/:userID" component={UserProfile} />

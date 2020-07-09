@@ -10,7 +10,7 @@ const Nav = (props) => {
 
   return (
     <Menu style={{ marginBottom: '25px' }} id="menu" pointing secondary>
-      <NavLink doShow={true} to="/" active={pathname === '/'} text="Feed" />
+      <NavLink doShow={true} to="/" active={pathname === '/feed'} text="Feed" />
       <NavLink
         doShow={loginState}
         to="/post/create"
