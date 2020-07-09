@@ -22,7 +22,6 @@ const DeletePost = ({ postID }) => {
     })
       .then((response) => response.text())
       .then((data) => {
-        console.log(data);
         toaster.notify('Your post has been deleted.');
         history.push('/');
       });

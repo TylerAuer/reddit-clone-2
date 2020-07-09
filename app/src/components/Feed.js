@@ -114,11 +114,6 @@ const FeedOfPosts = (props) => {
 
   const isNewerBtnDisabled = query.post_offset <= 0 ? 'disabled' : '';
 
-  console.log(
-    query.post_offset + query.post_count,
-    postData.post_count_ignoring_pagination
-  );
-
   const isOlderBtnDisabled =
     query.post_offset + query.post_count >=
     postData.post_count_ignoring_pagination
