@@ -32,32 +32,37 @@ const getFeedOfPostsByConditions = async (query) => {
     };
   }
 
-  const rawListOfPosts = await models.content.findAll(conditions);
+  const rawListOfPosts = await models.content.findAndCountAll(conditions);
 
   // Reformats data to send
-  const cleanListOfPosts = await rawListOfPosts.map(async (data) => {
-    const post = data.dataValues;
-    const comments = await models.content.findAll({
-      where: { content_parent: post.id, content_type: 5 },
-    });
-    const hearts = await models.content.findAll({
-      where: { content_parent: post.id, content_type: 7 },
-    });
+  const reformattedPostList = await Promise.all(
+    rawListOfPosts.rows.map(async (data) => {
+      const post = data.dataValues;
+      const comments = await models.content.findAll({
+        where: { content_parent: post.id, content_type: 5 },
+      });
+      const hearts = await models.content.findAll({
+        where: { content_parent: post.id, content_type: 7 },
+      });
 
-    return {
-      id: post.id,
-      title: post.metadata.post_title,
-      body: post.metadata.post_body,
-      author_username: post.user.dataValues.username,
-      author_id: post.creator,
-      createdAt: post.createdAt,
-      lastUpdated: post.updatedAt,
-      commentCount: comments.length,
-      heartCount: hearts.length,
-    };
-  });
+      return {
+        id: post.id,
+        title: post.metadata.post_title,
+        body: post.metadata.post_body,
+        author_username: post.user.dataValues.username,
+        author_id: post.creator,
+        createdAt: post.createdAt,
+        lastUpdated: post.updatedAt,
+        commentCount: comments.length,
+        heartCount: hearts.length,
+      };
+    })
+  );
 
-  return Promise.all(cleanListOfPosts);
+  return {
+    post_count_ignoring_pagination: rawListOfPosts.count,
+    posts: reformattedPostList,
+  };
 };
 
 module.exports = { getFeedOfPostsByConditions };
