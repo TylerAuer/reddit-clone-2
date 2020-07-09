@@ -48,20 +48,25 @@ const FeedPostSingle = (props) => {
 };
 
 const FeedOfPosts = (props) => {
-  const [postList, setPostList] = useState([]);
+  const [postData, setPostData] = useState({
+    post_count_ignoring_pagination: 0,
+    posts: [],
+  });
   const location = useLocation();
 
   // API call made when component mounts and when query string changes
   React.useEffect(() => {
     fetch(`/API/feed/${location.search}`).then((response) => {
       if (response.status === 200) {
-        response.json().then((data) => setPostList(data));
+        response.json().then((data) => {
+          setPostData(data);
+        });
       }
     });
   }, [location]);
 
   // Generates array of Single Post Components
-  const arrOfPosts = postList.map((post) => (
+  const arrOfPosts = postData.posts.map((post) => (
     <FeedPostSingle
       key={post.id}
       onClickPost={props.onClickPost}
@@ -107,6 +112,19 @@ const FeedOfPosts = (props) => {
     );
   };
 
+  const isNewerBtnDisabled = query.post_offset <= 0 ? 'disabled' : '';
+
+  console.log(
+    query.post_offset + query.post_count,
+    postData.post_count_ignoring_pagination
+  );
+
+  const isOlderBtnDisabled =
+    query.post_offset + query.post_count >=
+    postData.post_count_ignoring_pagination
+      ? 'disabled'
+      : '';
+
   return (
     <>
       <Item.Group divided>{arrOfPosts}</Item.Group>
@@ -116,11 +134,13 @@ const FeedOfPosts = (props) => {
           search: convertQueryObjectToString(newerBtnQueryObj),
         }}
       >
-        <Button color="blue" size="large" animated floated="left">
-          <Button.Content visible>Newer</Button.Content>
-          <Button.Content hidden>
-            <Icon name="arrow left" />
-          </Button.Content>
+        <Button
+          className={isNewerBtnDisabled}
+          color="blue"
+          size="large"
+          floated="left"
+        >
+          <Icon name="arrow left" /> Newer
         </Button>
       </Link>
       <Link
@@ -129,11 +149,13 @@ const FeedOfPosts = (props) => {
           search: convertQueryObjectToString(olderBtnQueryObj),
         }}
       >
-        <Button color="blue" size="large" animated floated="right">
-          <Button.Content visible>Older</Button.Content>
-          <Button.Content hidden>
-            <Icon name="arrow right" />
-          </Button.Content>
+        <Button
+          className={isOlderBtnDisabled}
+          color="blue"
+          size="large"
+          floated="right"
+        >
+          Older <Icon name="arrow right" />
         </Button>
       </Link>
     </>
