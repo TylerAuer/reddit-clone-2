@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Popup } from 'semantic-ui-react';
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 import NavLink from './NavLink';
@@ -17,6 +17,14 @@ const Nav = (props) => {
         active={pathname === '/post/create'}
         text="New Post"
       />
+
+      {!loginState && (
+        <Popup
+          content="You must create an account or sign in to create a post."
+          position="right center"
+          trigger={<Menu.Item disabled>New Post</Menu.Item>}
+        />
+      )}
       <NavLink
         doShow={pathname.includes('/profile/read')}
         isLink={false}
