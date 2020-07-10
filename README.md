@@ -1,129 +1,32 @@
-# Reddit Clone Requirements
+# Reddit Clone
 
-## Things to do with Josh
+A full-stack clone of Reddit with user authentication, posts, comment, and hearts.
 
-- Help me with fetch (see GetUserInfo.js which is called in UserUpdate.js
-- Help me with buying a domain, just making sure I don't F it **up**
-- Lookover my functions in routeHandlers.js
+## Technologies
 
-## Roadmap
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Sequelize](https://sequelize.org/)
+- [React](https://reactjs.org/)
+- [React-Router](https://reactrouter.com/web/guides/quick-start)
+- [Semantic-UI](https://react.semantic-ui.com/)
+- [Toasted-Notes](https://toasted-notes.netlify.app/)
+- [GitHub Pages](https://pages.github.com/)
+- [Amazon Web Services](https://aws.amazon.com/)
 
-  1. ~~!CSS Styles~~
-     1. ~~Establish quick overall theme for site~~
-        1. ~~Fonts~~
-        2. ~~Colors~~
-           1. ~~Major color scheme~~
-           2. ~~Alternate colors~~
-        3. ~~Structure~~
-  2. Users
-     1. ~~READ user~~
-        1. ~~Extract user lookup search box to it's own component~~
-     2. ~~CREATE user~~
-     3. UPDATE user (can use same form as create but have the info prefilled)
-     4. DELETE user
-  3. Populate Content Types Data Table, can do manually with postgres
-  4. Post
-     1. CREATE Post
-     2. READ Post
-     3. Display list of posts on homepage (reverse chronological order)
-     4. UPDATE Post (use same form as create)
-     5. DELETE Post
-  5. Comments
-     1. CREATE
-     2. READ
-     3. Display list at bottom of post
-        1. Set up nesting
-     4. Display comment counter
-     5. UPDATE Comment
-     6. DELETE Comment
-  6. Navbar and footer using React Router?
-  7. User Authentication
-  8. Like Button (+2 instead of +1, LOL)
-  9. Post Sorting Algorithm
-  10. Search
-  
-## Flow ideas
+## Logical Next Features
 
-- Create user and log in
-- CRUD posts/comments
------
-- Up/down vote posts/comments
-- Subreddits
-- Moderation (different types of users; different permissions)
-- Algorithms for composing a feed of posts
-- Direct messaging
-- Muting
+- Comment nesting and hearts for comments
+- Search users and posts
+- An algorithm for sorting feed based on combination of hearts and recency
 
-### CRUD backend
+## What I've Learned
 
-- Posts (CRUD)
-- Comments on posts (CRUD)
-- Heirarchy/threaded comments
+At the time, this was the first full-stack application I'd built. So, much of the backend patterns around routes and database queries were new to me. Since I didn't know what I didn't know, I made many early decision that later needed to be refactored, rebuilt, or worked around.
 
-### CRUD frontend
+Since this project utilizes user authentication, I had to learn how to manage sessions and authenticate users.
 
-- Post/comment CRUD flow
-- Display posts/comments
+The backend and database are hosted with Amazon Web Services, so I had to learn how to configure the project there.
 
-### CRUD data model
-
-### JSON Contract
-
-- List of posts:
-  - ID
-  - Author
-  - Date Created
-  - Date Last Updated
-  - Metadata
-  - List of Comments:
-    - ID
-    - Author
-    - Foreign ID
-    - Metadata
-    - Date Created
-    - Date Last Updated
-    - List of Subcomments:
-      - ...further nesting
-
-```JSON
-{
-  "posts": [
-    {
-      "ID": 1,
-      "author": "Tyler",
-      "date_created": "1587333444",
-      "date_last_updated": "1587333444",
-      "meta": {
-        "subject": "first",
-        "body": "first post!",
-        "img": null
-      },
-      "comments": [
-        {
-          "ID": 2,
-          "author": "Josh",
-          "date_created": "1587333445",
-          "date_last_updated": "1587333445",
-          "meta": {
-            "body": "that is so lame",
-            "img": null
-          },
-          "comments": [
-            {
-              "ID": 3,
-              "author": "Tyler",
-              "date_created": "1587333446",
-              "date_last_updated": "1587333446",
-              "meta": {
-                "body": "wut ever. u just 2 slo bro",
-                "img": null
-              },
-              "comments": null
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
+Because this application's frontend was larger than previous projects, I learned a lot about how to use components to structure my project. There are still plenty of areas that could be abstracted or organized more effectively. For example, API calls could be turned into custom React Hooks.
