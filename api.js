@@ -33,6 +33,10 @@ app.delete('/API/user/', userRoutes.deleteUser);
 
 // USERS
 app.get('/API/user/id/:userID', userRoutes.getUserByID);
+app.get(
+  '/API/user/content/:userID',
+  userRoutes.getPostCommentAndHeartDataForUser
+);
 app.get('/API/user/username/:username', userRoutes.getUserByUsername);
 
 // POSTS

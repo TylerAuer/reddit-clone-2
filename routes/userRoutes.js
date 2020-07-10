@@ -62,10 +62,19 @@ const deleteUser = async (req, res) => {
   res.send(`${req.query.username}'s account was delete`);
 };
 
+const getPostCommentAndHeartDataForUser = async (req, res) => {
+  console.log('USER: List of Posts, Comments, and Hearts');
+  const postCommentAndHeartData = await usersAPI.getPostCommentAndHeartDataForUser(
+    req.params.userID
+  );
+  res.send(postCommentAndHeartData);
+};
+
 module.exports = {
   getUserByID,
   getUserByUsername,
   makeNewUser,
   updateUserAccountInfo,
   deleteUser,
+  getPostCommentAndHeartDataForUser,
 };
