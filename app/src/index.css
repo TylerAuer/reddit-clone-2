@@ -9,3 +9,17 @@ body {
 #root {
   padding-bottom: 75px;
 }
+
+.profile__join-date {
+  font-style: italic;
+  color: darkgrey;
+  font-weight: 400;
+  text-transform: lowercase;
+  font-size: 1rem;
+}
+
+.profile__post-date {
+  font-size: 1rem;
+  font-style: italic;
+  color: darkgrey;
+}

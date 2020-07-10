@@ -4,8 +4,8 @@ const getFeedOfPostsByConditions = async (req, res) => {
   console.log(req.query);
   if (Object.keys(req.query).length) {
     console.log(`FEED: Generating new feed with conditions:`);
-    for (const c in req.query) {
-      console.log(`  ${c}: ${req.query[c]}`);
+    for (const condition in req.query) {
+      console.log(`  ${condition}: ${req.query[condition]}`);
     }
   } else {
     console.log(`FEED: Generating feed of all posts.`);
