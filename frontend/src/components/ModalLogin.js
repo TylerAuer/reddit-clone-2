@@ -1,9 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Button, Modal } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import accountSignIn from '../functions/accountSignIn';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 
 const ModalLogin = (props) => {
+  const history = useHistory();
   const [, setLoginState] = React.useContext(LoginContext);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({
@@ -21,10 +24,35 @@ const ModalLogin = (props) => {
     });
   };
 
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
 
-    accountSignIn(formData.username, formData.password, setLoginState);
+    await fetch('/API/account/signin/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        password: formData.password,
+      }),
+    }).then((response) => {
+      if (response.status === 401) {
+        // Sign In Failed
+        response.json().then((response) => {
+          toaster.notify(response.message);
+        });
+      } else {
+        // Sign in successful
+        response.json().then((response) => {
+          setLoginState(response.data);
+          toaster.notify(response.message);
+          if (!history.location.pathname === '/feed') {
+            history.push('/feed');
+          }
+        });
+      }
+    });
   };
 
   return (

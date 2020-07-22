@@ -29,7 +29,6 @@ app.post('/API/account/create', accountRoutes.signUp);
 
 // OLD USER METHODS BEING MOVED TO ACCOUNTS ROUTES
 app.patch('/API/user/', userRoutes.updateUserAccountInfo);
-// app.post('/API/user/', userRoutes.makeNewUser);
 app.delete('/API/user/', userRoutes.deleteUser);
 
 // USERS

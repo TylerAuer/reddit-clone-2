@@ -1,15 +1,12 @@
 const accountsAPI = require('../api/accounts');
 
 const signIn = async (req, res) => {
-  const userInfo = await accountsAPI.getUserByUsername(req.body.username);
-  if (userInfo) {
-    // User found in DB
-    console.log(
-      `ACCOUNT: ${userInfo.username} signed in [ID: ${req.params.userID}]`
-    );
-    res.send(userInfo); // defaults to status(200)
+  const resultOfSignIn = await accountsAPI.signUserIn(req.body);
+  // Unsuccessful sign in
+  if (resultOfSignIn.data === null) {
+    res.status(401).send(resultOfSignIn);
   } else {
-    res.status(404).send(req.body.username + 'does not exist');
+    res.send(resultOfSignIn);
   }
 };
 
