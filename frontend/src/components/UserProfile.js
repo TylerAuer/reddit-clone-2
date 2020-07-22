@@ -30,7 +30,7 @@ const UserProfile = (props) => {
 
   const PostList = info.posts.map((post) => {
     return (
-      <List.Item>
+      <List.Item key={post.id}>
         <List.Icon name="newspaper outline" verticalAlign="middle" />
         <List.Content>
           <List.Header>
