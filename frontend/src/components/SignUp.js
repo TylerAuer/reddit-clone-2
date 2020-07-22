@@ -4,7 +4,7 @@ import { Form, Button, Container, Header } from 'semantic-ui-react';
 import getUserInfo from '../functions/getUserInfo';
 
 const SignUp = (props) => {
-  const [, setLoginState] = React.useContext(LoginContext);
+  const [loginState, setLoginState] = React.useContext(LoginContext);
   const [formData, setFormData] = React.useState({
     username: '',
     password1: '',
@@ -61,11 +61,21 @@ const SignUp = (props) => {
           password: formData.password1,
         }),
       })
-        .then((response) => response.text())
-        .then((data) => console.log(data))
-        .then(() => getUserInfo(formData.username, setLoginState));
+        .then((response) => response.json())
+        .then((data) => setLoginState(data));
     }
   };
+
+  if (loginState) {
+    return (
+      <>
+        <Header>Please, sign out in order to create an account.</Header>
+        <Button onClick={() => setLoginState(null)}>
+          Sign Out as {loginState.username}
+        </Button>
+      </>
+    );
+  }
 
   return (
     <Container text>

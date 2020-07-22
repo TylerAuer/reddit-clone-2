@@ -13,18 +13,6 @@ const signIn = async (req, res) => {
   }
 };
 
-// const getUserByID = async (req, res) => {
-
-// const getUserByUsername = async (req, res) => {
-//   const userInfo = await accountsAPI.getUserByUsername(req.params.username);
-//   console.log(
-//     `USER by USERNAME: Looked up ${userInfo.username} [ID: ${req.params.userID}]`
-//   );
-//   userInfo
-//     ? res.send(userInfo) // defaults to status(200)
-//     : res.status(404).send(req.query.username + 'does not exist');
-// };
-
 const signUp = async (req, res) => {
   const username = req.body.username;
   // If username is taken
@@ -35,10 +23,17 @@ const signUp = async (req, res) => {
     res.send(username + ' is already taken');
   } else {
     // If username is available
-    const model = await accountsAPI.createUser(req.body);
 
+    // Create user
+    await accountsAPI.createUser(req.body);
     console.log(`ACCOUNT: Created account for ${username}`);
-    res.send(model.dataValues.username + ' was created.');
+
+    // Return account info for sign in
+    const userInfo = await accountsAPI.getUserByUsername(username);
+    console.log(
+      `ACCOUNT: ${userInfo.username} signed in [ID: ${req.params.userID}]`
+    );
+    res.send(userInfo); // defaults to status(200)
   }
 };
 
