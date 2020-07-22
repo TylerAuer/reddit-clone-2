@@ -41,26 +41,28 @@ const makeNewUser = async (req, res) => {
   }
 };
 
-const updateUserAccountInfo = async (req, res) => {
-  console.log(`USER: Updating account info for ${req.query.orig_username}`);
-  const userUpdateDBResponse = await usersAPI.updateUser(
-    req.query.orig_username,
-    req.query.username,
-    req.query.first,
-    req.query.last,
-    req.query.email
-  );
-  console.log(userUpdateDBResponse);
-  res.send('User info was updated');
-};
+// REMOVE
+// const updateUserAccountInfo = async (req, res) => {
+//   console.log(`USER: Updating account info for ${req.query.orig_username}`);
+//   const userUpdateDBResponse = await usersAPI.updateUser(
+//     req.query.orig_username,
+//     req.query.username,
+//     req.query.first,
+//     req.query.last,
+//     req.query.email
+//   );
+//   console.log(userUpdateDBResponse);
+//   res.send('User info was updated');
+// };
 
-const deleteUser = async (req, res) => {
-  console.log(
-    `USER: Deleting ${req.query.username}'s account and associated posts and comments'`
-  );
-  const userDeleteDB = await usersAPI.deleteUser(req.query.id);
-  res.send(`${req.query.username}'s account was delete`);
-};
+// REMOVE
+// const deleteUser = async (req, res) => {
+//   console.log(
+//     `USER: Deleting ${req.query.username}'s account and associated posts and comments'`
+//   );
+//   const userDeleteDB = await usersAPI.deleteUser(req.query.id);
+//   res.send(`${req.query.username}'s account was delete`);
+// };
 
 const getPostCommentAndHeartDataForUser = async (req, res) => {
   console.log('USER: List of Posts, Comments, and Hearts');
@@ -74,7 +76,5 @@ module.exports = {
   getUserByID,
   getUserByUsername,
   makeNewUser,
-  updateUserAccountInfo,
-  deleteUser,
   getPostCommentAndHeartDataForUser,
 };

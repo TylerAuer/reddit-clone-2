@@ -15,16 +15,19 @@ const UserUpdate = (props) => {
 
   const submit = (event) => {
     event.preventDefault();
-    const elems = event.target.elements;
-    const currentUsername = '?orig_username=' + loginState.username;
-    const username = '&username=' + elems['username'].value;
-    const first = '&first=' + elems['first_name'].value;
-    const last = '&last=' + elems['last_name'].value;
-    const email = '&email=' + elems['email_address'].value;
-    const queryString = currentUsername + username + first + last + email;
 
-    fetch('/API/user/' + queryString, {
+    fetch('/API/account/update', {
       method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: loginState.id,
+        username: formData.username,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email_address: formData.email_address,
+      }),
     })
       .then((response) => response.text())
       .then((text) => alert(text))

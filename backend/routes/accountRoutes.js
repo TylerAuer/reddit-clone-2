@@ -39,8 +39,21 @@ const signOut = (req, res) => {
   req.logout();
 };
 
+const updateAccount = async (req, res) => {
+  console.log(`ACCOUNT: Updating ${req.body.username} [id: ${req.body.id}]`);
+  const userUpdateDBResponse = await accountsAPI.updateAccount(req.body);
+  console.log(userUpdateDBResponse);
+  res.send('User info was updated');
+};
+
+// const deleteAccount = async (req, res) => {
+//   req.logout();
+// };
+
 module.exports = {
   signIn,
   signUp,
   signOut,
+  updateAccount,
+  // deleteAccount,
 };

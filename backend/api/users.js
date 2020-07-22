@@ -55,28 +55,6 @@ const getUserByUsername = (username) => {
     });
 };
 
-const updateUser = (
-  orig_username,
-  username,
-  first_name,
-  last_name,
-  email_address
-) => {
-  return models.user.update(
-    {
-      username: username,
-      first_name: first_name,
-      last_name: last_name,
-      email_address: email_address,
-    },
-    {
-      where: {
-        username: orig_username,
-      },
-    }
-  );
-};
-
 const deleteUser = (userID) => {
   // removes user
   models.user.destroy({
@@ -147,7 +125,5 @@ module.exports = {
   createUser,
   getUserByID,
   getUserByUsername,
-  updateUser,
-  deleteUser,
   getPostCommentAndHeartDataForUser,
 };

@@ -85,8 +85,25 @@ const createUser = async (body) => {
     .catch((error) => console.log('Error on Create User', error));
 };
 
+const updateAccount = (body) => {
+  return models.user.update(
+    {
+      username: body.username,
+      first_name: body.first_name,
+      last_name: body.last_name,
+      email_address: body.email_address,
+    },
+    {
+      where: {
+        id: body.id,
+      },
+    }
+  );
+};
+
 module.exports = {
   getUserByUsername,
   createUser,
   signUserIn,
+  updateAccount,
 };

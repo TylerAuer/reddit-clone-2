@@ -37,8 +37,10 @@ app.setMaxListeners(20); // Default: 10 (Helps spot emitter memory leaks)
 
 ///////////////////////////////////////////////
 // PASSPORT CONFIG
+
 setupPassport(app);
 
+// AUTHENTICATION MIDDLEWARE
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
   res.redirect('/');
@@ -57,12 +59,12 @@ app.post('/API/account/signin', passport.authenticate('local'), (req, res) => {
 });
 app.get('/API/account/signout', isAuthenticated, accountRoutes.signOut);
 app.post('/API/account/create', accountRoutes.signUp);
-// app.patch('/API/account/update', userRoutes.updateUserAccountInfo);
-// app.delete('/API/account/delete', userRoutes.deleteUser);
+app.patch('/API/account/update', isAuthenticated, accountRoutes.updateAccount);
+//app.delete('/API/account/delete', isAuthenticated, accountRoutes.deleteAccount);
 
 // OLD USER METHODS BEING MOVED TO ACCOUNTS ROUTES
-app.patch('/API/user/', isAuthenticated, userRoutes.updateUserAccountInfo);
-app.delete('/API/user/', isAuthenticated, userRoutes.deleteUser);
+//app.patch('/API/user/', isAuthenticated, userRoutes.updateUserAccountInfo);
+//app.delete('/API/user/', isAuthenticated, userRoutes.deleteUser);
 
 // USERS
 app.get('/API/user/id/:userID', userRoutes.getUserByID);
