@@ -38,15 +38,6 @@ app.setMaxListeners(20); // Default: 10 (Helps spot emitter memory leaks)
 // PASSPORT CONFIG
 setupPassport(app);
 
-// PASSPORT TEST
-app.post('/API/account/signin', passport.authenticate('local'), (req, res) => {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  const user = { ...req.user.dataValues };
-  delete user.password;
-  res.send(user);
-});
-
 const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
   res.redirect('/');
@@ -56,15 +47,21 @@ const isAuthenticated = (req, res, next) => {
 // ENDPOINTS
 
 // ACCOUNTS
-// app.post('/API/account/signin', accountRoutes.signIn);
+app.post('/API/account/signin', passport.authenticate('local'), (req, res) => {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  const user = { ...req.user.dataValues };
+  delete user.password;
+  res.send(user);
+});
 app.get('/API/account/signout', isAuthenticated, accountRoutes.signOut);
 app.post('/API/account/create', accountRoutes.signUp);
 // app.patch('/API/account/update', userRoutes.updateUserAccountInfo);
 // app.delete('/API/account/delete', userRoutes.deleteUser);
 
 // OLD USER METHODS BEING MOVED TO ACCOUNTS ROUTES
-app.patch('/API/user/', userRoutes.updateUserAccountInfo);
-app.delete('/API/user/', userRoutes.deleteUser);
+app.patch('/API/user/', isAuthenticated, userRoutes.updateUserAccountInfo);
+app.delete('/API/user/', isAuthenticated, userRoutes.deleteUser);
 
 // USERS
 app.get('/API/user/id/:userID', userRoutes.getUserByID);
@@ -76,20 +73,20 @@ app.get('/API/user/username/:username', userRoutes.getUserByUsername);
 
 // POSTS
 app.get('/API/post/', postRoutes.readPost);
-app.post('/API/post/', postRoutes.createNewPost);
-app.patch('/API/post/', postRoutes.updatePost);
-app.delete('/API/post/', postRoutes.deletePost);
+app.post('/API/post/', isAuthenticated, postRoutes.createNewPost);
+app.patch('/API/post/', isAuthenticated, postRoutes.updatePost);
+app.delete('/API/post/', isAuthenticated, postRoutes.deletePost);
 
 // FEEDS
-app.get('/API/feed/', isAuthenticated, feedRoutes.getFeedOfPostsByConditions);
+app.get('/API/feed/', feedRoutes.getFeedOfPostsByConditions);
 
 // COMMENTS
-app.post('/API/comment/', commentRoutes.createNewComment);
-app.delete('/API/comment/', commentRoutes.deleteComment);
+app.post('/API/comment/', isAuthenticated, commentRoutes.createNewComment);
+app.delete('/API/comment/', isAuthenticated, commentRoutes.deleteComment);
 
 // HEART
-app.post('/API/heart', heartRoutes.addHeart);
-app.delete('/API/heart', heartRoutes.removeHeart);
+app.post('/API/heart', isAuthenticated, heartRoutes.addHeart);
+app.delete('/API/heart', isAuthenticated, heartRoutes.removeHeart);
 
 ///////////////////////////////////////////////
 // SPIN UP
