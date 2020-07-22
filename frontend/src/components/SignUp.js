@@ -1,7 +1,6 @@
 import React from 'react';
 import { LoginContext } from '../contexts/LoginContext';
 import { Form, Button, Container, Header } from 'semantic-ui-react';
-import getUserInfo from '../functions/getUserInfo';
 
 const SignUp = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);

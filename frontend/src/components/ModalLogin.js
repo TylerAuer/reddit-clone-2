@@ -1,12 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Form, Button, Modal } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
 
 const ModalLogin = (props) => {
-  const history = useHistory();
   const [, setLoginState] = React.useContext(LoginContext);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({
@@ -39,9 +37,7 @@ const ModalLogin = (props) => {
     }).then((response) => {
       if (response.status === 401) {
         // Unautherized
-        response.json().then((response) => {
-          toaster.notify(response.message);
-        });
+        toaster.notify(`Username and password combination is incorrect`);
       } else {
         // Sign in successful
         response.json().then((response) => {

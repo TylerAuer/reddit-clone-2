@@ -45,7 +45,7 @@ const PostDisplay = ({
             size="medium"
           />
         )}
-        {login.id === postInfo.authorID && (
+        {login && login.id === postInfo.authorID && (
           <>
             <Button
               onClick={() => {
