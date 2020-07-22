@@ -38,7 +38,7 @@ const Nav = (props) => {
       <div style={{ marginLeft: 'auto' }}>
         <NavLink
           doShow={loginState}
-          to="/profile/update/"
+          to="/profile/update"
           active={pathname.includes('/profile/update')}
           text="Account"
         />
