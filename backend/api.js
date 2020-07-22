@@ -11,6 +11,7 @@ const postRoutes = require('./routes/postRoutes');
 const feedRoutes = require('./routes/feedRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const heartRoutes = require('./routes/heartRoutes');
+require('dotenv').config();
 
 ///////////////////////////////////////////////
 // APP CONFIG
@@ -20,10 +21,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   session({
-    secret: 'cats',
+    secret: process.env.COOKIE_SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours in milliseconds
   })
 );
 app.use(jsonParser);
