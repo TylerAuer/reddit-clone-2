@@ -38,18 +38,15 @@ const ModalLogin = (props) => {
       }),
     }).then((response) => {
       if (response.status === 401) {
-        // Sign In Failed
+        // Unautherized
         response.json().then((response) => {
           toaster.notify(response.message);
         });
       } else {
         // Sign in successful
         response.json().then((response) => {
-          setLoginState(response.data);
-          toaster.notify(response.message);
-          if (!history.location.pathname === '/feed') {
-            history.push('/feed');
-          }
+          setLoginState(response);
+          toaster.notify(`Logged in as ${response.username}`);
         });
       }
     });
