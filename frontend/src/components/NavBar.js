@@ -31,7 +31,8 @@ const NavBar = (props) => {
             </Dropdown.Item>
             <Dropdown.Item
               onClick={() => {
-                setLoginState(false);
+                fetch('/API/account/signout');
+                setLoginState(null);
                 toaster.notify('You have been signed out of your account.');
               }}
             >

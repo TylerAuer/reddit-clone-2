@@ -34,28 +34,13 @@ const signUp = async (req, res) => {
   }
 };
 
-// const updateUserAccountInfo = async (req, res) => {
-//   console.log(`USER: Updating account info for ${req.query.orig_username}`);
-//   const userUpdateDBResponse = await accountsAPI.updateUser(
-//     req.query.orig_username,
-//     req.query.username,
-//     req.query.first,
-//     req.query.last,
-//     req.query.email
-//   );
-//   console.log(userUpdateDBResponse);
-//   res.send('User info was updated');
-// };
-
-// const deleteUser = async (req, res) => {
-//   console.log(
-//     `USER: Deleting ${req.query.username}'s account and associated posts and comments'`
-//   );
-//   const userDeleteDB = await accountsAPI.deleteUser(req.query.id);
-//   res.send(`${req.query.username}'s account was delete`);
-// };
+const signOut = (req, res) => {
+  console.log(`ACCOUNT: A user signed out.`);
+  req.logout();
+};
 
 module.exports = {
   signIn,
   signUp,
+  signOut,
 };

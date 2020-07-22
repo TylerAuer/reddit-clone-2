@@ -1,11 +1,10 @@
 const express = require('express');
 const setupPassport = require('./passport/setupPassport');
-const passport = require('passport');
 const session = require('express-session');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const jsonParser = bodyParser.json();
-
 const accountRoutes = require('./routes/accountRoutes');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
@@ -24,6 +23,7 @@ app.use(
     secret: 'cats',
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours
   })
 );
 app.use(jsonParser);
@@ -57,7 +57,7 @@ const isAuthenticated = (req, res, next) => {
 
 // ACCOUNTS
 // app.post('/API/account/signin', accountRoutes.signIn);
-// app.get('/API/account/signout', accountRoutes.signout);
+app.get('/API/account/signout', isAuthenticated, accountRoutes.signOut);
 app.post('/API/account/create', accountRoutes.signUp);
 // app.patch('/API/account/update', userRoutes.updateUserAccountInfo);
 // app.delete('/API/account/delete', userRoutes.deleteUser);
@@ -81,7 +81,7 @@ app.patch('/API/post/', postRoutes.updatePost);
 app.delete('/API/post/', postRoutes.deletePost);
 
 // FEEDS
-app.get('/API/feed/', feedRoutes.getFeedOfPostsByConditions);
+app.get('/API/feed/', isAuthenticated, feedRoutes.getFeedOfPostsByConditions);
 
 // COMMENTS
 app.post('/API/comment/', commentRoutes.createNewComment);
