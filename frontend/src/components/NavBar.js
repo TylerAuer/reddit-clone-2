@@ -5,7 +5,6 @@ import 'toasted-notes/src/styles.css';
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 import ModalLogin from './ModalLogin';
-import ModalSignUp from './ModalSignUp';
 
 const NavBar = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
