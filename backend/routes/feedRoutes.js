@@ -1,7 +1,6 @@
 const feedsAPI = require('../api/feeds');
 
 const getFeedOfPostsByConditions = async (req, res) => {
-  console.log(req.query);
   if (Object.keys(req.query).length) {
     console.log(`FEED: Generating new feed with conditions:`);
     for (const condition in req.query) {
