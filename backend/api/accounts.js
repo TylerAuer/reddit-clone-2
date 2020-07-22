@@ -1,17 +1,20 @@
 const { Sequelize } = require('sequelize');
+const bcrypt = require('bcrypt');
 const models = require('../models');
 
-// const createUser = (username, first_name, last_name, email_address) => {
-//   return models.user
-//     .create({
-//       username: username,
-//       first_name: first_name,
-//       last_name: last_name,
-//       date_joined: Math.round(Date.now() / 1000), // rounded to the second
-//       email_address: email_address,
-//     })
-//     .catch((error) => console.log('Error on Create User', error));
-// };
+const createUser = async (body) => {
+  const passwordHash = await bcrypt.hash(body.password, 12);
+  return models.user
+    .create({
+      username: body.username,
+      password: passwordHash,
+      first_name: body.first_name,
+      last_name: body.last_name,
+      date_joined: Math.round(Date.now() / 1000), // rounded to the second
+      email_address: body.email_address,
+    })
+    .catch((error) => console.log('Error on Create User', error));
+};
 
 // const getUserByID = (userID) => {
 //   return models.user
@@ -94,4 +97,5 @@ const getUserByUsername = (username) => {
 
 module.exports = {
   getUserByUsername,
+  createUser,
 };

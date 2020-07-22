@@ -25,26 +25,22 @@ const signIn = async (req, res) => {
 //     : res.status(404).send(req.query.username + 'does not exist');
 // };
 
-// const makeNewUser = async (req, res) => {
-//   console.log(`USER: Creating new account with username: ${req.body.username}`);
-//   const username = req.body.username;
-//   // If username is taken
-//   if (await accountsAPI.readUserByUsername(username)) {
-//     console.log('Failed to create ' + req.body.username);
-//     res.send(username + ' is already taken');
-//   } else {
-//     // If username is available
-//     const model = await accountsAPI.createUser(
-//       username,
-//       req.body.first_name,
-//       req.body.last_name,
-//       req.body.email_address
-//     );
-//     console.log('Successfully created ' + req.body.username);
+const signUp = async (req, res) => {
+  const username = req.body.username;
+  // If username is taken
+  if (await accountsAPI.getUserByUsername(username)) {
+    console.log(
+      `ACCOUNT: Failed to create new account. ${username} already taken`
+    );
+    res.send(username + ' is already taken');
+  } else {
+    // If username is available
+    const model = await accountsAPI.createUser(req.body);
 
-//     res.send(model.dataValues.username + ' was created.');
-//   }
-// };
+    console.log(`ACCOUNT: Created account for ${username}`);
+    res.send(model.dataValues.username + ' was created.');
+  }
+};
 
 // const updateUserAccountInfo = async (req, res) => {
 //   console.log(`USER: Updating account info for ${req.query.orig_username}`);
@@ -69,4 +65,5 @@ const signIn = async (req, res) => {
 
 module.exports = {
   signIn,
+  signUp,
 };

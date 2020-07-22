@@ -23,13 +23,13 @@ app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
 // ACCOUNTS
 app.post('/API/account/signin', accountRoutes.signIn);
 // app.get('/API/account/signout', accountRoutes.signout);
-// app.post('/API/account/create', userRoutes.makeNewUser);
+app.post('/API/account/create', accountRoutes.signUp);
 // app.patch('/API/account/update', userRoutes.updateUserAccountInfo);
 // app.delete('/API/account/delete', userRoutes.deleteUser);
 
 // OLD USER METHODS BEING MOVED TO ACCOUNTS ROUTES
 app.patch('/API/user/', userRoutes.updateUserAccountInfo);
-app.post('/API/user/', userRoutes.makeNewUser);
+// app.post('/API/user/', userRoutes.makeNewUser);
 app.delete('/API/user/', userRoutes.deleteUser);
 
 // USERS

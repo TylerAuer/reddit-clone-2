@@ -48,7 +48,7 @@ const SignUp = (props) => {
     event.preventDefault();
 
     if (validateForm()) {
-      await fetch('/API/user/', {
+      await fetch('/API/account/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
