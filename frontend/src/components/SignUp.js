@@ -1,79 +1,173 @@
 import React from 'react';
-import { Form, Button, Modal } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
-import accountSignIn from '../functions/accountSignIn';
+import { Form, Button, Container, Header } from 'semantic-ui-react';
+import getUserInfo from '../functions/getUserInfo';
 
-const ModalLogin = (props) => {
+const SignUp = (props) => {
   const [, setLoginState] = React.useContext(LoginContext);
-  const [modalOpen, setModalOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({
     username: '',
-    password: '',
+    password1: '',
+    password2: '',
+    first: '',
+    last: '',
+    email: '',
   });
+  const [formErrors, setFormErrors] = React.useState([]);
 
-  const handleOpen = () => setModalOpen(true);
-  const handleClose = () => setModalOpen(false);
-
-  const handleFormChange = (event) => {
+  const handleFormChange = (event, data) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [data.id]: data.value,
     });
   };
 
-  const submit = (event) => {
+  const validateForm = () => {
+    let isFormValid = true;
+    const newFormErrors = [];
+
+    if (formData.password1.length < 8) {
+      isFormValid = false;
+      newFormErrors.push('password1');
+    }
+
+    if (formData.password1 !== formData.password2) {
+      isFormValid = false;
+      newFormErrors.push('password2');
+    }
+
+    if (!formData.email.includes('@') || !formData.email.includes('.')) {
+      isFormValid = false;
+      newFormErrors.push('email');
+    }
+    setFormErrors(newFormErrors);
+    return isFormValid;
+  };
+
+  const submit = async (event) => {
     event.preventDefault();
 
-    accountSignIn(formData.username, formData.password, setLoginState);
+    if (validateForm()) {
+      await fetch('/API/user/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          first_name: formData.first,
+          last_name: formData.last,
+          email_address: formData.email,
+          password: formData.password1,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => console.log(data))
+        .then(() => getUserInfo(formData.username, setLoginState));
+    }
   };
 
   return (
-    <Modal
-      trigger={
-        <Button color="teal" onClick={handleOpen}>
-          Sign In
-        </Button>
-      }
-      open={modalOpen}
-      onClose={handleClose}
-      centered={false}
-      size="mini"
-      closeIcon
-    >
-      <Modal.Header>Sign in to your account</Modal.Header>
-      <Modal.Content>
-        <Modal.Description>
-          <Form onSubmit={submit}>
-            <Form.Field>
-              <label htmlFor="username">
-                <b>Username </b>
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleFormChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label htmlFor="password">
-                <b>Password </b>
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleFormChange}
-              />
-            </Form.Field>
-            <Button type="submit">Sign In</Button>
-          </Form>
-        </Modal.Description>
-      </Modal.Content>
-    </Modal>
+    <Container text>
+      <Header as="h2">Create an Account</Header>
+      <Form onSubmit={submit}>
+        <Form.Input
+          error={
+            formErrors.includes('username')
+              ? { content: 'Please select a username', pointing: 'below' }
+              : null
+          }
+          fluid
+          label="Username"
+          id="username"
+          required
+          onChange={handleFormChange}
+        />
+        <Form.Input
+          error={
+            formErrors.includes('password1')
+              ? {
+                  content:
+                    'Please create a password that is at least 10 characters long.',
+                  pointing: 'below',
+                }
+              : null
+          }
+          fluid
+          type="password"
+          label="Enter Password"
+          id="password1"
+          required
+          onChange={handleFormChange}
+        />
+        <Form.Input
+          error={
+            formErrors.includes('password2')
+              ? {
+                  content:
+                    "Be sure that you've entered the same password as above.",
+                  pointing: 'below',
+                }
+              : null
+          }
+          fluid
+          type="password"
+          label="Reenter Password"
+          id="password2"
+          required
+          onChange={handleFormChange}
+        />
+        <Form.Group widths="equal">
+          <Form.Input
+            error={
+              formErrors.includes('first')
+                ? {
+                    content: 'Please enter your first name.',
+                    pointing: 'below',
+                  }
+                : null
+            }
+            fluid
+            label="First Name"
+            id="first"
+            required
+            onChange={handleFormChange}
+          />
+          <Form.Input
+            error={
+              formErrors.includes('last')
+                ? {
+                    content: 'Please enter your last name.',
+                    pointing: 'below',
+                  }
+                : null
+            }
+            fluid
+            label="Last Name"
+            id="last"
+            required
+            onChange={handleFormChange}
+          />
+        </Form.Group>
+        <Form.Input
+          error={
+            formErrors.includes('email')
+              ? {
+                  content: 'Please enter a valid email address.',
+                  pointing: 'below',
+                }
+              : null
+          }
+          fluid
+          label="Email"
+          id="email"
+          required
+          onChange={handleFormChange}
+        />
+        <Button type="submit">Join!</Button>
+      </Form>
+    </Container>
   );
 };
 
-export default ModalLogin;
+export default SignUp;

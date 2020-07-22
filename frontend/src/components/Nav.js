@@ -35,6 +35,11 @@ const Nav = (props) => {
         isLink={false}
         text="Post"
       />
+      <NavLink
+        doShow={pathname.includes('/account/signup')}
+        isLink={false}
+        text="Sign Up"
+      />
       <div style={{ marginLeft: 'auto' }}>
         <NavLink
           doShow={loginState}

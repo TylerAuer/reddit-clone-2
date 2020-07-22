@@ -47,7 +47,9 @@ const NavBar = (props) => {
         <Button.Group floated="right">
           <ModalLogin />
           <Button.Or />
-          <ModalSignUp />
+          <Link to="/account/signup">
+            <Button color="purple">Sign Up</Button>
+          </Link>
         </Button.Group>
       );
     }
