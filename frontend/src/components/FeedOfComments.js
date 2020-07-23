@@ -75,7 +75,7 @@ const SingleCommentInFeed = ({ commentData, postInfo, setPostInfo, index }) => {
         </ProfileReference>
       </Container>
       <br />
-      {login.id === commentData.creator && (
+      {login && login.id === commentData.creator && (
         <DeleteCommentBtn
           index={index}
           postInfo={postInfo}
