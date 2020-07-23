@@ -1,8 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 import { Form, Button, Container, Header } from 'semantic-ui-react';
+import toaster from 'toasted-notes';
+import 'toasted-notes/src/styles.css';
 
 const SignUp = (props) => {
+  let history = useHistory();
   const [loginState, setLoginState] = React.useContext(LoginContext);
   const [formData, setFormData] = React.useState({
     username: '',
@@ -43,11 +47,11 @@ const SignUp = (props) => {
     return isFormValid;
   };
 
-  const submit = async (event) => {
+  const submit = (event) => {
     event.preventDefault();
 
     if (validateForm()) {
-      await fetch('/API/account/create', {
+      fetch('/API/account/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,8 +64,25 @@ const SignUp = (props) => {
           password: formData.password1,
         }),
       })
-        .then((response) => response.json())
-        .then((data) => setLoginState(data));
+        .then((response) => {
+          if (response.status !== 200) {
+            throw response.status;
+          }
+          response.json();
+        })
+        .then((data) => {
+          setLoginState(data);
+          history.push('/feed');
+        })
+        .catch((errorCode) => {
+          if (errorCode === 409) {
+            toaster.notify(
+              `${formData.username} is already taken. Please select a new username.`
+            );
+          } else {
+            toaster.notify(`An unknown error occured. [ERR: ${errorCode}]`);
+          }
+        });
     }
   };
 

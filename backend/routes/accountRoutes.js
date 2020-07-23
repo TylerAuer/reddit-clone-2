@@ -14,7 +14,11 @@ const signUp = async (req, res, next) => {
     console.log(
       `ACCOUNT: Failed to create new account. ${username} already taken`
     );
-    res.send(username + ' is already taken');
+    res
+      .status(409)
+      .send(
+        `${username} is already taken. Please select a new username and resubmit.`
+      );
   } else {
     // If username is available
 
