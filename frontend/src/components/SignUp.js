@@ -68,7 +68,7 @@ const SignUp = (props) => {
           if (response.status !== 200) {
             throw response.status;
           }
-          response.json();
+          return response.json();
         })
         .then((data) => {
           setLoginState(data);
