@@ -18,8 +18,14 @@ const DeleteUser = (props) => {
   };
 
   const onConfirmDeleteUser = () => {
-    fetch('/API/user/?username=' + login.username + '&id=' + login.id, {
+    fetch('/API/account/delete', {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: login.id,
+      }),
     })
       .then((response) => {
         if (response.status === 200) {

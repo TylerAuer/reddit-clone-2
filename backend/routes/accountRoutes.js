@@ -42,14 +42,19 @@ const updateAccount = async (req, res) => {
   res.send('User info was updated');
 };
 
-// const deleteAccount = async (req, res) => {
-//   req.logout();
-// };
+const deleteAccount = async (req, res) => {
+  accountsAPI.deleteAccount(req.body.id);
+  console.log(
+    `ACCOUNT: Deleting account with ID: ${req.body.id} and ending session.`
+  );
+  req.logout();
+  res.send('Account deleted.');
+};
 
 module.exports = {
   signIn,
   signUp,
   signOut,
   updateAccount,
-  // deleteAccount,
+  deleteAccount,
 };

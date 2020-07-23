@@ -101,9 +101,25 @@ const updateAccount = (body) => {
   );
 };
 
+const deleteAccount = (id) => {
+  // removes user's posts and comments
+  models.content.destroy({
+    where: {
+      creator: id,
+    },
+  });
+  // removes user's account
+  models.user.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
 module.exports = {
   getUserByUsername,
   createUser,
   signUserIn,
   updateAccount,
+  deleteAccount,
 };
