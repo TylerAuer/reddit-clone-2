@@ -65,30 +65,26 @@ const ModalLogin = (props) => {
       <Modal.Content>
         <Modal.Description>
           <Form onSubmit={submit}>
-            <Form.Field>
-              <label htmlFor="username">
-                <b>Username </b>
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleFormChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label htmlFor="password">
-                <b>Password </b>
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleFormChange}
-              />
-            </Form.Field>
+            <Form.Input
+              id="username"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleFormChange}
+              fluid
+              label="Username"
+              required
+            />
+            <Form.Input
+              id="password"
+              type="password"
+              name="password"
+              value={formData.pasword}
+              onChange={handleFormChange}
+              fluid
+              label="Password"
+              required
+            />
             <Button type="submit">Sign In</Button>
           </Form>
         </Modal.Description>

@@ -50,15 +50,18 @@ const isAuthenticated = (req, res, next) => {
 // ENDPOINTS
 
 // ACCOUNTS
-app.post('/API/account/signin', passport.authenticate('local'), (req, res) => {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  const user = { ...req.user.dataValues };
-  delete user.password;
-  res.send(user);
-});
+app.post(
+  '/API/account/signin',
+  passport.authenticate('local'),
+  accountRoutes.signIn
+);
+app.post(
+  '/API/account/create',
+  accountRoutes.signUp,
+  passport.authenticate('local'),
+  accountRoutes.signIn
+);
 app.get('/API/account/signout', isAuthenticated, accountRoutes.signOut);
-app.post('/API/account/create', accountRoutes.signUp);
 app.patch('/API/account/update', isAuthenticated, accountRoutes.updateAccount);
 //app.delete('/API/account/delete', isAuthenticated, accountRoutes.deleteAccount);
 

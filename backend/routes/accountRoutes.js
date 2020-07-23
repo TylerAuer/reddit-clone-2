@@ -1,16 +1,13 @@
 const accountsAPI = require('../api/accounts');
 
 const signIn = async (req, res) => {
-  const resultOfSignIn = await accountsAPI.signUserIn(req.body);
-  // Unsuccessful sign in
-  if (resultOfSignIn.data === null) {
-    res.status(401).send(resultOfSignIn);
-  } else {
-    res.send(resultOfSignIn);
-  }
+  // If this function gets called, authentication was successful.
+  const user = { ...req.user.dataValues };
+  delete user.password;
+  res.send(user);
 };
 
-const signUp = async (req, res) => {
+const signUp = async (req, res, next) => {
   const username = req.body.username;
   // If username is taken
   if (await accountsAPI.getUserByUsername(username)) {
@@ -25,12 +22,7 @@ const signUp = async (req, res) => {
     await accountsAPI.createUser(req.body);
     console.log(`ACCOUNT: Created account for ${username}`);
 
-    // Return account info for sign in
-    const userInfo = await accountsAPI.getUserByUsername(username);
-    console.log(
-      `ACCOUNT: ${userInfo.username} signed in [ID: ${req.params.userID}]`
-    );
-    res.send(userInfo); // defaults to status(200)
+    next();
   }
 };
 
