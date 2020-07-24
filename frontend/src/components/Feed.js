@@ -132,36 +132,40 @@ const FeedOfPosts = (props) => {
   return (
     <>
       <Item.Group divided>{arrOfPosts}</Item.Group>
-      <Link
-        to={{
-          pathname: '/feed',
-          search: convertQueryObjectToString(newerBtnQueryObj),
-        }}
-      >
-        <Button
-          className={isNewerBtnDisabled}
-          color="blue"
-          size="large"
-          floated="left"
-        >
-          <Icon name="arrow left" /> Newer
-        </Button>
-      </Link>
-      <Link
-        to={{
-          pathname: '/feed',
-          search: convertQueryObjectToString(olderBtnQueryObj),
-        }}
-      >
-        <Button
-          className={isOlderBtnDisabled}
-          color="blue"
-          size="large"
-          floated="right"
-        >
-          Older <Icon name="arrow right" />
-        </Button>
-      </Link>
+      {postData.posts.length > 0 && (
+        <>
+          <Link
+            to={{
+              pathname: '/feed',
+              search: convertQueryObjectToString(newerBtnQueryObj),
+            }}
+          >
+            <Button
+              className={isNewerBtnDisabled}
+              color="blue"
+              size="large"
+              floated="left"
+            >
+              <Icon name="arrow left" /> Newer
+            </Button>
+          </Link>
+          <Link
+            to={{
+              pathname: '/feed',
+              search: convertQueryObjectToString(olderBtnQueryObj),
+            }}
+          >
+            <Button
+              className={isOlderBtnDisabled}
+              color="blue"
+              size="large"
+              floated="right"
+            >
+              Older <Icon name="arrow right" />
+            </Button>
+          </Link>
+        </>
+      )}
     </>
   );
 };
