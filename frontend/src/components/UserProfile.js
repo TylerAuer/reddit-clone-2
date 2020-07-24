@@ -10,6 +10,7 @@ import {
 } from 'semantic-ui-react';
 import { formatDistance } from 'date-fns';
 import { useParams } from 'react-router-dom';
+import { useTrail, animated } from 'react-spring';
 
 const UserProfile = (props) => {
   const { userID } = useParams();
@@ -28,21 +29,35 @@ const UserProfile = (props) => {
       });
   }, [userID]);
 
-  const PostList = info.posts.map((post) => {
+  const trail = useTrail(info.posts.length, {
+    from: { marginLeft: -10, opacity: 0 },
+    to: { marginLeft: 0, opacity: 1 },
+  });
+
+  const AnimatedList = animated(List.Item);
+
+  // const PostList = info.posts.map((post) => {
+  const PostList = trail.map((props, index) => {
     return (
-      <List.Item key={post.id}>
+      <AnimatedList style={props} key={info.posts[index].id}>
         <List.Icon name="newspaper outline" verticalAlign="middle" />
         <List.Content>
           <List.Header>
-            <Link to={`/post/read/${post.id}`}>{post.post_title}</Link>
+            <Link to={`/post/read/${info.posts[index].id}`}>
+              {info.posts[index].post_title}
+            </Link>
           </List.Header>
           <List.Description>
             <span className="profile__post-date">
-              {formatDistance(new Date(post.updatedAt), new Date())} ago
+              {formatDistance(
+                new Date(info.posts[index].updatedAt),
+                new Date()
+              )}{' '}
+              ago
             </span>
           </List.Description>
         </List.Content>
-      </List.Item>
+      </AnimatedList>
     );
   });
 
