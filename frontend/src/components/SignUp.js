@@ -4,6 +4,7 @@ import { LoginContext } from '../contexts/LoginContext';
 import { Form, Button, Container, Header } from 'semantic-ui-react';
 import toaster from 'toasted-notes';
 import 'toasted-notes/src/styles.css';
+import { useSpring, animated } from 'react-spring';
 
 const SignUp = (props) => {
   let history = useHistory();
@@ -17,6 +18,10 @@ const SignUp = (props) => {
     email: '',
   });
   const [formErrors, setFormErrors] = React.useState([]);
+  const animationProps = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+  });
 
   const handleFormChange = (event, data) => {
     setFormData({
@@ -98,105 +103,107 @@ const SignUp = (props) => {
   }
 
   return (
-    <Container text>
-      <Header as="h2">Create an Account</Header>
-      <Form onSubmit={submit}>
-        <Form.Input
-          error={
-            formErrors.includes('username')
-              ? { content: 'Please select a username', pointing: 'below' }
-              : null
-          }
-          fluid
-          label="Username"
-          id="username"
-          required
-          onChange={handleFormChange}
-        />
-        <Form.Input
-          error={
-            formErrors.includes('password1')
-              ? {
-                  content:
-                    'Please create a password that is at least 10 characters long.',
-                  pointing: 'below',
-                }
-              : null
-          }
-          fluid
-          type="password"
-          label="Enter Password"
-          id="password1"
-          required
-          onChange={handleFormChange}
-        />
-        <Form.Input
-          error={
-            formErrors.includes('password2')
-              ? {
-                  content:
-                    "Be sure that you've entered the same password as above.",
-                  pointing: 'below',
-                }
-              : null
-          }
-          fluid
-          type="password"
-          label="Reenter Password"
-          id="password2"
-          required
-          onChange={handleFormChange}
-        />
-        <Form.Group widths="equal">
+    <animated.div style={animationProps}>
+      <Container text>
+        <Header as="h2">Create an Account</Header>
+        <Form onSubmit={submit}>
           <Form.Input
             error={
-              formErrors.includes('first')
-                ? {
-                    content: 'Please enter your first name.',
-                    pointing: 'below',
-                  }
+              formErrors.includes('username')
+                ? { content: 'Please select a username', pointing: 'below' }
                 : null
             }
             fluid
-            label="First Name"
-            id="first"
+            label="Username"
+            id="username"
             required
             onChange={handleFormChange}
           />
           <Form.Input
             error={
-              formErrors.includes('last')
+              formErrors.includes('password1')
                 ? {
-                    content: 'Please enter your last name.',
+                    content:
+                      'Please create a password that is at least 10 characters long.',
                     pointing: 'below',
                   }
                 : null
             }
             fluid
-            label="Last Name"
-            id="last"
+            type="password"
+            label="Enter Password"
+            id="password1"
             required
             onChange={handleFormChange}
           />
-        </Form.Group>
-        <Form.Input
-          error={
-            formErrors.includes('email')
-              ? {
-                  content: 'Please enter a valid email address.',
-                  pointing: 'below',
-                }
-              : null
-          }
-          fluid
-          label="Email"
-          id="email"
-          required
-          onChange={handleFormChange}
-        />
-        <Button type="submit">Join!</Button>
-      </Form>
-    </Container>
+          <Form.Input
+            error={
+              formErrors.includes('password2')
+                ? {
+                    content:
+                      "Be sure that you've entered the same password as above.",
+                    pointing: 'below',
+                  }
+                : null
+            }
+            fluid
+            type="password"
+            label="Reenter Password"
+            id="password2"
+            required
+            onChange={handleFormChange}
+          />
+          <Form.Group widths="equal">
+            <Form.Input
+              error={
+                formErrors.includes('first')
+                  ? {
+                      content: 'Please enter your first name.',
+                      pointing: 'below',
+                    }
+                  : null
+              }
+              fluid
+              label="First Name"
+              id="first"
+              required
+              onChange={handleFormChange}
+            />
+            <Form.Input
+              error={
+                formErrors.includes('last')
+                  ? {
+                      content: 'Please enter your last name.',
+                      pointing: 'below',
+                    }
+                  : null
+              }
+              fluid
+              label="Last Name"
+              id="last"
+              required
+              onChange={handleFormChange}
+            />
+          </Form.Group>
+          <Form.Input
+            error={
+              formErrors.includes('email')
+                ? {
+                    content: 'Please enter a valid email address.',
+                    pointing: 'below',
+                  }
+                : null
+            }
+            fluid
+            label="Email"
+            id="email"
+            required
+            onChange={handleFormChange}
+          />
+          <Button type="submit">Join!</Button>
+        </Form>
+      </Container>
+    </animated.div>
   );
 };
 

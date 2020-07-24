@@ -5,10 +5,15 @@ import 'toasted-notes/src/styles.css';
 import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 import truncate from '../functions/truncate';
+import { useSpring, animated } from 'react-spring';
 
 const FormCreatePost = (props) => {
   const history = useHistory();
   const [loginState] = React.useContext(LoginContext);
+  const animationProps = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+  });
 
   const [formData, setFormData] = React.useState({
     post_title: '',
@@ -48,39 +53,41 @@ const FormCreatePost = (props) => {
   };
 
   return (
-    <Form>
-      <Header>Create a new post</Header>
+    <animated.div style={animationProps}>
+      <Form>
+        <Header>Create a new post</Header>
 
-      <Form.Field onSubmit={submit} id="formId">
-        <label htmlFor="post_title">
-          <b>Title: </b>
-        </label>
-        <input
-          type="text"
-          id="post_title"
-          name="post_title"
-          placeholder="Give your post a title"
-          onChange={handleFormChange}
-          value={formData.post_title}
-        />
-      </Form.Field>
-      <Form.Field>
-        <label htmlFor="post_body">
-          <b>Body: </b>
-
-          <textarea
-            id="post_body"
-            name="post_body"
-            value={formData.post_body}
-            multiline="true"
+        <Form.Field onSubmit={submit} id="formId">
+          <label htmlFor="post_title">
+            <b>Title: </b>
+          </label>
+          <input
+            type="text"
+            id="post_title"
+            name="post_title"
+            placeholder="Give your post a title"
             onChange={handleFormChange}
+            value={formData.post_title}
           />
-        </label>
-      </Form.Field>
-      <Button onClick={submit} type="submit">
-        Make this post official!
-      </Button>
-    </Form>
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="post_body">
+            <b>Body: </b>
+
+            <textarea
+              id="post_body"
+              name="post_body"
+              value={formData.post_body}
+              multiline="true"
+              onChange={handleFormChange}
+            />
+          </label>
+        </Form.Field>
+        <Button onClick={submit} type="submit">
+          Make this post official!
+        </Button>
+      </Form>
+    </animated.div>
   );
 };
 

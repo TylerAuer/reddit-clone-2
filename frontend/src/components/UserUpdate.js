@@ -2,10 +2,15 @@ import React from 'react';
 import { Form, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import DeleteUser from './DeleteUser';
+import { useSpring, animated } from 'react-spring';
 
 const UserUpdate = (props) => {
   const [loginState, setLoginState] = React.useContext(LoginContext);
   const [formData, setFormData] = React.useState(loginState);
+  const animationProps = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+  });
 
   const handleFormChange = (event) =>
     setFormData({
@@ -35,7 +40,7 @@ const UserUpdate = (props) => {
   };
 
   return (
-    <>
+    <animated.div style={animationProps}>
       <Form onSubmit={submit}>
         <Header>Ready for a makeover?</Header>
         <p>Update anything you'd like.</p>
@@ -90,7 +95,7 @@ const UserUpdate = (props) => {
         <Button type="submit">Update Your Info</Button>
       </Form>
       <DeleteUser />
-    </>
+    </animated.div>
   );
 };
 
