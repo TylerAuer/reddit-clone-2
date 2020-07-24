@@ -4,44 +4,44 @@ import { formatDistance } from 'date-fns';
 import { Item, Icon, Label, Button } from 'semantic-ui-react';
 import ProfileReference from './ProfileReference';
 import truncate from '../functions/truncate';
+import { useTrail, animated } from 'react-spring';
 
 const FeedPostSingle = (props) => {
+  if (props.postData.id === 122) {
+    console.log(props);
+  }
   const post = (
-    <Item>
-      <Item.Content>
-        <Item.Header style={{ cursor: 'pointer' }}>
-          <Link to={`/post/read/${props.postData.id}`}>
-            {props.postData.title}
-          </Link>
-        </Item.Header>
+    <Item.Content>
+      <Item.Header style={{ cursor: 'pointer' }}>
+        <Link to={`/post/read/${props.postData.id}`}>
+          {props.postData.title}
+        </Link>
+      </Item.Header>
 
-        <ProfileReference userID={props.postData.author_id}>
-          <Item.Meta>
-            <span style={{ color: 'blue' }}>
-              {' '}
-              {props.postData.author_username}
-            </span>{' '}
-            <span style={{ fontStyle: 'italic' }}>
-              {formatDistance(new Date(props.postData.lastUpdated), new Date())}{' '}
-              ago
-            </span>
-          </Item.Meta>
-        </ProfileReference>
+      <ProfileReference userID={props.postData.author_id}>
+        <Item.Meta>
+          <span style={{ color: 'blue' }}>
+            {' '}
+            {props.postData.author_username}
+          </span>{' '}
+          <span style={{ fontStyle: 'italic' }}>
+            {formatDistance(new Date(props.postData.lastUpdated), new Date())}{' '}
+            ago
+          </span>
+        </Item.Meta>
+      </ProfileReference>
 
-        <Item.Description>
-          {truncate(props.postData.body, 300)}
-        </Item.Description>
+      <Item.Description>{truncate(props.postData.body, 300)}</Item.Description>
 
-        <Item.Extra>
-          <Label>
-            <Icon name="comment" /> {props.postData.commentCount}
-          </Label>
-          <Label>
-            <Icon name="heart" /> {props.postData.heartCount}
-          </Label>
-        </Item.Extra>
-      </Item.Content>
-    </Item>
+      <Item.Extra>
+        <Label>
+          <Icon name="comment" /> {props.postData.commentCount}
+        </Label>
+        <Label>
+          <Icon name="heart" /> {props.postData.heartCount}
+        </Label>
+      </Item.Extra>
+    </Item.Content>
   );
 
   return props.postData ? post : <div>Post loading...</div>;
@@ -65,13 +65,22 @@ const FeedOfPosts = (props) => {
     });
   }, [location]);
 
+  const trail = useTrail(postData.posts.length, {
+    from: { marginLeft: -10, opacity: 0 },
+    to: { marginLeft: 0, opacity: 1 },
+  });
+
+  const AnimatedItem = animated(Item);
+
   // Generates array of Single Post Components
-  const arrOfPosts = postData.posts.map((post) => (
-    <FeedPostSingle
-      key={post.id}
-      onClickPost={props.onClickPost}
-      postData={post}
-    />
+  //const arrOfPosts = postData.posts.map((post) => (
+  const arrOfPosts = trail.map((props, index) => (
+    <AnimatedItem style={props} key={postData.posts[index].id}>
+      <FeedPostSingle
+        onClickPost={props.onClickPost}
+        postData={postData.posts[index]}
+      />
+    </AnimatedItem>
   ));
 
   // Default Query string values
