@@ -6,6 +6,7 @@ import { Confirm, Container, Divider, Header, Button } from 'semantic-ui-react';
 import { LoginContext } from '../contexts/LoginContext';
 import splitTextIntoPTags from '../functions/splitTextIntoPTags';
 import ProfileReference from './ProfileReference';
+import { useTrail, animated } from 'react-spring';
 
 const DeleteCommentBtn = (props) => {
   const [confirmOpen, setConfirmOpen] = React.useState(false);
@@ -88,15 +89,22 @@ const SingleCommentInFeed = ({ commentData, postInfo, setPostInfo, index }) => {
   return comment;
 };
 
-const FeedOfComments = (props) => {
-  const commentList = props.comments.map((comment, index) => (
-    <SingleCommentInFeed
-      postInfo={props.postInfo}
-      setPostInfo={props.setPostInfo}
-      commentData={comment}
-      key={comment.id}
-      index={index}
-    />
+const FeedOfComments = ({ postInfo, setPostInfo, comments }) => {
+  const trail = useTrail(comments.length, {
+    from: { marginLeft: -10, opacity: 0 },
+    to: { marginLeft: 0, opacity: 1 },
+  });
+
+  const commentList = trail.map((props, index) => (
+    <animated.div key={comments[index]} style={props}>
+      <SingleCommentInFeed
+        postInfo={postInfo}
+        setPostInfo={setPostInfo}
+        commentData={comments[index]}
+        key={comments[index].id}
+        index={index}
+      />
+    </animated.div>
   ));
 
   return (
