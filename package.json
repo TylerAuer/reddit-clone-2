@@ -13,7 +13,20 @@
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
     "semantic-ui-react": "^1.0.0",
-    "toasted-notes": "^3.2.0"
+    "toasted-notes": "^3.2.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-pg-simple": "^6.1.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.0.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.6",
+    "sequelize-cli": "^5.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +49,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

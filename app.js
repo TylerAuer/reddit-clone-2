@@ -1,16 +1,16 @@
 const express = require('express');
-const setupPassport = require('./passport/setupPassport');
+const setupPassport = require('./backend/passport/setupPassport');
 const session = require('express-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const jsonParser = bodyParser.json();
-const accountRoutes = require('./routes/accountRoutes');
-const userRoutes = require('./routes/userRoutes');
-const postRoutes = require('./routes/postRoutes');
-const feedRoutes = require('./routes/feedRoutes');
-const commentRoutes = require('./routes/commentRoutes');
-const heartRoutes = require('./routes/heartRoutes');
+const accountRoutes = require('./backend/routes/accountRoutes');
+const userRoutes = require('./backend/routes/userRoutes');
+const postRoutes = require('./backend/routes/postRoutes');
+const feedRoutes = require('./backend/routes/feedRoutes');
+const commentRoutes = require('./backend/routes/commentRoutes');
+const heartRoutes = require('./backend/routes/heartRoutes');
 require('dotenv').config();
 
 ///////////////////////////////////////////////
@@ -34,6 +34,7 @@ app.use(
   })
 );
 app.setMaxListeners(20); // Default: 10 (Helps spot emitter memory leaks)
+app.use(express.static(__dirname + '/build'));
 
 ///////////////////////////////////////////////
 // PASSPORT CONFIG
@@ -50,7 +51,7 @@ const isAuthenticated = (req, res, next) => {
 // ENDPOINTS
 
 // FRONTEND
-app.get('/', (req, res) => res.sendFile(``));
+app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
 // ACCOUNTS
 app.post(
