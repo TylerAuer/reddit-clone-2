@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 const models = require('../models');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 

@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const models = require('../models');
 
 const getUserByUsername = (username) => {

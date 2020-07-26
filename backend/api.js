@@ -49,6 +49,9 @@ const isAuthenticated = (req, res, next) => {
 ///////////////////////////////////////////////
 // ENDPOINTS
 
+// FRONTEND
+app.get('/', (req, res) => res.sendFile(``));
+
 // ACCOUNTS
 app.post(
   '/API/account/signin',
@@ -64,10 +67,6 @@ app.post(
 app.get('/API/account/signout', isAuthenticated, accountRoutes.signOut);
 app.patch('/API/account/update', isAuthenticated, accountRoutes.updateAccount);
 app.delete('/API/account/delete', isAuthenticated, accountRoutes.deleteAccount);
-
-// OLD USER METHODS BEING MOVED TO ACCOUNTS ROUTES
-//app.patch('/API/user/', isAuthenticated, userRoutes.updateUserAccountInfo);
-//app.delete('/API/user/', isAuthenticated, userRoutes.deleteUser);
 
 // USERS
 app.get('/API/user/id/:userID', userRoutes.getUserByID);
