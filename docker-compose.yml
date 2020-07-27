@@ -4,16 +4,16 @@ services:
     image: "postgres:12.3"
     restart: always
     env_file: .env # Loads secrets from .env file and makes available to PSQL
-    ports:
-      - "5432:5432"
   app:
+    restart: always
     build:
       context: .
     depends_on:
       - postgres
     volumes:
-      - /app/node_modules
+      - /app/node_modules # Saves from having to rebuild this folder over and over
     ports:
+      # Makes the app accessible from localhost:4000
+      # SYNTAX: [external port:internal port]
       - "4000:4000"
     env_file: .env # Loads secrets from .env file and makes available to app.js
-    restart: always
