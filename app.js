@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./backend/models');
 const setupPassport = require('./backend/passport/setupPassport');
 const session = require('express-session');
 const passport = require('passport');
@@ -11,7 +12,17 @@ const postRoutes = require('./backend/routes/postRoutes');
 const feedRoutes = require('./backend/routes/feedRoutes');
 const commentRoutes = require('./backend/routes/commentRoutes');
 const heartRoutes = require('./backend/routes/heartRoutes');
-require('dotenv').config();
+
+///////////////////////////////////////////////
+// Set Up PSQL Database
+const syncDatabaseToModels = async () => {
+  await db.sequelize.sync();
+  console.log('Finished synchronizing the DB');
+};
+
+// Only runs when the Database does not exist or when the models don't
+// match the current state of the DB
+syncDatabaseToModels();
 
 ///////////////////////////////////////////////
 // APP CONFIG

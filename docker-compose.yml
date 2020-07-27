@@ -1,31 +1,19 @@
-version: '3'
+version: "3.1"
 services:
   postgres:
-    image: 'postgres:latest'
-    environment:
-      - POSTGRES_PASSWORD=postgres_password
-  backend:
+    image: "postgres:12.3"
+    restart: always
+    env_file: .env # Loads secrets from .env file and makes available to PSQL
+    ports:
+      - "5432:5432"
+  app:
+    build:
+      context: .
     depends_on:
       - postgres
-    build:
-      dockerfile: Dockerfile.dev # Just the name of the Dockerfile
-      context: ./backend # Where to find the Dockerfile
     volumes:
       - /app/node_modules
-      - ./backend:/app
-    environment:
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
-  frontend:
-    stdin_open: true
     ports:
-      - '3000:3000'
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./frontend
-    volumes:
-      - /app/node_modules # don't need to copy over the node_module contents from local
-      - ./frontend:/app # DO need to copy over everything in the client folder
+      - "4000:4000"
+    env_file: .env # Loads secrets from .env file and makes available to app.js
+    restart: always
