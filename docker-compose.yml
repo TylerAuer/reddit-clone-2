@@ -5,9 +5,8 @@ services:
     restart: always
     env_file: .env # Loads secrets from .env file and makes available to PSQL
   app:
+    image: tylerauer/reddit:alpha
     restart: always
-    build:
-      context: .
     depends_on:
       - postgres
     volumes:
