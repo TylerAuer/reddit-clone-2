@@ -3,7 +3,13 @@ services:
   postgres:
     image: "postgres:12.3"
     restart: always
-    env_file: .env # Loads secrets from .env file and makes available to PSQL
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_DB=reddit_production
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_PORT=5432
+      - COOKIE_SESSION_SECRET=cookie_secret
+    # env_file: .env # Loads secrets from .env file and makes available to PSQL
   app:
     image: tylerauer/reddit:alpha
     restart: always
@@ -15,4 +21,10 @@ services:
       # Makes the app accessible from localhost:4000
       # SYNTAX: [external port:internal port]
       - "4000:4000"
-    env_file: .env # Loads secrets from .env file and makes available to app.js
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_DB=reddit_production
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_PORT=5432
+      - COOKIE_SESSION_SECRET=cookie_secret
+    # env_file: .env # Loads secrets from .env file and makes available to app.js
