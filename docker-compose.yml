@@ -3,8 +3,8 @@ services:
   postgres:
     image: "postgres:12.3"
     restart: always
-    environment:
-      env_file: .env # Loads secrets from .env file and makes available to PSQL
+    # environment:
+    #   env_file: .env # Loads secrets from .env file and makes available to PSQL
   app:
     image: tylerauer/reddit:latest
     restart: always
@@ -16,5 +16,5 @@ services:
       # Makes the app accessible from port 80
       # SYNTAX: [external port:internal port]
       - "80:4000"
-    environment:
-      env_file: .env # Loads secrets from .env file and makes available to app.js
+    # environment:
+    #   env_file: .env # Loads secrets from .env file and makes available to app.js
