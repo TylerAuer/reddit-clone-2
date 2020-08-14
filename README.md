@@ -12,9 +12,9 @@ The backend is built with [Node](https://nodejs.org/en/), [Express](https://expr
 
 This is a [React](https://reactjs.org/) application that makes use of [React-Router](https://reactrouter.com/web/guides/quick-start) for routing and [Semantic-UI](https://react.semantic-ui.com/) for styling. I also used [Toasted-Notes](https://toasted-notes.netlify.app/) and [date-fns](https://www.npmjs.com/package/date-fns).
 
-### Hosting
+### Deployment
 
-The site is hosted with [Amazon Web Services](https://aws.amazon.com/)'s Lightsail service using [Docker](https://www.docker.com/).
+The site is hosted with [Heroku](https://www.heroku.com/home). Which makes maintenance efficient -- pushes to `master` automatically create new builds.
 
 ## Logical Next Features
 
@@ -29,6 +29,6 @@ At the time, this was the first full-stack application I'd built. So, much of th
 
 Since this project utilizes user authentication, I had to learn how to manage sessions and authenticate users.
 
-This is the first project I've served from Amazon Web Services, so I had to learn how to configure the project there.
+This is the first full-stack project I've deployed so I had to learn to configure and maintain the application.
 
-Because this application's frontend was larger than previous projects, I learned a lot about how to use (and name) components to structure my project. There are still plenty of areas that could be abstracted or organized more effectively. For example, API calls could be turned into custom React Hooks.
+Because this application's frontend was larger than previous projects, I learned a lot about how to use (and effectively name) components to structure my project. There are still plenty of areas that could be abstracted or organized more effectively. For example, common API calls could be turned into custom React Hooks.
