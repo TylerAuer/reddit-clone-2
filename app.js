@@ -15,6 +15,11 @@ const heartRoutes = require('./backend/routes/heartRoutes');
 
 ///////////////////////////////////////////////
 // Set Up PSQL Database
+// Create store for session data in Postgres DB
+const sessionStore = new SequelizeStore({
+  db: db.sequelize,
+});
+
 const syncDatabaseToModels = async () => {
   await db.sequelize.sync();
   console.log('Finished synchronizing the DB');
@@ -33,8 +38,10 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.COOKIE_SESSION_SECRET || 'dev_secret',
+    store: sessionStore,
+    secure: false,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours in milliseconds
   })
 );
