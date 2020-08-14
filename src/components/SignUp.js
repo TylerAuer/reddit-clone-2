@@ -82,7 +82,7 @@ const SignUp = (props) => {
         .catch((errorCode) => {
           if (errorCode === 409) {
             toaster.notify(
-              `${formData.username} is already taken. Please select a new username.`
+              `Sorry! ${formData.username} is already taken. Please select a new username.`
             );
           } else {
             toaster.notify(`An unknown error occured. [ERR: ${errorCode}]`);
