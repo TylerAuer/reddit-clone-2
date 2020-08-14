@@ -4,7 +4,7 @@ const setupPassport = require('./backend/passport/setupPassport');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('passport');
-const secure = require('ssl-express-www');
+const secure = require('express-force-https');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const jsonParser = bodyParser.json();
@@ -35,6 +35,7 @@ syncDatabaseToModels();
 // APP CONFIG
 
 const app = express();
+app.use(secure);
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -53,7 +54,6 @@ app.use(
     extended: true,
   })
 );
-app.use(secure);
 app.setMaxListeners(20); // Default: 10 (Helps spot emitter memory leaks)
 app.use(express.static(__dirname + '/build'));
 
