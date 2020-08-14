@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./backend/models');
 const setupPassport = require('./backend/passport/setupPassport');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const session = require('express-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
