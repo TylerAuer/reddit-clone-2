@@ -1,5 +1,14 @@
 const accountsAPI = require('../api/accounts');
 
+const checkForSession = async (req, res) => {
+  // If this function gets called, authentication was successful.
+  const user = {
+    ...req.user.dataValues,
+  };
+  delete user.password;
+  res.send(user);
+};
+
 const signIn = async (req, res) => {
   // If this function gets called, authentication was successful.
   const user = { ...req.user.dataValues };
@@ -33,7 +42,7 @@ const signUp = async (req, res, next) => {
 const signOut = (req, res) => {
   console.log(`ACCOUNT: A user signed out.`);
   req.logout();
-  req.send('Signed you out.');
+  res.send('Signed you out.');
 };
 
 const updateAccount = async (req, res) => {
@@ -53,6 +62,7 @@ const deleteAccount = async (req, res) => {
 };
 
 module.exports = {
+  checkForSession,
   signIn,
   signUp,
   signOut,

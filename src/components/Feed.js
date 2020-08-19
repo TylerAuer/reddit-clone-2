@@ -7,9 +7,6 @@ import truncate from '../functions/truncate';
 import { useTrail, animated } from 'react-spring';
 
 const FeedPostSingle = (props) => {
-  if (props.postData.id === 122) {
-    console.log(props);
-  }
   const post = (
     <Item.Content>
       <Item.Header style={{ cursor: 'pointer' }}>

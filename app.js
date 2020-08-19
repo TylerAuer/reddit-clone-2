@@ -64,7 +64,9 @@ setupPassport(app);
 
 // AUTHENTICATION MIDDLEWARE
 const isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) return next();
+  if (req.isAuthenticated()) {
+    return next();
+  }
   res.redirect('/');
 };
 
@@ -75,6 +77,8 @@ const isAuthenticated = (req, res, next) => {
 app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
 // ACCOUNTS
+app.get('/API/account/session', isAuthenticated, accountRoutes.checkForSession);
+
 app.post(
   '/API/account/signin',
   passport.authenticate('local'),
