@@ -70,14 +70,24 @@ const updatePost = (postID, metadata) => {
     .catch((error) => console.error(error));
 };
 
-const deletePost = (postID) => {
-  return models.content
+const deletePost = async (postID) => {
+  await models.content
+    .destroy({
+      where: {
+        content_parent: postID,
+      },
+    })
+    .catch((error) => console.error(error));
+
+  await models.content
     .destroy({
       where: {
         id: postID,
       },
     })
     .catch((error) => console.error(error));
+
+  return;
 };
 
 module.exports = { createNewPost, readPost, updatePost, deletePost };

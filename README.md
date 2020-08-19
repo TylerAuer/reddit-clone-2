@@ -37,7 +37,17 @@ Because this application's frontend was larger than previous projects, I learned
 
 1. Clone repo
 2. Run `npm install`
-3. Start backend with `nodemon app.js`
-4. Start frontend with `npm start`
-5. Open app in browser (use local host port shown when you start the frontend)
-6. Have fun!
+3. Run these SQL queries to populate the content_types table with the appropriate references:
+    ```SQL
+    INSERT INTO "public"."content_types"("id", "name", "createdAt", "updatedAt") VALUES(4, 'post', '2020-08-18 10:04:18.44343-07', '2020-08-18 10:04:18.44343-07') RETURNING "id", "name", "createdAt", "updatedAt";
+    ```
+    ```SQL
+    INSERT INTO "public"."content_types"("id", "name", "createdAt", "updatedAt") VALUES(5, 'comment', '2020-08-18 10:04:18.44343-07', '2020-08-18 10:04:18.44343-07') RETURNING "id", "name", "createdAt", "updatedAt";`
+    ```
+    ```SQL
+    INSERT INTO "public"."content_types"("id", "name", "createdAt", "updatedAt") VALUES(7, 'heart', '2020-08-18 10:04:18.44343-07', '2020-08-18 10:04:18.44343-07') RETURNING "id", "name", "createdAt", "updatedAt";
+    ```
+4. Start backend with `nodemon app.js`
+5. Start frontend with `npm start`
+6. Open app in browser (use local host port shown when you start the frontend)
+7. Have fun!
