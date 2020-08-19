@@ -1,13 +1,11 @@
-body {
-  margin: 40px 0;
-}
-
 #menu {
   margin-top: 30px;
 }
 
 #root {
-  padding-bottom: 75px;
+  max-width: 900px;
+  padding: 30px 0 75px 0;
+  margin: 0 auto;
 }
 
 .profile__join-date {
@@ -22,4 +20,58 @@ body {
   font-size: 1rem;
   font-style: italic;
   color: darkgrey;
+}
+
+@media screen and (max-width: 991px) {
+  #root {
+    padding: 30px 25px 75px 25px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #root {
+    padding: 30px 15px 75px 15px;
+  }
+
+  #menu {
+    margin-top: 18px;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  #root {
+    padding: 30px 3px 75px 3px;
+  }
+
+  h1.ui.header {
+    font-size: 25px;
+  }
+
+  #navbar__sign-in-up button,
+  #navbar__sign-in-up .or {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 408px) {
+  h1.ui.header {
+    font-size: 20px;
+  }
+
+  #navbar__sign-in-up button,
+  #navbar__sign-in-up .or {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  h1.ui.header {
+    font-size: 16px;
+  }
+
+  #navbar__sign-in-up button,
+  #navbar__sign-in-up .or {
+    font-size: 10px;
+  }
 }

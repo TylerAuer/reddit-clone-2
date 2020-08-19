@@ -8,7 +8,6 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
-console.log(config);
 let sequelize;
 
 // checks if env is Heroku, if so, sets sequelize to utilize the database hosted on heroku

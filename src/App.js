@@ -25,7 +25,7 @@ function PrivateRoute({ children, ...rest }) {
 
 function App() {
   return (
-    <Container>
+    <Container fluid>
       <HashRouter>
         <NavBar />
         <section className="section-main">
