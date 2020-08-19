@@ -33,6 +33,7 @@ const signUp = async (req, res, next) => {
 const signOut = (req, res) => {
   console.log(`ACCOUNT: A user signed out.`);
   req.logout();
+  req.send('Signed you out.');
 };
 
 const updateAccount = async (req, res) => {

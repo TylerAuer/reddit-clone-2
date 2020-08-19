@@ -7,16 +7,6 @@ export const LoginContext = React.createContext();
 export const LoginContextProvider = (props) => {
   const [loginState, setLoginState] = useState(null);
 
-  //TEST: Keeps me logged in for testing
-  // const [loginState, setLoginState] = useState({
-  //   id: 9,
-  //   username: 'Prestoneous',
-  //   first_name: 'Tyler',
-  //   last_name: 'Auer',
-  //   date_joined: 1590687513,
-  //   email_address: 'fakeTyler@gmail.com',
-  // });
-
   return (
     <LoginContext.Provider value={[loginState, setLoginState]}>
       {props.children}
