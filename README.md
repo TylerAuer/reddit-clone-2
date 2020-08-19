@@ -1,6 +1,6 @@
 # Reddit Clone
 
-A full-stack clone of Reddit with user authentication, posts, comment, and hearts.
+A full-stack clone of Reddit with user authentication, posts, comments, and hearts.
 
 ## Technologies
 
@@ -20,8 +20,8 @@ The site is hosted with [Heroku](https://www.heroku.com/home). Which makes maint
 
 - Comment nesting
 - Hearts for comments
-- Search users and posts
-- An algorithm for sorting feed based on combination of hearts and recency
+- Search of users and posts
+- An algorithm for sorting feed based on a combination of hearts and recency
 
 ## What I've Learned
 
@@ -32,3 +32,12 @@ Since this project utilizes user authentication, I had to learn how to manage se
 This is the first full-stack project I've deployed so I had to learn to configure and maintain the application.
 
 Because this application's frontend was larger than previous projects, I learned a lot about how to use (and effectively name) components to structure my project. There are still plenty of areas that could be abstracted or organized more effectively. For example, common API calls could be turned into custom React Hooks.
+
+## To Run Locally
+
+1. Clone repo
+2. Run `npm install`
+3. Start backend with `nodemon app.js`
+4. Start frontend with `npm start`
+5. Open app in browser (use local host port shown when you start the frontend)
+6. Have fun!
