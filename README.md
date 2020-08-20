@@ -2,6 +2,8 @@
 
 A full-stack clone of Reddit with user authentication, posts, comments, and hearts.
 
+[![Screenshot of Reddit Clone](https://github.com/TylerAuer/reddit-clone-2/blob/master/snapshot.png)](https://reddit.tylerauer.com)
+
 ## Technologies
 
 ### Backend
