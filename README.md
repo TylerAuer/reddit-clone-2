@@ -16,7 +16,7 @@ This is a [React](https://reactjs.org/) application that makes use of [React-Rou
 
 ### Deployment
 
-The site is hosted with [Heroku](https://www.heroku.com/home). Which makes maintenance efficient -- pushes to `master` automatically create new builds.
+The site is hosted with [Heroku](https://www.heroku.com/home) which makes maintenance efficient -- pushes to `master` automatically create new builds.
 
 ## Logical Next Features
 
